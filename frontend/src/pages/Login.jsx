@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useLang } from "../context/LangContext";
+import { translateServerError } from "../lib/i18n";
 import LangSwitcher from "../components/LangSwitcher";
 import styles from "./Login.module.css";
 
@@ -43,7 +44,7 @@ export default function Login() {
       }
       navigate("/dashboard");
     } catch (err) {
-      setError(err.message);
+      setError(translateServerError(err.message, t));
     } finally {
       setLoading(false);
     }

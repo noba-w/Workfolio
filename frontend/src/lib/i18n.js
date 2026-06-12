@@ -22,6 +22,10 @@ export const translations = {
     errorEmailMismatch: "Los correos electrónicos no coinciden.",
     errorPasswordMismatch: "Las contraseñas no coinciden.",
     errorPasswordShort: "La contraseña debe tener al menos 6 caracteres.",
+    errRateLimit: "Demasiados intentos. Espera unos minutos e inténtalo de nuevo.",
+    errInvalidCredentials: "Correo o contraseña incorrectos.",
+    errAlreadyRegistered: "Ya existe una cuenta con ese correo.",
+    errGeneric: "Ha ocurrido un error. Inténtalo de nuevo.",
   },
   en: {
     taglineLogin: "Welcome back.",
@@ -46,5 +50,17 @@ export const translations = {
     errorEmailMismatch: "Emails don't match.",
     errorPasswordMismatch: "Passwords don't match.",
     errorPasswordShort: "Password must be at least 6 characters.",
+    errRateLimit: "Too many attempts. Please wait a moment and try again.",
+    errInvalidCredentials: "Invalid email or password.",
+    errAlreadyRegistered: "An account with this email already exists.",
+    errGeneric: "Something went wrong. Please try again.",
   },
 };
+
+export function translateServerError(message, t) {
+  const m = message.toLowerCase();
+  if (m.includes("rate limit")) return t.errRateLimit;
+  if (m.includes("invalid credentials") || m.includes("invalid login")) return t.errInvalidCredentials;
+  if (m.includes("already registered") || m.includes("user already")) return t.errAlreadyRegistered;
+  return t.errGeneric;
+}
