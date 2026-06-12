@@ -1,0 +1,236 @@
+/* ── palette ─────────────────────────────────────────── */
+/* primary:   #00C8FF  (cyan)                            */
+/* secondary: #ffffff  (white — bg)                      */
+/* tertiary:  #00A651  (money green)                     */
+
+.page {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* ambient glow behind the card */
+.glow {
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 200, 255, 0.12) 0%,
+    transparent 68%
+  );
+  pointer-events: none;
+  filter: blur(12px);
+}
+
+/* ── card ────────────────────────────────────────────── */
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  margin: 1.5rem;
+  padding: 2.5rem 2rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 16px 48px rgba(0, 200, 255, 0.08),
+    0 32px 64px rgba(0, 0, 0, 0.06);
+}
+
+/* ── header ──────────────────────────────────────────── */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #00C8FF 0%, #0099cc 100%);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+  box-shadow: 0 4px 20px rgba(0, 200, 255, 0.35);
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #111827;
+}
+
+.tagline {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+/* ── form ────────────────────────────────────────────── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #374151;
+  letter-spacing: 0.01em;
+}
+
+.forgotLink {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  color: #00C8FF;
+  padding: 0;
+  transition: color 0.15s;
+}
+
+.forgotLink:hover {
+  color: #0099cc;
+}
+
+.input {
+  width: 100%;
+  padding: 0.6875rem 0.875rem;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #111827;
+  font-size: 0.9375rem;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s,
+    background 0.15s;
+}
+
+.input::placeholder {
+  color: #d1d5db;
+}
+
+.input:focus {
+  background: #ffffff;
+  border-color: #00C8FF;
+  box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.15);
+}
+
+/* ── error message ───────────────────────────────────── */
+.error {
+  font-size: 0.8125rem;
+  color: #dc2626;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+}
+
+/* ── submit button ───────────────────────────────────── */
+.submitBtn {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #00C8FF 0%, #0099cc 100%);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    opacity 0.15s,
+    transform 0.1s,
+    box-shadow 0.15s;
+  box-shadow: 0 4px 16px rgba(0, 200, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}
+
+.submitBtn:hover:not(:disabled) {
+  opacity: 0.92;
+  box-shadow: 0 6px 24px rgba(0, 200, 255, 0.5);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ── spinner ─────────────────────────────────────────── */
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── footer ──────────────────────────────────────────── */
+.footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: #9ca3af;
+}
+
+.signUpLink {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #00A651;
+  font-size: inherit;
+  font-weight: 500;
+  padding: 0;
+  transition: color 0.15s;
+}
+
+.signUpLink:hover {
+  color: #007a3d;
+}
