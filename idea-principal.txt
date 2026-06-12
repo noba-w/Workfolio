@@ -1,0 +1,87 @@
+Objetivo:
+Una plataforma para que freelancers gestionen su trabajo con clientes:
+-clientes
+-proyectos
+-horas trabajadas
+-facturación estimada
+-estado de proyectos
+-dark mode
+
+Piensa esto como producto:
+“Entro → veo cuánto he ganado → registro horas en 10 segundos”
+
+README
+
+-qué es el proyecto
+-screenshots
+-features
+-stack
+-cómo ejecutarlo
+-link demo
+
+Problema que resuelve
+Un freelance normalmente pierde control en:
+
+cuántas horas ha trabajado
+cuánto debería cobrar
+en qué proyectos está cada cliente
+qué tareas están abiertas
+
+Cliente:
+-Nombre
+-email
+-telefono(opcional)
+-empresa(opcional)
+-lista proyectos
+
+Proyectos:
+-nombre
+-descripción
+-cliente asociado
+-estado:
+    +activo
+    +pausado
+-terminado
+-precio por hora
+-fecha inicio / fin
+
+Registro de horas:
+-Se elige el proyecto
+-El día 
+-Horas trabajadas (poner entero o dos franjas de horas)
+-descripción del trabajo
+
+Crear facturación estimada(beta, no se sabe si añadir o no):
+horas * precio/hora
+total por proyecto
+total por cliente
+
+Arquitectura:
+-backend python fastAPI
+-frontend react
+
+Paginas:
+Login:
+-usar jwt
+
+Página principal:
+-Ingersos menusales
+-Horas trabajadas semanales
+-Proyectos activos
+-grafica
+
+Clientes:
+-Ver clientes
+    +Ver como por debajo proyectos* beta
+
+
+Proyectos:
+
+Time tracking:
+-Filtro  por tiempo
+-mostrar desglose de tiempo x proyecto
+-grafica
+
+Ingresos:
+-grafica
+
