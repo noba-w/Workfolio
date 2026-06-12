@@ -1,22 +1,29 @@
-import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import { LangProvider } from "./context/LangContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 export default function App() {
-  const [status, setStatus] = useState("connecting...");
-
-  useEffect(() => {
-    fetch("/api/health")
-      .then((r) => r.json())
-      .then((data) => setStatus(data.status))
-      .catch(() => setStatus("error — backend not reachable"));
-  }, []);
-
   return (
-    <main>
-      <h1>Workfolio</h1>
-      <p>Your freelance work, at a glance.</p>
-      <p className="status">
-        API: <span>{status}</span>
-      </p>
-    </main>
+    <LangProvider>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+    </LangProvider>
   );
 }
