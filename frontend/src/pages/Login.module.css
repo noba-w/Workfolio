@@ -225,3 +225,45 @@
 .signUpLink:hover {
   color: #007a3d;
 }
+
+/* ── responsive ──────────────────────────────────────── */
+@media (max-width: 480px) {
+  .page {
+    align-items: flex-start;
+  }
+
+  .glow {
+    width: 100vw;
+    left: 0;
+    transform: none;
+  }
+
+  .card {
+    max-width: 100%;
+    min-height: 100dvh;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    padding: 5rem 1.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form {
+    flex: 1;
+  }
+
+  .logo {
+    width: 56px;
+    height: 56px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .submitBtn {
+    margin-top: auto;
+  }
+}

@@ -78,3 +78,16 @@
 .optionActive:hover {
   background: #e0f7ff;
 }
+
+/* ── responsive ──────────────────────────────────────── */
+@media (max-width: 480px) {
+  .wrapper {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .trigger {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+}
