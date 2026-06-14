@@ -27,7 +27,7 @@
   color: #9ca3af;
   text-decoration: none;
   transition: color 0.15s, background 0.15s;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
 }
 
 .item:hover {
