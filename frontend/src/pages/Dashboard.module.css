@@ -15,10 +15,19 @@
 }
 
 .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-weight: 700;
   font-size: 1.125rem;
   letter-spacing: -0.02em;
   color: #00C8FF;
+}
+
+.brandLogo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 
 .logoutBtn {

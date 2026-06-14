@@ -4,6 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { useLang } from "../context/LangContext";
 import { translateServerError } from "../lib/i18n";
 import LangSwitcher from "../components/LangSwitcher";
+import logo from "../assets/logo.png";
 import styles from "./Login.module.css";
 
 export default function Login() {
@@ -69,7 +70,7 @@ export default function Login() {
 
       <div className={styles.card}>
         <header className={styles.header}>
-          <span className={styles.logo}>W</span>
+          <img src={logo} alt="Workfolio" className={styles.logo} />
           <h1 className={styles.title}>Workfolio</h1>
           <p className={styles.tagline}>
             {isLogin ? t.taglineLogin : t.taglineRegister}

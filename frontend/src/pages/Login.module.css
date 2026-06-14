@@ -58,19 +58,10 @@
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #00C8FF 0%, #0099cc 100%);
-  color: #fff;
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
   margin-bottom: 0.25rem;
-  box-shadow: 0 4px 20px rgba(0, 200, 255, 0.35);
 }
 
 .title {

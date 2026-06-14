@@ -1,5 +1,6 @@
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
 import styles from "./Dashboard.module.css";
 
 export default function Dashboard() {
@@ -14,7 +15,10 @@ export default function Dashboard() {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <span className={styles.brand}>Workfolio</span>
+        <div className={styles.brand}>
+          <img src={logo} alt="" className={styles.brandLogo} />
+          <span>Workfolio</span>
+        </div>
         <button className={styles.logoutBtn} onClick={handleLogout}>
           Log out
         </button>
