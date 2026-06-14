@@ -1,10 +1,12 @@
 import { NavLink } from "react-router-dom";
+import { useLang } from "../context/LangContext";
 import styles from "./BottomNav.module.css";
 
-const NAV_ITEMS = [
+function navItems(t) {
+  return [
   {
     to: "/dashboard",
-    label: "Inicio",
+    label: t.navHome,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 12L12 3l9 9" />
@@ -15,7 +17,7 @@ const NAV_ITEMS = [
   },
   {
     to: "/clientes",
-    label: "Clientes",
+    label: t.navClients,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="9" cy="7" r="4" />
@@ -27,7 +29,7 @@ const NAV_ITEMS = [
   },
   {
     to: "/proyectos",
-    label: "Proyectos",
+    label: t.navProjects,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="7" width="20" height="14" rx="2" />
@@ -39,7 +41,7 @@ const NAV_ITEMS = [
   },
   {
     to: "/ingresos",
-    label: "Ingresos",
+    label: t.navIncome,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
@@ -47,12 +49,13 @@ const NAV_ITEMS = [
       </svg>
     ),
   },
-];
+];}
 
 export default function BottomNav() {
+  const { t } = useLang();
   return (
     <nav className={styles.nav} aria-label="Navegación principal">
-      {NAV_ITEMS.map(({ to, label, icon }) => (
+      {navItems(t).map(({ to, label, icon }) => (
         <NavLink
           key={to}
           to={to}

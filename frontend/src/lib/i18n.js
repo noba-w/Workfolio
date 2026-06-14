@@ -1,5 +1,6 @@
 export const translations = {
   es: {
+    // ── login ──────────────────────────────────────────────
     taglineLogin: "Bienvenido de vuelta.",
     taglineRegister: "Crea tu cuenta.",
     name: "Nombre",
@@ -26,8 +27,29 @@ export const translations = {
     errInvalidCredentials: "Correo o contraseña incorrectos.",
     errAlreadyRegistered: "Ya existe una cuenta con ese correo.",
     errGeneric: "Ha ocurrido un error. Inténtalo de nuevo.",
+
+    // ── nav ────────────────────────────────────────────────
+    navHome: "Inicio",
+    navClients: "Clientes",
+    navProjects: "Proyectos",
+    navIncome: "Ingresos",
+
+    // ── dashboard ──────────────────────────────────────────
+    welcome: "Bienvenido",
+    comingSoon: "Próximamente.",
+
+    // ── pages ──────────────────────────────────────────────
+    pageClients: "Clientes",
+    pageProjects: "Proyectos",
+    pageIncome: "Ingresos",
+
+    // ── settings ───────────────────────────────────────────
+    settingsTitle: "Ajustes",
+    settingsAccount: "Cuenta",
+    settingsLogout: "Cerrar sesión",
   },
   en: {
+    // ── login ──────────────────────────────────────────────
     taglineLogin: "Welcome back.",
     taglineRegister: "Create your account.",
     name: "Name",
@@ -54,6 +76,26 @@ export const translations = {
     errInvalidCredentials: "Invalid email or password.",
     errAlreadyRegistered: "An account with this email already exists.",
     errGeneric: "Something went wrong. Please try again.",
+
+    // ── nav ────────────────────────────────────────────────
+    navHome: "Home",
+    navClients: "Clients",
+    navProjects: "Projects",
+    navIncome: "Income",
+
+    // ── dashboard ──────────────────────────────────────────
+    welcome: "Welcome",
+    comingSoon: "Coming soon.",
+
+    // ── pages ──────────────────────────────────────────────
+    pageClients: "Clients",
+    pageProjects: "Projects",
+    pageIncome: "Income",
+
+    // ── settings ───────────────────────────────────────────
+    settingsTitle: "Settings",
+    settingsAccount: "Account",
+    settingsLogout: "Log out",
   },
 };
 
