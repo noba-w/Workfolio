@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import Clients from "./pages/Clients";
 import Projects from "./pages/Projects";
 import Income from "./pages/Income";
+import Settings from "./pages/Settings";
 
 function Protected({ children }) {
   return <ProtectedRoute>{children}</ProtectedRoute>;
@@ -23,6 +24,7 @@ export default function App() {
             <Route path="/clientes"  element={<Protected><Clients /></Protected>} />
             <Route path="/proyectos" element={<Protected><Projects /></Protected>} />
             <Route path="/ingresos"  element={<Protected><Income /></Protected>} />
+            <Route path="/ajustes"  element={<Protected><Settings /></Protected>} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </BrowserRouter>

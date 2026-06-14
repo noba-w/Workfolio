@@ -5,6 +5,10 @@
   z-index: 10;
 }
 
+.wrapperInline {
+  position: relative;
+}
+
 .trigger {
   display: flex;
   align-items: center;
