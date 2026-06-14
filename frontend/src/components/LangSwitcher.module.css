@@ -22,8 +22,8 @@
 }
 
 .trigger:hover {
-  border-color: #00C8FF;
-  box-shadow: 0 0 0 2px rgba(0, 200, 255, 0.12);
+  border-color: #0054D9;
+  box-shadow: 0 0 0 2px rgba(0, 84, 217, 0.12);
 }
 
 .chevron {
@@ -71,12 +71,12 @@
 }
 
 .optionActive {
-  color: #00C8FF;
-  background: #f0fbff;
+  color: #0054D9;
+  background: #eef3fd;
 }
 
 .optionActive:hover {
-  background: #e0f7ff;
+  background: #dce8fb;
 }
 
 /* ── responsive ──────────────────────────────────────── */
