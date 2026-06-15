@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useLang } from "../context/LangContext";
 import { useAuth } from "../context/AuthContext";
 import { createClient } from "../lib/api";
+import { DEFAULT_COUNTRY } from "../lib/countries";
+import PhonePrefix from "./PhonePrefix";
 import styles from "./ClientModal.module.css";
 
-const EMPTY = { name: "", email: "", phonePrefix: "+34", phoneNumber: "", company: "" };
+const EMPTY = { name: "", email: "", phoneCountry: DEFAULT_COUNTRY, phoneNumber: "", company: "" };
 
-export default function ClientModal({ onClose, onCreated }) {
+export default function ClientModal({ onClose }) {
   const { t } = useLang();
   const { session } = useAuth();
+  const queryClient = useQueryClient();
   const [form, setForm] = useState(EMPTY);
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
@@ -26,6 +30,12 @@ export default function ClientModal({ onClose, onCreated }) {
       setForm((prev) => ({ ...prev, [field]: e.target.value }));
       if (errors[field]) setErrors((prev) => ({ ...prev, [field]: null }));
     };
+  }
+
+  function handlePhoneNumber(e) {
+    const digits = e.target.value.replace(/\D/g, "").slice(0, 9);
+    const parts = [digits.slice(0, 3), digits.slice(3, 5), digits.slice(5, 7), digits.slice(7, 9)];
+    setForm((prev) => ({ ...prev, phoneNumber: parts.filter(Boolean).join(" ") }));
   }
 
   function validate() {
@@ -46,12 +56,12 @@ export default function ClientModal({ onClose, onCreated }) {
         name: form.name.trim(),
         email: form.email.trim(),
         ...(form.phoneNumber.trim() && {
-          phone: `${form.phonePrefix.trim()} ${form.phoneNumber.trim()}`,
+          phone: `${form.phoneCountry.dialCode} ${form.phoneNumber.trim()}`,
         }),
         ...(form.company.trim() && { company: form.company.trim() }),
       };
-      const created = await createClient(body, session?.access_token);
-      onCreated(created);
+      await createClient(body, session?.access_token);
+      await queryClient.invalidateQueries({ queryKey: ["clients"] });
       onClose();
     } catch (err) {
       setErrors({ submit: err.message });
@@ -104,19 +114,16 @@ export default function ClientModal({ onClose, onCreated }) {
             <div className={styles.field}>
               <label className={styles.label}>{t.clientsFieldPhone}</label>
               <div className={styles.phoneGroup}>
-                <input
-                  className={styles.phonePrefix}
-                  type="text"
-                  value={form.phonePrefix}
-                  onChange={set("phonePrefix")}
-                  aria-label="Prefijo"
+                <PhonePrefix
+                  value={form.phoneCountry}
+                  onChange={(country) => setForm((prev) => ({ ...prev, phoneCountry: country }))}
                 />
                 <span className={styles.phoneDivider} />
                 <input
                   className={styles.phoneNumber}
                   type="tel"
                   value={form.phoneNumber}
-                  onChange={set("phoneNumber")}
+                  onChange={handlePhoneNumber}
                   placeholder={t.clientsFieldPhonePlaceholder}
                 />
               </div>

@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useLang } from "../context/LangContext";
 import { useAuth } from "../context/AuthContext";
 import { getClients } from "../lib/api";
@@ -9,16 +10,14 @@ import styles from "./Clients.module.css";
 export default function Clients() {
   const { t } = useLang();
   const { session } = useAuth();
-  const [clients, setClients] = useState([]);
   const [query, setQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  useEffect(() => {
-    if (!session?.access_token) return;
-    getClients(session.access_token)
-      .then(setClients)
-      .catch(() => {});
-  }, [session]);
+  const { data: clients = [], isLoading } = useQuery({
+    queryKey: ["clients"],
+    queryFn: () => getClients(session.access_token),
+    enabled: !!session?.access_token,
+  });
 
   function formatHours(h) {
     if (h === 0) return "0";
@@ -33,10 +32,6 @@ export default function Clients() {
       (c.company ?? "").toLowerCase().includes(q)
     );
   });
-
-  function handleCreated(newClient) {
-    setClients((prev) => [newClient, ...prev]);
-  }
 
   return (
     <Layout>
@@ -68,7 +63,9 @@ export default function Clients() {
           </div>
 
           <div className={styles.list}>
-            {clients.length === 0 ? (
+            {isLoading ? (
+              <p className={styles.emptyState}>…</p>
+            ) : clients.length === 0 ? (
               <p className={styles.emptyState}>{t.clientsEmpty}</p>
             ) : filtered.length === 0 ? (
               <p className={styles.emptyState}>{t.clientsNoResults}</p>
@@ -116,10 +113,7 @@ export default function Clients() {
       </div>
 
       {showModal && (
-        <ClientModal
-          onClose={() => setShowModal(false)}
-          onCreated={handleCreated}
-        />
+        <ClientModal onClose={() => setShowModal(false)} />
       )}
     </Layout>
   );
