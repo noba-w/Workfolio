@@ -1,5 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { loginUser, registerUser } from "../lib/auth";
+import { setRefreshCallback } from "../lib/api";
 
 const AuthContext = createContext(null);
 
@@ -21,6 +22,33 @@ export function AuthProvider({ children }) {
     setSession(data);
   }
 
+  const logout = useCallback(() => {
+    localStorage.removeItem(SESSION_KEY);
+    setSession(null);
+  }, []);
+
+  useEffect(() => {
+    if (!session?.refresh_token) {
+      setRefreshCallback(null);
+      return;
+    }
+    const refreshToken = session.refresh_token;
+    setRefreshCallback(async () => {
+      const res = await fetch("/api/auth/refresh", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ refresh_token: refreshToken }),
+      });
+      if (!res.ok) {
+        logout();
+        throw new Error("Session expired");
+      }
+      const data = await res.json();
+      persist(data);
+      return data.access_token;
+    });
+  }, [session?.refresh_token, logout]);
+
   async function login(email, password) {
     const data = await loginUser(email, password);
     persist(data);
@@ -29,11 +57,6 @@ export function AuthProvider({ children }) {
   async function register(name, email, password) {
     const data = await registerUser(name, email, password);
     persist(data);
-  }
-
-  function logout() {
-    localStorage.removeItem(SESSION_KEY);
-    setSession(null);
   }
 
   return (
