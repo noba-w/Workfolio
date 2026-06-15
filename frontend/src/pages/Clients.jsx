@@ -20,6 +20,11 @@ export default function Clients() {
       .catch(() => {});
   }, [session]);
 
+  function formatHours(h) {
+    if (h === 0) return "0";
+    return Number.isInteger(h) ? String(h) : h.toFixed(1);
+  }
+
   const filtered = clients.filter((c) => {
     const q = query.trim().toLowerCase();
     if (!q) return true;
@@ -77,8 +82,14 @@ export default function Clients() {
                     <span className={styles.clientName}>{c.name}</span>
                     {c.company && <span className={styles.clientCompany}>{c.company}</span>}
                     <span className={styles.clientEmail}>{c.email}</span>
+                    {c.phone && <span className={styles.clientPhone}>{c.phone}</span>}
                   </div>
-                  {c.phone && <span className={styles.clientPhone}>{c.phone}</span>}
+                  <div className={styles.clientWeeklyHours}>
+                    <span className={styles.clientHoursValue}>
+                      {formatHours(c.weekly_hours ?? 0)}<span className={styles.clientHoursUnit}>h</span>
+                    </span>
+                    <span className={styles.clientHoursLabel}>{t.clientsWeekLabel}</span>
+                  </div>
                 </div>
               ))
             )}

@@ -157,18 +157,41 @@
 }
 
 .clientPhone {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: #6b7280;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.clientWeeklyHours {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   flex-shrink: 0;
+  gap: 0.1rem;
+}
+
+.clientHoursValue {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0054D9;
+  line-height: 1;
+}
+
+.clientHoursUnit {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #0054D9;
+}
+
+.clientHoursLabel {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  white-space: nowrap;
 }
 
 /* ── responsive ───────────────────────────────────────── */
-@media (max-width: 768px) {
-  .clientPhone {
-    display: none;
-  }
-}
 
 @media (max-width: 480px) {
   .page {

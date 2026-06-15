@@ -53,7 +53,7 @@ export const translations = {
     clientsFieldNamePlaceholder: "Nombre del cliente",
     clientsFieldEmail: "Correo electrónico",
     clientsFieldPhone: "Teléfono",
-    clientsFieldPhonePlaceholder: "600 000 000",
+    clientsFieldPhonePlaceholder: "600 00 00 00",
     clientsFieldCompany: "Empresa",
     clientsFieldCompanyPlaceholder: "Nombre de la empresa",
     clientsCancel: "Cancelar",
@@ -61,6 +61,7 @@ export const translations = {
     clientsSaving: "Guardando…",
     clientsErrName: "El nombre es obligatorio.",
     clientsErrEmail: "El correo electrónico es obligatorio.",
+    clientsWeekLabel: "esta sem.",
 
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Ajustes",
@@ -121,7 +122,7 @@ export const translations = {
     clientsFieldNamePlaceholder: "Client name",
     clientsFieldEmail: "Email",
     clientsFieldPhone: "Phone",
-    clientsFieldPhonePlaceholder: "555 000 0000",
+    clientsFieldPhonePlaceholder: "600 00 00 00",
     clientsFieldCompany: "Company",
     clientsFieldCompanyPlaceholder: "Company name",
     clientsCancel: "Cancel",
@@ -129,6 +130,7 @@ export const translations = {
     clientsSaving: "Saving…",
     clientsErrName: "Name is required.",
     clientsErrEmail: "Email is required.",
+    clientsWeekLabel: "this week",
 
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Settings",
