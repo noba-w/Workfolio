@@ -43,3 +43,9 @@ export const getClients = (token) =>
 
 export const createClient = (body, token) =>
   apiFetch("/api/clients", { method: "POST", body: JSON.stringify(body) }, token);
+
+export const getProjects = (token) =>
+  apiFetch("/api/projects", {}, token);
+
+export const createProject = (body, token) =>
+  apiFetch("/api/projects", { method: "POST", body: JSON.stringify(body) }, token);

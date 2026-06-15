@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import { useLang } from "../context/LangContext";
 import { useAuth } from "../context/AuthContext";
-import { getClients } from "../lib/api";
+import { getClients, getProjects } from "../lib/api";
 import Layout from "../components/Layout";
 import ClientModal from "../components/ClientModal";
 import styles from "./Clients.module.css";
@@ -10,14 +11,31 @@ import styles from "./Clients.module.css";
 export default function Clients() {
   const { t } = useLang();
   const { session } = useAuth();
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [noProjectsClient, setNoProjectsClient] = useState(null);
 
   const { data: clients = [], isLoading } = useQuery({
     queryKey: ["clients"],
     queryFn: () => getClients(session.access_token),
     enabled: !!session?.access_token,
   });
+
+  const { data: projects = [] } = useQuery({
+    queryKey: ["projects"],
+    queryFn: () => getProjects(session.access_token),
+    enabled: !!session?.access_token,
+  });
+
+  function handleViewProjects(client) {
+    const has = projects.some((p) => p.client_id === client.id);
+    if (has) {
+      navigate("/proyectos");
+    } else {
+      setNoProjectsClient(client);
+    }
+  }
 
   function formatHours(h) {
     if (h === 0) return "0";
@@ -92,7 +110,7 @@ export default function Clients() {
                         {c.phone}
                       </span>
                     )}
-                    <button className={styles.viewProjectsBtn}>
+                    <button className={styles.viewProjectsBtn} onClick={() => handleViewProjects(c)}>
                       {t.clientsViewProjects}
                       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <polyline points="9 18 15 12 9 6"/>
@@ -114,6 +132,25 @@ export default function Clients() {
 
       {showModal && (
         <ClientModal onClose={() => setShowModal(false)} />
+      )}
+
+      {noProjectsClient && (
+        <div
+          className={styles.overlay}
+          onClick={(e) => e.target === e.currentTarget && setNoProjectsClient(null)}
+        >
+          <div className={styles.infoCard}>
+            <p className={styles.infoMsg}>{t.noProjectsMsg}</p>
+            <div className={styles.infoActions}>
+              <button className={styles.infoCreateBtn} onClick={() => navigate("/proyectos")}>
+                {t.noProjectsCreate}
+              </button>
+              <button className={styles.infoCancelBtn} onClick={() => setNoProjectsClient(null)}>
+                {t.clientsCancel}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </Layout>
   );
