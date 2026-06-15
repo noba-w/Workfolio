@@ -43,6 +43,12 @@ export const translations = {
     pageProjects: "Proyectos",
     pageIncome: "Ingresos",
 
+    // ── clients ────────────────────────────────────────────
+    clientsSearchPlaceholder: "Buscar por nombre o empresa…",
+    clientsAddButton: "Añadir cliente",
+    clientsEmpty: "No hay clientes.",
+    clientsNoResults: "Sin resultados para esa búsqueda.",
+
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Ajustes",
     settingsAccount: "Cuenta",
@@ -91,6 +97,12 @@ export const translations = {
     pageClients: "Clients",
     pageProjects: "Projects",
     pageIncome: "Income",
+
+    // ── clients ────────────────────────────────────────────
+    clientsSearchPlaceholder: "Search by name or company…",
+    clientsAddButton: "Add client",
+    clientsEmpty: "No clients yet.",
+    clientsNoResults: "No results for that search.",
 
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Settings",
