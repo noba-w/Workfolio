@@ -112,6 +112,55 @@
   border-color: #ef4444;
 }
 
+/* ── phone split input ────────────────────────────────── */
+.phoneGroup {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+
+.phoneGroup:focus-within {
+  border-color: #0054D9;
+}
+
+.phonePrefix {
+  width: 56px;
+  flex-shrink: 0;
+  padding: 0.55rem 0.5rem;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  color: #374151;
+  font-weight: 500;
+  background: #f9fafb;
+  text-align: center;
+}
+
+.phoneDivider {
+  width: 1px;
+  align-self: stretch;
+  background: #e5e7eb;
+  flex-shrink: 0;
+}
+
+.phoneNumber {
+  flex: 1;
+  padding: 0.55rem 0.75rem;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  color: #111827;
+  background: #fff;
+  min-width: 0;
+}
+
+.phoneNumber::placeholder {
+  color: #9ca3af;
+}
+
 .fieldError {
   font-size: 0.78rem;
   color: #ef4444;

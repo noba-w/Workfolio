@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { createClient } from "../lib/api";
 import styles from "./ClientModal.module.css";
 
-const EMPTY = { name: "", email: "", phone: "", company: "" };
+const EMPTY = { name: "", email: "", phonePrefix: "+34", phoneNumber: "", company: "" };
 
 export default function ClientModal({ onClose, onCreated }) {
   const { t } = useLang();
@@ -45,7 +45,9 @@ export default function ClientModal({ onClose, onCreated }) {
       const body = {
         name: form.name.trim(),
         email: form.email.trim(),
-        ...(form.phone.trim() && { phone: form.phone.trim() }),
+        ...(form.phoneNumber.trim() && {
+          phone: `${form.phonePrefix.trim()} ${form.phoneNumber.trim()}`,
+        }),
         ...(form.company.trim() && { company: form.company.trim() }),
       };
       const created = await createClient(body, session?.access_token);
@@ -101,13 +103,23 @@ export default function ClientModal({ onClose, onCreated }) {
           <div className={styles.row}>
             <div className={styles.field}>
               <label className={styles.label}>{t.clientsFieldPhone}</label>
-              <input
-                className={styles.input}
-                type="tel"
-                value={form.phone}
-                onChange={set("phone")}
-                placeholder={t.clientsFieldPhonePlaceholder}
-              />
+              <div className={styles.phoneGroup}>
+                <input
+                  className={styles.phonePrefix}
+                  type="text"
+                  value={form.phonePrefix}
+                  onChange={set("phonePrefix")}
+                  aria-label="Prefijo"
+                />
+                <span className={styles.phoneDivider} />
+                <input
+                  className={styles.phoneNumber}
+                  type="tel"
+                  value={form.phoneNumber}
+                  onChange={set("phoneNumber")}
+                  placeholder={t.clientsFieldPhonePlaceholder}
+                />
+              </div>
             </div>
 
             <div className={styles.field}>
