@@ -62,6 +62,7 @@ export const translations = {
     clientsErrName: "El nombre es obligatorio.",
     clientsErrEmail: "El correo electrónico es obligatorio.",
     clientsWeekLabel: "esta sem.",
+    clientsViewProjects: "Ver proyectos",
 
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Ajustes",
@@ -131,6 +132,7 @@ export const translations = {
     clientsErrName: "Name is required.",
     clientsErrEmail: "Email is required.",
     clientsWeekLabel: "this week",
+    clientsViewProjects: "View projects",
 
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Settings",

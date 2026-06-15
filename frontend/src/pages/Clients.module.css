@@ -96,7 +96,7 @@
 /* ── client card ──────────────────────────────────────── */
 .clientCard {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.875rem;
   padding: 0.875rem 1rem;
   background: #fff;
@@ -121,13 +121,14 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .clientInfo {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.22rem;
   min-width: 0;
 }
 
@@ -141,27 +142,61 @@
 }
 
 .clientCompany {
-  font-size: 0.8rem;
-  color: #6b7280;
+  font-size: 0.83rem;
+  font-weight: 500;
+  color: #374151;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .clientEmail {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
   font-size: 0.8rem;
   color: #9ca3af;
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clientEmail svg {
+  flex-shrink: 0;
 }
 
 .clientPhone {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
   font-size: 0.8rem;
   color: #6b7280;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+.clientPhone svg {
+  flex-shrink: 0;
+}
+
+.viewProjectsBtn {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: #eef3fd;
+  border: none;
+  border-radius: 5px;
+  padding: 0.25rem 0.55rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: #0054D9;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.viewProjectsBtn:hover {
+  background: #dde8fb;
 }
 
 .clientWeeklyHours {
