@@ -7,11 +7,11 @@ import styles from "./ProjectModal.module.css";
 
 const EMPTY = { name: "", client_id: "", hourly_rate: "", status: "active", description: "" };
 
-export default function ProjectModal({ onClose, clients }) {
+export default function ProjectModal({ onClose, clients, defaultClientId }) {
   const { t } = useLang();
   const { session } = useAuth();
   const queryClient = useQueryClient();
-  const [form, setForm] = useState(EMPTY);
+  const [form, setForm] = useState(() => ({ ...EMPTY, client_id: defaultClientId ?? "" }));
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
 

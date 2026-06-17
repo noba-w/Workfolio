@@ -7,6 +7,7 @@ import { getClients, getProjects, updateClient, deleteClientPhoto } from "../lib
 import { resizeImageToDataUrl } from "../lib/image";
 import Layout from "../components/Layout";
 import ClientModal from "../components/ClientModal";
+import ProjectModal from "../components/ProjectModal";
 import styles from "./ClientDetail.module.css";
 
 const STATUS_COLORS = {
@@ -26,6 +27,7 @@ export default function ClientDetail() {
   const [removing, setRemoving] = useState(false);
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showProjectModal, setShowProjectModal] = useState(false);
 
   const { data: clients = [], isLoading: loadingClients } = useQuery({
     queryKey: ["clients"],
@@ -187,7 +189,16 @@ export default function ClientDetail() {
               </div>
 
               <div className={styles.projectsSection}>
-                <h2 className={styles.projectsTitle}>{t.clientDetailProjectsTitle}</h2>
+                <div className={styles.projectsHeader}>
+                  <h2 className={styles.projectsTitle}>{t.clientDetailProjectsTitle}</h2>
+                  <button className={styles.addProjectBtn} onClick={() => setShowProjectModal(true)}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    <span>{t.clientDetailAddProject}</span>
+                  </button>
+                </div>
                 <div className={styles.list}>
                   {loadingProjects ? (
                     <p className={styles.emptyState}>…</p>
@@ -217,6 +228,9 @@ export default function ClientDetail() {
                             </span>
                             <span className={styles.projectHoursLabel}>{t.clientsWeekLabel}</span>
                           </div>
+                          <button type="button" className={styles.detailsBtn}>
+                            {t.clientDetailProjectDetails}
+                          </button>
                         </div>
                       );
                     })
@@ -230,6 +244,14 @@ export default function ClientDetail() {
 
       {showEditModal && (
         <ClientModal client={client} onClose={() => setShowEditModal(false)} />
+      )}
+
+      {showProjectModal && (
+        <ProjectModal
+          clients={clients}
+          defaultClientId={id}
+          onClose={() => setShowProjectModal(false)}
+        />
       )}
 
       {showRemoveConfirm && (

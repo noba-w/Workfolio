@@ -74,6 +74,8 @@ export const translations = {
     clientDetailRemovePhotoConfirm: "¿Seguro que quieres eliminar la foto de este cliente?",
     clientDetailRemovePhotoConfirmBtn: "Eliminar",
     clientDetailProjectsTitle: "Proyectos",
+    clientDetailAddProject: "Añadir proyecto",
+    clientDetailProjectDetails: "Detalles",
     clientDetailNoProjects: "Este cliente no tiene proyectos todavía.",
 
     // ── projects ───────────────────────────────────────────
@@ -184,6 +186,8 @@ export const translations = {
     clientDetailRemovePhotoConfirm: "Are you sure you want to remove this client's photo?",
     clientDetailRemovePhotoConfirmBtn: "Remove",
     clientDetailProjectsTitle: "Projects",
+    clientDetailAddProject: "Add project",
+    clientDetailProjectDetails: "Details",
     clientDetailNoProjects: "This client has no projects yet.",
 
     // ── projects ───────────────────────────────────────────
