@@ -76,7 +76,21 @@ export const translations = {
     clientDetailProjectsTitle: "Proyectos",
     clientDetailAddProject: "Añadir proyecto",
     clientDetailProjectDetails: "Detalles",
+    clientDetailAddHours: "Añadir horas trabajadas",
     clientDetailNoProjects: "Este cliente no tiene proyectos todavía.",
+
+    // ── time entry modal ────────────────────────────────────
+    timeEntryModalTitle: "Añadir horas trabajadas",
+    timeEntryFieldDate: "Día de trabajo",
+    timeEntryFieldStart: "Hora de entrada",
+    timeEntryFieldEnd: "Hora de salida",
+    timeEntryCancel: "Cancelar",
+    timeEntrySave: "Guardar",
+    timeEntrySaving: "Guardando…",
+    timeEntryErrDate: "La fecha es obligatoria.",
+    timeEntryErrStart: "La hora de entrada es obligatoria.",
+    timeEntryErrEnd: "La hora de salida es obligatoria.",
+    timeEntryErrRange: "La hora de salida debe ser posterior a la de entrada.",
 
     // ── projects ───────────────────────────────────────────
     projectsSearchPlaceholder: "Buscar por nombre o cliente…",
@@ -188,7 +202,21 @@ export const translations = {
     clientDetailProjectsTitle: "Projects",
     clientDetailAddProject: "Add project",
     clientDetailProjectDetails: "Details",
+    clientDetailAddHours: "Add worked hours",
     clientDetailNoProjects: "This client has no projects yet.",
+
+    // ── time entry modal ────────────────────────────────────
+    timeEntryModalTitle: "Add worked hours",
+    timeEntryFieldDate: "Work date",
+    timeEntryFieldStart: "Start time",
+    timeEntryFieldEnd: "End time",
+    timeEntryCancel: "Cancel",
+    timeEntrySave: "Save",
+    timeEntrySaving: "Saving…",
+    timeEntryErrDate: "Date is required.",
+    timeEntryErrStart: "Start time is required.",
+    timeEntryErrEnd: "End time is required.",
+    timeEntryErrRange: "End time must be after the start time.",
 
     // ── projects ───────────────────────────────────────────
     projectsSearchPlaceholder: "Search by name or client…",

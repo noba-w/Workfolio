@@ -65,3 +65,6 @@ export const getProjects = (token) =>
 
 export const createProject = (body, token) =>
   apiFetch("/api/projects", { method: "POST", body: JSON.stringify(body) }, token);
+
+export const createTimeEntry = (body, token) =>
+  apiFetch("/api/time-entries", { method: "POST", body: JSON.stringify(body) }, token);

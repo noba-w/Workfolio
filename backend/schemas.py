@@ -94,3 +94,19 @@ class ProjectResponse(BaseModel):
     end_date: Optional[date] = None
     weekly_hours: float = 0.0
     created_at: datetime
+
+
+class TimeEntryCreate(BaseModel):
+    project_id: str
+    date: date
+    hours: float
+    description: Optional[str] = None
+
+
+class TimeEntryResponse(BaseModel):
+    id: str
+    project_id: str
+    date: date
+    hours: float
+    description: Optional[str] = None
+    created_at: datetime

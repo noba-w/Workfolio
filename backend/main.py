@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routers import auth, clients, projects
+from routers import auth, clients, projects, time_entries
 
 app = FastAPI(title="Workfolio API")
 
@@ -14,6 +14,7 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(clients.router)
 app.include_router(projects.router)
+app.include_router(time_entries.router)
 
 
 @app.get("/api/health")
