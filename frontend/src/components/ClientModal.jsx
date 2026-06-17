@@ -95,7 +95,7 @@ export default function ClientModal({ onClose, client }) {
   }
 
   return (
-    <div className={styles.overlay} onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className={styles.overlay}>
       <div className={styles.card} role="dialog" aria-modal="true">
         <div className={styles.cardHeader}>
           <h2 className={styles.cardTitle}>{isEdit ? t.clientsEditModalTitle : t.clientsModalTitle}</h2>

@@ -73,7 +73,7 @@ export default function TimeEntryModal({ onClose, project }) {
   }
 
   return (
-    <div className={styles.overlay} onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className={styles.overlay}>
       <div className={styles.card} role="dialog" aria-modal="true">
         <div className={styles.cardHeader}>
           <h2 className={styles.cardTitle}>{t.timeEntryModalTitle}</h2>

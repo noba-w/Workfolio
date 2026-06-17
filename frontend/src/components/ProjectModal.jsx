@@ -63,7 +63,7 @@ export default function ProjectModal({ onClose, clients, defaultClientId }) {
   }
 
   return (
-    <div className={styles.overlay} onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className={styles.overlay}>
       <div className={styles.card} role="dialog" aria-modal="true">
         <div className={styles.cardHeader}>
           <h2 className={styles.cardTitle}>{t.projectsModalTitle}</h2>
