@@ -44,11 +44,14 @@ export const translations = {
     pageIncome: "Ingresos",
 
     // ── clients ────────────────────────────────────────────
-    clientsSearchPlaceholder: "Buscar por nombre o empresa…",
+    clientsSearchPlaceholder: "Buscar por nombre, empresa, correo o teléfono…",
     clientsAddButton: "Añadir cliente",
     clientsEmpty: "No hay clientes todavía.",
     clientsNoResults: "Sin resultados para esa búsqueda.",
     clientsModalTitle: "Nuevo cliente",
+    clientsEditModalTitle: "Editar cliente",
+    clientsSaveEdit: "Guardar cambios",
+    clientsSavingEdit: "Guardando…",
     clientsFieldName: "Nombre",
     clientsFieldNamePlaceholder: "Nombre del cliente",
     clientsFieldEmail: "Correo electrónico",
@@ -65,6 +68,7 @@ export const translations = {
 
     // ── client detail ──────────────────────────────────────
     clientDetailBack: "Volver a clientes",
+    clientDetailEdit: "Editar cliente",
     clientDetailChangePhoto: "Cambiar foto",
     clientDetailRemovePhoto: "Eliminar foto",
     clientDetailRemovePhotoConfirm: "¿Seguro que quieres eliminar la foto de este cliente?",
@@ -150,11 +154,14 @@ export const translations = {
     pageIncome: "Income",
 
     // ── clients ────────────────────────────────────────────
-    clientsSearchPlaceholder: "Search by name or company…",
+    clientsSearchPlaceholder: "Search by name, company, email or phone…",
     clientsAddButton: "Add client",
     clientsEmpty: "No clients yet.",
     clientsNoResults: "No results for that search.",
     clientsModalTitle: "New client",
+    clientsEditModalTitle: "Edit client",
+    clientsSaveEdit: "Save changes",
+    clientsSavingEdit: "Saving…",
     clientsFieldName: "Name",
     clientsFieldNamePlaceholder: "Client name",
     clientsFieldEmail: "Email",
@@ -171,6 +178,7 @@ export const translations = {
 
     // ── client detail ──────────────────────────────────────
     clientDetailBack: "Back to clients",
+    clientDetailEdit: "Edit client",
     clientDetailChangePhoto: "Change photo",
     clientDetailRemovePhoto: "Remove photo",
     clientDetailRemovePhotoConfirm: "Are you sure you want to remove this client's photo?",

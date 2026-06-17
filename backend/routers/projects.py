@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from typing import List
+from datetime import date, timedelta
 from deps import get_current_user, CurrentUser
 from schemas import ProjectCreate, ProjectUpdate, ProjectResponse
 
@@ -18,8 +19,29 @@ def _serialize(data: dict) -> dict:
 
 @router.get("", response_model=List[ProjectResponse])
 def list_projects(user: CurrentUser = Depends(get_current_user)):
-    res = user.sb.table("projects").select("*").execute()
-    return res.data
+    projects = user.sb.table("projects").select("*").execute().data
+
+    today = date.today()
+    week_start = today - timedelta(days=today.weekday())
+    week_end = week_start + timedelta(days=6)
+
+    entries = (
+        user.sb.table("time_entries")
+        .select("project_id,hours")
+        .gte("date", str(week_start))
+        .lte("date", str(week_end))
+        .execute()
+        .data
+    )
+
+    weekly: dict = {}
+    for e in entries:
+        weekly[e["project_id"]] = weekly.get(e["project_id"], 0.0) + float(e["hours"])
+
+    for p in projects:
+        p["weekly_hours"] = weekly.get(p["id"], 0.0)
+
+    return projects
 
 
 @router.post("", response_model=ProjectResponse, status_code=201)

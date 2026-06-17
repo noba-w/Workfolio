@@ -45,11 +45,10 @@
 /* ── client card (detail) ─────────────────────────────── */
 .clientCard {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  text-align: center;
-  gap: 1rem;
-  padding: 2.25rem 1.75rem;
+  gap: 1.5rem;
+  padding: 2rem 1.75rem;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 14px;
@@ -226,17 +225,45 @@
 }
 
 .clientInfo {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  text-align: left;
   gap: 0.45rem;
   min-width: 0;
+}
+
+.clientNameRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .clientName {
   font-weight: 700;
   font-size: 1.6rem;
   color: var(--color-text);
+}
+
+.editBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-border-light);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+.editBtn:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
 }
 
 .clientCompany {
@@ -263,7 +290,8 @@
 .clientWeeklyHours {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
+  flex-shrink: 0;
   gap: 0.15rem;
 }
 
@@ -362,24 +390,31 @@
   white-space: nowrap;
 }
 
-.projectRate {
+.projectStats {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   flex-shrink: 0;
+  gap: 0.1rem;
 }
 
-.projectRateValue {
+.projectHoursValue {
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--color-accent);
   line-height: 1;
 }
 
-.projectRateUnit {
+.projectHoursUnit {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--color-accent);
+}
+
+.projectHoursLabel {
+  font-size: 0.7rem;
+  color: var(--color-text-faint);
+  white-space: nowrap;
 }
 
 /* ── responsive ───────────────────────────────────────── */
@@ -389,6 +424,7 @@
   }
 
   .clientCard {
+    flex-wrap: wrap;
     padding: 1.75rem 1.25rem;
   }
 
@@ -406,5 +442,12 @@
 
   .clientName {
     font-size: 1.3rem;
+  }
+
+  .clientWeeklyHours {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.35rem;
+    margin-left: calc(88px + 1.5rem);
   }
 }

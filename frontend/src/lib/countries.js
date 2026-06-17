@@ -200,3 +200,12 @@ export const COUNTRIES = [
 export const DEFAULT_COUNTRY = COUNTRIES.find(
   (c) => c.dialCode === "+34" && c.name === "España"
 );
+
+export function parsePhone(phone) {
+  if (!phone) return { country: DEFAULT_COUNTRY, number: "" };
+  const match = COUNTRIES
+    .filter((c) => phone.startsWith(c.dialCode))
+    .sort((a, b) => b.dialCode.length - a.dialCode.length)[0];
+  if (!match) return { country: DEFAULT_COUNTRY, number: phone };
+  return { country: match, number: phone.slice(match.dialCode.length).trim() };
+}

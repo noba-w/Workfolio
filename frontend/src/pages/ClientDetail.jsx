@@ -6,6 +6,7 @@ import { useAuth } from "../context/AuthContext";
 import { getClients, getProjects, updateClient, deleteClientPhoto } from "../lib/api";
 import { resizeImageToDataUrl } from "../lib/image";
 import Layout from "../components/Layout";
+import ClientModal from "../components/ClientModal";
 import styles from "./ClientDetail.module.css";
 
 const STATUS_COLORS = {
@@ -24,6 +25,7 @@ export default function ClientDetail() {
   const [uploading, setUploading] = useState(false);
   const [removing, setRemoving] = useState(false);
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   const { data: clients = [], isLoading: loadingClients } = useQuery({
     queryKey: ["clients"],
@@ -146,7 +148,19 @@ export default function ClientDetail() {
                 </div>
 
                 <div className={styles.clientInfo}>
-                  <span className={styles.clientName}>{client.name}</span>
+                  <div className={styles.clientNameRow}>
+                    <span className={styles.clientName}>{client.name}</span>
+                    <button
+                      type="button"
+                      className={styles.editBtn}
+                      onClick={() => setShowEditModal(true)}
+                      aria-label={t.clientDetailEdit}
+                    >
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                      </svg>
+                    </button>
+                  </div>
                   {client.company && <span className={styles.clientCompany}>{client.company}</span>}
                   <span className={styles.clientEmail}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -196,11 +210,12 @@ export default function ClientDetail() {
                               {statusLabels[p.status]}
                             </span>
                           </div>
-                          <div className={styles.projectRate}>
-                            <span className={styles.projectRateValue}>
-                              {p.hourly_rate}
-                              <span className={styles.projectRateUnit}>€/h</span>
+                          <div className={styles.projectStats}>
+                            <span className={styles.projectHoursValue}>
+                              {formatHours(p.weekly_hours ?? 0)}
+                              <span className={styles.projectHoursUnit}>h</span>
                             </span>
+                            <span className={styles.projectHoursLabel}>{t.clientsWeekLabel}</span>
                           </div>
                         </div>
                       );
@@ -212,6 +227,10 @@ export default function ClientDetail() {
           )}
         </div>
       </div>
+
+      {showEditModal && (
+        <ClientModal client={client} onClose={() => setShowEditModal(false)} />
+      )}
 
       {showRemoveConfirm && (
         <div

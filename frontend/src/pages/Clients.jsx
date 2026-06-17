@@ -31,7 +31,9 @@ export default function Clients() {
     if (!q) return true;
     return (
       c.name.toLowerCase().includes(q) ||
-      (c.company ?? "").toLowerCase().includes(q)
+      (c.company ?? "").toLowerCase().includes(q) ||
+      c.email.toLowerCase().includes(q) ||
+      (c.phone ?? "").toLowerCase().replace(/\s+/g, "").includes(q.replace(/\s+/g, ""))
     );
   });
 

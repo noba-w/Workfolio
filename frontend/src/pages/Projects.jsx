@@ -33,6 +33,11 @@ export default function Projects() {
 
   const clientMap = Object.fromEntries(clients.map((c) => [c.id, c.name]));
 
+  function formatHours(h) {
+    if (h === 0) return "0";
+    return Number.isInteger(h) ? String(h) : h.toFixed(1);
+  }
+
   const filtered = projects.filter((p) => {
     const q = query.trim().toLowerCase();
     if (!q) return true;
@@ -106,11 +111,12 @@ export default function Projects() {
                         {statusLabels[p.status]}
                       </span>
                     </div>
-                    <div className={styles.projectRate}>
-                      <span className={styles.projectRateValue}>
-                        {p.hourly_rate}
-                        <span className={styles.projectRateUnit}>€/h</span>
+                    <div className={styles.projectStats}>
+                      <span className={styles.projectHoursValue}>
+                        {formatHours(p.weekly_hours ?? 0)}
+                        <span className={styles.projectHoursUnit}>h</span>
                       </span>
+                      <span className={styles.projectHoursLabel}>{t.clientsWeekLabel}</span>
                     </div>
                   </div>
                 );
