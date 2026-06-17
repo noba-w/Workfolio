@@ -101,6 +101,7 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 10px;
+  cursor: pointer;
   transition: box-shadow 0.15s;
 }
 
@@ -108,10 +109,16 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
 }
 
-.projectAvatar {
+.projectAvatar,
+.projectAvatarImg {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.projectAvatar {
   background: var(--color-accent-soft);
   color: var(--color-accent);
   font-weight: 700;
@@ -119,8 +126,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  margin-top: 2px;
+}
+
+.projectAvatarImg {
+  object-fit: cover;
+  background: var(--color-accent-soft);
 }
 
 .projectInfo {

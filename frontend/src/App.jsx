@@ -18,6 +18,7 @@ import Dashboard from "./pages/Dashboard";
 import Clients from "./pages/Clients";
 import ClientDetail from "./pages/ClientDetail";
 import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 import Income from "./pages/Income";
 import Settings from "./pages/Settings";
 
@@ -38,6 +39,7 @@ export default function App() {
             <Route path="/clientes"  element={<Protected><Clients /></Protected>} />
             <Route path="/clientes/:id" element={<Protected><ClientDetail /></Protected>} />
             <Route path="/proyectos" element={<Protected><Projects /></Protected>} />
+            <Route path="/proyectos/:id" element={<Protected><ProjectDetail /></Protected>} />
             <Route path="/ingresos"  element={<Protected><Income /></Protected>} />
             <Route path="/ajustes"  element={<Protected><Settings /></Protected>} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />

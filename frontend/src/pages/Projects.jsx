@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import { useLang } from "../context/LangContext";
 import { useAuth } from "../context/AuthContext";
 import { getProjects, getClients } from "../lib/api";
@@ -16,6 +17,7 @@ const STATUS_COLORS = {
 export default function Projects() {
   const { t } = useLang();
   const { session } = useAuth();
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
 
@@ -93,10 +95,21 @@ export default function Projects() {
               filtered.map((p) => {
                 const sc = STATUS_COLORS[p.status] ?? STATUS_COLORS.finished;
                 return (
-                  <div key={p.id} className={styles.projectCard}>
-                    <div className={styles.projectAvatar}>
-                      {p.name.charAt(0).toUpperCase()}
-                    </div>
+                  <div
+                    key={p.id}
+                    className={styles.projectCard}
+                    onClick={() => navigate(`/proyectos/${p.id}`)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === "Enter" && navigate(`/proyectos/${p.id}`)}
+                  >
+                    {p.photo_url ? (
+                      <img src={p.photo_url} alt="" className={styles.projectAvatarImg} />
+                    ) : (
+                      <div className={styles.projectAvatar}>
+                        {p.name.charAt(0).toUpperCase()}
+                      </div>
+                    )}
                     <div className={styles.projectInfo}>
                       <span className={styles.projectName}>{p.name}</span>
                       {clientMap[p.client_id] && (

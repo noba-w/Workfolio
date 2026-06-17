@@ -78,6 +78,14 @@ export const translations = {
     clientDetailProjectDetails: "Detalles",
     clientDetailAddHours: "Añadir horas trabajadas",
     clientDetailNoProjects: "Este cliente no tiene proyectos todavía.",
+    weekChartTitle: "Horas trabajadas esta semana",
+    dayMon: "Lun",
+    dayTue: "Mar",
+    dayWed: "Mié",
+    dayThu: "Jue",
+    dayFri: "Vie",
+    daySat: "Sáb",
+    daySun: "Dom",
 
     // ── avatar picker modal ─────────────────────────────────
     avatarPickerTitle: "Foto de perfil",
@@ -104,6 +112,9 @@ export const translations = {
     projectsEmpty: "No hay proyectos todavía.",
     projectsNoResults: "Sin resultados para esa búsqueda.",
     projectsModalTitle: "Nuevo proyecto",
+    projectsEditModalTitle: "Editar proyecto",
+    projectsSaveEdit: "Guardar cambios",
+    projectsSavingEdit: "Guardando…",
     projectsFieldName: "Nombre del proyecto",
     projectsFieldNamePlaceholder: "Nombre del proyecto",
     projectsFieldClient: "Cliente",
@@ -122,6 +133,17 @@ export const translations = {
     projectsErrName: "El nombre es obligatorio.",
     projectsErrClient: "Selecciona un cliente.",
     projectsErrRate: "La tarifa es obligatoria.",
+
+    // ── project detail ──────────────────────────────────────
+    projectDetailBack: "Volver a proyectos",
+    projectDetailEdit: "Editar proyecto",
+    projectDetailChangePhoto: "Cambiar foto",
+    projectDetailRemovePhoto: "Eliminar foto",
+    projectDetailRemovePhotoConfirm: "¿Seguro que quieres eliminar la foto de este proyecto?",
+    projectDetailRemovePhotoConfirmBtn: "Eliminar",
+    projectDetailClient: "Cliente",
+    projectDetailRate: "Tarifa",
+    projectDetailNoDescription: "Sin descripción.",
 
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Ajustes",
@@ -210,6 +232,14 @@ export const translations = {
     clientDetailProjectDetails: "Details",
     clientDetailAddHours: "Add worked hours",
     clientDetailNoProjects: "This client has no projects yet.",
+    weekChartTitle: "Hours worked this week",
+    dayMon: "Mon",
+    dayTue: "Tue",
+    dayWed: "Wed",
+    dayThu: "Thu",
+    dayFri: "Fri",
+    daySat: "Sat",
+    daySun: "Sun",
 
     // ── avatar picker modal ─────────────────────────────────
     avatarPickerTitle: "Profile photo",
@@ -236,6 +266,9 @@ export const translations = {
     projectsEmpty: "No projects yet.",
     projectsNoResults: "No results for that search.",
     projectsModalTitle: "New project",
+    projectsEditModalTitle: "Edit project",
+    projectsSaveEdit: "Save changes",
+    projectsSavingEdit: "Saving…",
     projectsFieldName: "Project name",
     projectsFieldNamePlaceholder: "Project name",
     projectsFieldClient: "Client",
@@ -254,6 +287,17 @@ export const translations = {
     projectsErrName: "Name is required.",
     projectsErrClient: "Select a client.",
     projectsErrRate: "Rate is required.",
+
+    // ── project detail ──────────────────────────────────────
+    projectDetailBack: "Back to projects",
+    projectDetailEdit: "Edit project",
+    projectDetailChangePhoto: "Change photo",
+    projectDetailRemovePhoto: "Remove photo",
+    projectDetailRemovePhotoConfirm: "Are you sure you want to remove this project's photo?",
+    projectDetailRemovePhotoConfirmBtn: "Remove",
+    projectDetailClient: "Client",
+    projectDetailRate: "Rate",
+    projectDetailNoDescription: "No description.",
 
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Settings",

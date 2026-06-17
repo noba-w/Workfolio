@@ -58,7 +58,22 @@ def get_project(project_id: str, user: CurrentUser = Depends(get_current_user)):
     res = user.sb.table("projects").select("*").eq("id", project_id).execute()
     if not res.data:
         raise HTTPException(status_code=404, detail="Project not found")
-    return res.data[0]
+    project = res.data[0]
+
+    today = date.today()
+    week_start = today - timedelta(days=today.weekday())
+    week_end = week_start + timedelta(days=6)
+    entries = (
+        user.sb.table("time_entries")
+        .select("hours")
+        .eq("project_id", project_id)
+        .gte("date", str(week_start))
+        .lte("date", str(week_end))
+        .execute()
+        .data
+    )
+    project["weekly_hours"] = sum(float(e["hours"]) for e in entries)
+    return project
 
 
 @router.patch("/{project_id}", response_model=ProjectResponse)
@@ -67,6 +82,14 @@ def update_project(project_id: str, body: ProjectUpdate, user: CurrentUser = Dep
     if not updates:
         raise HTTPException(status_code=400, detail="No fields to update")
     res = user.sb.table("projects").update(updates).eq("id", project_id).execute()
+    if not res.data:
+        raise HTTPException(status_code=404, detail="Project not found")
+    return res.data[0]
+
+
+@router.delete("/{project_id}/photo", response_model=ProjectResponse)
+def delete_project_photo(project_id: str, user: CurrentUser = Depends(get_current_user)):
+    res = user.sb.table("projects").update({"photo_url": None}).eq("id", project_id).execute()
     if not res.data:
         raise HTTPException(status_code=404, detail="Project not found")
     return res.data[0]

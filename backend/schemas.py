@@ -81,6 +81,7 @@ class ProjectUpdate(BaseModel):
     hourly_rate: Optional[float] = None
     start_date: Optional[date] = None
     end_date: Optional[date] = None
+    photo_url: Optional[str] = None
 
 
 class ProjectResponse(BaseModel):
@@ -92,6 +93,7 @@ class ProjectResponse(BaseModel):
     hourly_rate: float
     start_date: Optional[date] = None
     end_date: Optional[date] = None
+    photo_url: Optional[str] = None
     weekly_hours: float = 0.0
     created_at: datetime
 
