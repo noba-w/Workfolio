@@ -66,5 +66,14 @@ export const getProjects = (token) =>
 export const createProject = (body, token) =>
   apiFetch("/api/projects", { method: "POST", body: JSON.stringify(body) }, token);
 
+export const updateProject = (id, body, token) =>
+  apiFetch(`/api/projects/${id}`, { method: "PATCH", body: JSON.stringify(body) }, token);
+
+export const deleteProjectPhoto = (id, token) =>
+  apiFetch(`/api/projects/${id}/photo`, { method: "DELETE" }, token);
+
 export const createTimeEntry = (body, token) =>
   apiFetch("/api/time-entries", { method: "POST", body: JSON.stringify(body) }, token);
+
+export const getTimeEntries = (projectId, token) =>
+  apiFetch(`/api/time-entries?project_id=${projectId}`, {}, token);

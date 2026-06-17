@@ -370,6 +370,7 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 10px;
+  cursor: pointer;
   transition: box-shadow 0.15s;
 }
 
@@ -377,10 +378,15 @@
   box-shadow: var(--shadow-card);
 }
 
-.projectAvatar {
+.projectAvatar,
+.projectAvatarImg {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.projectAvatar {
   background: var(--color-accent-soft);
   color: var(--color-accent);
   font-weight: 700;
@@ -388,7 +394,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+}
+
+.projectAvatarImg {
+  object-fit: cover;
+  background: var(--color-accent-soft);
 }
 
 .projectInfo {

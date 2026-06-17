@@ -216,10 +216,21 @@ export default function ClientDetail() {
                     clientProjects.map((p) => {
                       const sc = STATUS_COLORS[p.status] ?? STATUS_COLORS.finished;
                       return (
-                        <div key={p.id} className={styles.projectCard}>
-                          <div className={styles.projectAvatar}>
-                            {p.name.charAt(0).toUpperCase()}
-                          </div>
+                        <div
+                          key={p.id}
+                          className={styles.projectCard}
+                          onClick={() => navigate(`/proyectos/${p.id}`)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => e.key === "Enter" && navigate(`/proyectos/${p.id}`)}
+                        >
+                          {p.photo_url ? (
+                            <img src={p.photo_url} alt="" className={styles.projectAvatarImg} />
+                          ) : (
+                            <div className={styles.projectAvatar}>
+                              {p.name.charAt(0).toUpperCase()}
+                            </div>
+                          )}
                           <div className={styles.projectInfo}>
                             <div className={styles.projectNameRow}>
                               <span className={styles.projectName}>{p.name}</span>
@@ -230,7 +241,14 @@ export default function ClientDetail() {
                                 {statusLabels[p.status]}
                               </span>
                             </div>
-                            <button type="button" className={styles.detailsBtn}>
+                            <button
+                              type="button"
+                              className={styles.detailsBtn}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                navigate(`/proyectos/${p.id}`);
+                              }}
+                            >
                               {t.clientDetailProjectDetails}
                             </button>
                           </div>
@@ -244,7 +262,10 @@ export default function ClientDetail() {
                           <button
                             type="button"
                             className={styles.addEntryBtn}
-                            onClick={() => setTimeEntryProject(p)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setTimeEntryProject(p);
+                            }}
                             aria-label={t.clientDetailAddHours}
                           >
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

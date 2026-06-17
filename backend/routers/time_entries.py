@@ -1,8 +1,27 @@
 from fastapi import APIRouter, HTTPException, Depends
+from typing import List, Optional
+from datetime import date, timedelta
 from deps import get_current_user, CurrentUser
 from schemas import TimeEntryCreate, TimeEntryResponse
 
 router = APIRouter(prefix="/api/time-entries", tags=["time_entries"])
+
+
+@router.get("", response_model=List[TimeEntryResponse])
+def list_time_entries(project_id: Optional[str] = None, user: CurrentUser = Depends(get_current_user)):
+    today = date.today()
+    week_start = today - timedelta(days=today.weekday())
+    week_end = week_start + timedelta(days=6)
+
+    query = (
+        user.sb.table("time_entries")
+        .select("*")
+        .gte("date", str(week_start))
+        .lte("date", str(week_end))
+    )
+    if project_id:
+        query = query.eq("project_id", project_id)
+    return query.execute().data
 
 
 @router.post("", response_model=TimeEntryResponse, status_code=201)
