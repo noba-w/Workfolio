@@ -62,7 +62,7 @@
 
 .row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 0.75rem;
 }
 
@@ -208,10 +208,6 @@
 
 /* ── responsive ───────────────────────────────────────── */
 @media (max-width: 480px) {
-  .row {
-    grid-template-columns: 1fr;
-  }
-
   .card {
     border-radius: 12px;
   }
