@@ -10,7 +10,7 @@
 }
 
 .card {
-  background: #fff;
+  background: var(--color-surface);
   border-radius: 14px;
   width: 100%;
   max-width: 560px;
@@ -29,7 +29,7 @@
 .cardTitle {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--color-text);
   margin: 0;
 }
 
@@ -42,14 +42,14 @@
   border: none;
   background: transparent;
   border-radius: 8px;
-  color: #6b7280;
+  color: var(--color-text-muted);
   cursor: pointer;
   transition: background 0.15s, color 0.15s;
 }
 
 .closeBtn:hover {
-  background: #f3f4f6;
-  color: #111827;
+  background: var(--color-border-light);
+  color: var(--color-text);
 }
 
 /* ── form ─────────────────────────────────────────────── */
@@ -75,21 +75,21 @@
 .label {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #374151;
+  color: var(--color-text-secondary);
   letter-spacing: 0.01em;
 }
 
 .required {
-  color: #ef4444;
+  color: var(--color-danger);
 }
 
 .input {
   padding: 0.55rem 0.75rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   font-size: 0.9rem;
-  color: #111827;
-  background: #fff;
+  color: var(--color-text);
+  background: var(--color-surface);
   outline: none;
   transition: border-color 0.15s;
   width: 100%;
@@ -97,52 +97,39 @@
 }
 
 .input:focus {
-  border-color: #0054D9;
+  border-color: var(--color-accent);
 }
 
 .input::placeholder {
-  color: #9ca3af;
+  color: var(--color-text-faint);
 }
 
 .inputError {
-  border-color: #ef4444;
+  border-color: var(--color-danger);
 }
 
 .inputError:focus {
-  border-color: #ef4444;
+  border-color: var(--color-danger);
 }
 
 /* ── phone split input ────────────────────────────────── */
 .phoneGroup {
   display: flex;
-  align-items: center;
-  border: 1px solid #e5e7eb;
+  align-items: stretch;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   overflow: hidden;
   transition: border-color 0.15s;
 }
 
 .phoneGroup:focus-within {
-  border-color: #0054D9;
-}
-
-.phonePrefix {
-  width: 56px;
-  flex-shrink: 0;
-  padding: 0.55rem 0.5rem;
-  border: none;
-  outline: none;
-  font-size: 0.9rem;
-  color: #374151;
-  font-weight: 500;
-  background: #f9fafb;
-  text-align: center;
+  border-color: var(--color-accent);
 }
 
 .phoneDivider {
   width: 1px;
   align-self: stretch;
-  background: #e5e7eb;
+  background: var(--color-border);
   flex-shrink: 0;
 }
 
@@ -152,23 +139,23 @@
   border: none;
   outline: none;
   font-size: 0.9rem;
-  color: #111827;
-  background: #fff;
+  color: var(--color-text);
+  background: var(--color-surface);
   min-width: 0;
 }
 
 .phoneNumber::placeholder {
-  color: #9ca3af;
+  color: var(--color-text-faint);
 }
 
 .fieldError {
   font-size: 0.78rem;
-  color: #ef4444;
+  color: var(--color-danger);
 }
 
 .submitError {
   font-size: 0.85rem;
-  color: #ef4444;
+  color: var(--color-danger);
   margin: 0;
   text-align: center;
 }
@@ -183,10 +170,10 @@
 
 .cancelBtn {
   padding: 0.55rem 1rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
-  background: #fff;
-  color: #374151;
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
@@ -194,15 +181,15 @@
 }
 
 .cancelBtn:hover:not(:disabled) {
-  background: #f3f4f6;
+  background: var(--color-border-light);
 }
 
 .saveBtn {
   padding: 0.55rem 1.25rem;
   border: none;
   border-radius: 8px;
-  background: #0054D9;
-  color: #fff;
+  background: var(--color-accent);
+  color: var(--color-surface);
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -210,7 +197,7 @@
 }
 
 .saveBtn:hover:not(:disabled) {
-  background: #0044b3;
+  background: var(--color-accent-hover);
 }
 
 .saveBtn:disabled,

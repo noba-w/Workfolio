@@ -2,14 +2,17 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useLang } from "../context/LangContext";
+import { useTheme } from "../context/ThemeContext";
 import { translateServerError } from "../lib/i18n";
 import LangSwitcher from "../components/LangSwitcher";
 import logo from "../assets/logo.png";
+import logoWhite from "../assets/logo-white.png";
 import styles from "./Login.module.css";
 
 export default function Login() {
   const { login, register } = useAuth();
   const { t } = useLang();
+  const { theme } = useTheme();
   const navigate = useNavigate();
 
   const [mode, setMode] = useState("login");
@@ -70,7 +73,7 @@ export default function Login() {
 
       <div className={styles.card}>
         <header className={styles.header}>
-          <img src={logo} alt="Workfolio" className={styles.logo} />
+          <img src={theme === "dark" ? logoWhite : logo} alt="Workfolio" className={styles.logo} />
           <h1 className={styles.title}>Workfolio</h1>
           <p className={styles.tagline}>
             {isLogin ? t.taglineLogin : t.taglineRegister}

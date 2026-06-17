@@ -31,7 +31,7 @@
   left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
-  color: #9ca3af;
+  color: var(--color-text-faint);
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -41,21 +41,21 @@
   width: 100%;
   box-sizing: border-box;
   padding: 0.6rem 0.75rem 0.6rem 2.25rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   font-size: 0.9rem;
-  background: #fff;
-  color: #111827;
+  background: var(--color-surface);
+  color: var(--color-text);
   outline: none;
   transition: border-color 0.15s;
 }
 
 .searchInput:focus {
-  border-color: #0054D9;
+  border-color: var(--color-accent);
 }
 
 .searchInput::placeholder {
-  color: #9ca3af;
+  color: var(--color-text-faint);
 }
 
 .addButton {
@@ -65,8 +65,8 @@
   padding: 0.6rem 1rem;
   border: none;
   border-radius: 8px;
-  background: #0054D9;
-  color: #fff;
+  background: var(--color-accent);
+  color: var(--color-surface);
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -75,7 +75,7 @@
 }
 
 .addButton:hover {
-  background: #0044b3;
+  background: var(--color-accent-hover);
 }
 
 /* ── list ─────────────────────────────────────────────── */
@@ -87,7 +87,7 @@
 
 .emptyState {
   text-align: center;
-  color: #9ca3af;
+  color: var(--color-text-faint);
   font-size: 0.95rem;
   padding: 3rem 0;
 }
@@ -98,8 +98,8 @@
   align-items: flex-start;
   gap: 0.875rem;
   padding: 0.875rem 1rem;
-  background: #fff;
-  border: 1px solid #e5e7eb;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   transition: box-shadow 0.15s;
 }
@@ -112,8 +112,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #eef3fd;
-  color: #0054D9;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
   font-weight: 700;
   font-size: 1rem;
   display: flex;
@@ -134,7 +134,7 @@
 .projectName {
   font-weight: 600;
   font-size: 0.95rem;
-  color: #111827;
+  color: var(--color-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -143,7 +143,7 @@
 .projectClient {
   font-size: 0.83rem;
   font-weight: 500;
-  color: #374151;
+  color: var(--color-text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -169,14 +169,14 @@
 .projectRateValue {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #0054D9;
+  color: var(--color-accent);
   line-height: 1;
 }
 
 .projectRateUnit {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #0054D9;
+  color: var(--color-accent);
 }
 
 /* ── responsive ───────────────────────────────────────── */

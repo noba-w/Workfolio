@@ -66,6 +66,14 @@ def update_client(client_id: str, body: ClientUpdate, user: CurrentUser = Depend
     return res.data[0]
 
 
+@router.delete("/{client_id}/photo", response_model=ClientResponse)
+def delete_client_photo(client_id: str, user: CurrentUser = Depends(get_current_user)):
+    res = user.sb.table("clients").update({"photo_url": None}).eq("id", client_id).execute()
+    if not res.data:
+        raise HTTPException(status_code=404, detail="Client not found")
+    return res.data[0]
+
+
 @router.delete("/{client_id}", status_code=204)
 def delete_client(client_id: str, user: CurrentUser = Depends(get_current_user)):
     user.sb.table("clients").delete().eq("id", client_id).execute()

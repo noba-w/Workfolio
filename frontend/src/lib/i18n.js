@@ -62,9 +62,15 @@ export const translations = {
     clientsErrName: "El nombre es obligatorio.",
     clientsErrEmail: "El correo electrónico es obligatorio.",
     clientsWeekLabel: "esta sem.",
-    clientsViewProjects: "Ver proyectos",
-    noProjectsMsg: "Este cliente no tiene proyectos creados aún.",
-    noProjectsCreate: "Crear proyecto",
+
+    // ── client detail ──────────────────────────────────────
+    clientDetailBack: "Volver a clientes",
+    clientDetailChangePhoto: "Cambiar foto",
+    clientDetailRemovePhoto: "Eliminar foto",
+    clientDetailRemovePhotoConfirm: "¿Seguro que quieres eliminar la foto de este cliente?",
+    clientDetailRemovePhotoConfirmBtn: "Eliminar",
+    clientDetailProjectsTitle: "Proyectos",
+    clientDetailNoProjects: "Este cliente no tiene proyectos todavía.",
 
     // ── projects ───────────────────────────────────────────
     projectsSearchPlaceholder: "Buscar por nombre o cliente…",
@@ -95,6 +101,9 @@ export const translations = {
     settingsTitle: "Ajustes",
     settingsAccount: "Cuenta",
     settingsLogout: "Cerrar sesión",
+    settingsAppearance: "Apariencia",
+    settingsDarkMode: "Modo oscuro",
+    settingsDarkModeDesc: "Reduce el brillo de la interfaz.",
   },
   en: {
     // ── login ──────────────────────────────────────────────
@@ -159,9 +168,15 @@ export const translations = {
     clientsErrName: "Name is required.",
     clientsErrEmail: "Email is required.",
     clientsWeekLabel: "this week",
-    clientsViewProjects: "View projects",
-    noProjectsMsg: "This client has no projects yet.",
-    noProjectsCreate: "Create project",
+
+    // ── client detail ──────────────────────────────────────
+    clientDetailBack: "Back to clients",
+    clientDetailChangePhoto: "Change photo",
+    clientDetailRemovePhoto: "Remove photo",
+    clientDetailRemovePhotoConfirm: "Are you sure you want to remove this client's photo?",
+    clientDetailRemovePhotoConfirmBtn: "Remove",
+    clientDetailProjectsTitle: "Projects",
+    clientDetailNoProjects: "This client has no projects yet.",
 
     // ── projects ───────────────────────────────────────────
     projectsSearchPlaceholder: "Search by name or client…",
@@ -192,6 +207,9 @@ export const translations = {
     settingsTitle: "Settings",
     settingsAccount: "Account",
     settingsLogout: "Log out",
+    settingsAppearance: "Appearance",
+    settingsDarkMode: "Dark mode",
+    settingsDarkModeDesc: "Reduce the interface's brightness.",
   },
 };
 

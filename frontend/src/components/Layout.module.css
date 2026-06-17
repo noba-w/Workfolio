@@ -2,7 +2,7 @@
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  background: #f9fafb;
+  background: var(--color-surface-muted);
   padding-bottom: 92px;
 }
 
@@ -12,8 +12,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem 2rem;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -26,7 +26,7 @@
   font-weight: 700;
   font-size: 1.125rem;
   letter-spacing: -0.02em;
-  color: #0054D9;
+  color: var(--color-accent);
 }
 
 .brandLogo {
@@ -48,7 +48,7 @@
   width: 34px;
   height: 34px;
   border-radius: 8px;
-  color: #6b7280;
+  color: var(--color-text-muted);
   transition: color 0.15s, background 0.15s;
 }
 
@@ -58,13 +58,13 @@
 }
 
 .settingsBtn:hover {
-  color: #374151;
-  background: #f3f4f6;
+  color: var(--color-text-secondary);
+  background: var(--color-border-light);
 }
 
 .settingsBtnActive {
-  color: #0054D9;
-  background: #eef3fd;
+  color: var(--color-accent);
+  background: var(--color-accent-soft);
 }
 
 /* ── main content ────────────────────────────────────── */

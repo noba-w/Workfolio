@@ -44,6 +44,7 @@ class ClientUpdate(BaseModel):
     email: Optional[EmailStr] = None
     phone: Optional[str] = None
     company: Optional[str] = None
+    photo_url: Optional[str] = None
 
 
 class ClientResponse(BaseModel):
@@ -52,6 +53,7 @@ class ClientResponse(BaseModel):
     email: str
     phone: Optional[str] = None
     company: Optional[str] = None
+    photo_url: Optional[str] = None
     weekly_hours: float = 0.0
     created_at: datetime
 

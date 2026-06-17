@@ -1,0 +1,410 @@
+.page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+}
+
+.inner {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── back button ──────────────────────────────────────── */
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  align-self: flex-start;
+  border: none;
+  background: none;
+  padding: 0.3rem 0;
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.backBtn:hover {
+  color: var(--color-accent);
+}
+
+.emptyState {
+  text-align: center;
+  color: var(--color-text-faint);
+  font-size: 0.95rem;
+  padding: 3rem 0;
+}
+
+/* ── client card (detail) ─────────────────────────────── */
+.clientCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding: 2.25rem 1.75rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
+.fileInput {
+  display: none;
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  flex-shrink: 0;
+}
+
+.avatarButton {
+  position: relative;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.avatarButton:disabled {
+  cursor: default;
+}
+
+.clientAvatar,
+.clientAvatarImg {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+}
+
+.clientAvatar {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clientAvatarImg {
+  object-fit: cover;
+}
+
+.avatarOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.38);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.avatarButton:hover .avatarOverlay,
+.avatarButton:focus-visible .avatarOverlay {
+  opacity: 1;
+}
+
+.deletePhotoBtn {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--color-surface);
+  background: var(--color-danger-strong);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.avatarWrapper:hover .deletePhotoBtn,
+.avatarWrapper:focus-within .deletePhotoBtn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.deletePhotoBtn:disabled {
+  cursor: default;
+}
+
+/* ── remove-photo confirm modal ───────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1rem;
+}
+
+.confirmCard {
+  background: var(--color-surface);
+  border-radius: 14px;
+  padding: 1.5rem;
+  width: min(340px, 90vw);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: var(--shadow-modal);
+}
+
+.confirmMsg {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.confirmActions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+}
+
+.confirmCancelBtn {
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.confirmCancelBtn:hover:not(:disabled) {
+  background: var(--color-border-light);
+}
+
+.confirmDeleteBtn {
+  padding: 0.55rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-danger-strong);
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.confirmDeleteBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.confirmCancelBtn:disabled,
+.confirmDeleteBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.clientInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.clientName {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--color-text);
+}
+
+.clientCompany {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.clientEmail,
+.clientPhone {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+
+.clientEmail svg,
+.clientPhone svg {
+  flex-shrink: 0;
+  color: var(--color-text-faint);
+}
+
+.clientWeeklyHours {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.clientHoursValue {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.clientHoursUnit {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.clientHoursLabel {
+  font-size: 0.85rem;
+  color: var(--color-text-faint);
+  white-space: nowrap;
+}
+
+/* ── projects section ─────────────────────────────────── */
+.projectsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.projectsTitle {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* ── project card ─────────────────────────────────────── */
+.projectCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 0.875rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  transition: box-shadow 0.15s;
+}
+
+.projectCard:hover {
+  box-shadow: var(--shadow-card);
+}
+
+.projectAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.projectInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.projectName {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projectStatus {
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.projectRate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.projectRateValue {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.projectRateUnit {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+/* ── responsive ───────────────────────────────────────── */
+@media (max-width: 480px) {
+  .page {
+    padding: 1.25rem 1rem;
+  }
+
+  .clientCard {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .avatarWrapper,
+  .avatarButton,
+  .clientAvatar,
+  .clientAvatarImg {
+    width: 88px;
+    height: 88px;
+  }
+
+  .clientAvatar {
+    font-size: 2.1rem;
+  }
+
+  .clientName {
+    font-size: 1.3rem;
+  }
+}

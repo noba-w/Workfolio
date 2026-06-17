@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
+import logoWhite from "../assets/logo-white.png";
+import { useTheme } from "../context/ThemeContext";
 import LangSwitcher from "./LangSwitcher";
 import BottomNav from "./BottomNav";
 import styles from "./Layout.module.css";
@@ -14,11 +16,13 @@ function SettingsIcon() {
 }
 
 export default function Layout({ children }) {
+  const { theme } = useTheme();
+
   return (
     <div className={styles.shell}>
       <header className={styles.header}>
         <div className={styles.brand}>
-          <img src={logo} alt="" className={styles.brandLogo} />
+          <img src={theme === "dark" ? logoWhite : logo} alt="" className={styles.brandLogo} />
           <span>Workfolio</span>
         </div>
         <div className={styles.headerRight}>
