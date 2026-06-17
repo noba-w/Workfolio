@@ -23,7 +23,7 @@ export default function Layout({ children }) {
       <header className={styles.header}>
         <div className={styles.brand}>
           <img src={theme === "dark" ? logoWhite : logo} alt="" className={styles.brandLogo} />
-          <span>Workfolio</span>
+          <span className={styles.brandText}>Workfolio</span>
         </div>
         <div className={styles.headerRight}>
           <LangSwitcher inline />

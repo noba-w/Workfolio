@@ -8,6 +8,7 @@ import { resizeImageToDataUrl } from "../lib/image";
 import Layout from "../components/Layout";
 import ClientModal from "../components/ClientModal";
 import ProjectModal from "../components/ProjectModal";
+import TimeEntryModal from "../components/TimeEntryModal";
 import styles from "./ClientDetail.module.css";
 
 const STATUS_COLORS = {
@@ -28,6 +29,7 @@ export default function ClientDetail() {
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showProjectModal, setShowProjectModal] = useState(false);
+  const [timeEntryProject, setTimeEntryProject] = useState(null);
 
   const { data: clients = [], isLoading: loadingClients } = useQuery({
     queryKey: ["clients"],
@@ -213,13 +215,18 @@ export default function ClientDetail() {
                             {p.name.charAt(0).toUpperCase()}
                           </div>
                           <div className={styles.projectInfo}>
-                            <span className={styles.projectName}>{p.name}</span>
-                            <span
-                              className={styles.projectStatus}
-                              style={{ background: sc.bg, color: sc.color }}
-                            >
-                              {statusLabels[p.status]}
-                            </span>
+                            <div className={styles.projectNameRow}>
+                              <span className={styles.projectName}>{p.name}</span>
+                              <span
+                                className={styles.projectStatus}
+                                style={{ background: sc.bg, color: sc.color }}
+                              >
+                                {statusLabels[p.status]}
+                              </span>
+                            </div>
+                            <button type="button" className={styles.detailsBtn}>
+                              {t.clientDetailProjectDetails}
+                            </button>
                           </div>
                           <div className={styles.projectStats}>
                             <span className={styles.projectHoursValue}>
@@ -228,8 +235,16 @@ export default function ClientDetail() {
                             </span>
                             <span className={styles.projectHoursLabel}>{t.clientsWeekLabel}</span>
                           </div>
-                          <button type="button" className={styles.detailsBtn}>
-                            {t.clientDetailProjectDetails}
+                          <button
+                            type="button"
+                            className={styles.addEntryBtn}
+                            onClick={() => setTimeEntryProject(p)}
+                            aria-label={t.clientDetailAddHours}
+                          >
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <line x1="12" y1="5" x2="12" y2="19" />
+                              <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg>
                           </button>
                         </div>
                       );
@@ -252,6 +267,10 @@ export default function ClientDetail() {
           defaultClientId={id}
           onClose={() => setShowProjectModal(false)}
         />
+      )}
+
+      {timeEntryProject && (
+        <TimeEntryModal project={timeEntryProject} onClose={() => setTimeEntryProject(null)} />
       )}
 
       {showRemoveConfirm && (
