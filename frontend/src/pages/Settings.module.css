@@ -1,0 +1,64 @@
+.content {
+  flex: 1;
+  padding: 2rem 1.5rem;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #111827;
+  margin-bottom: 2rem;
+}
+
+.section {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9ca3af;
+  padding: 0.875rem 1rem 0.5rem;
+}
+
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: none;
+  border: none;
+  border-top: 1px solid #f3f4f6;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #dc2626;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.logoutBtn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.logoutBtn:hover {
+  background: #fef2f2;
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 1.5rem 1rem;
+  }
+}

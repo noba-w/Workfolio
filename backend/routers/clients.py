@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from typing import List
+from datetime import date, timedelta
 from deps import get_current_user, CurrentUser
 from schemas import ClientCreate, ClientUpdate, ClientResponse
 
@@ -8,8 +9,34 @@ router = APIRouter(prefix="/api/clients", tags=["clients"])
 
 @router.get("", response_model=List[ClientResponse])
 def list_clients(user: CurrentUser = Depends(get_current_user)):
-    res = user.sb.table("clients").select("*").execute()
-    return res.data
+    clients = user.sb.table("clients").select("*").execute().data
+
+    today = date.today()
+    week_start = today - timedelta(days=today.weekday())
+    week_end = week_start + timedelta(days=6)
+
+    projects = user.sb.table("projects").select("id,client_id").execute().data
+    project_to_client = {p["id"]: p["client_id"] for p in projects}
+
+    entries = (
+        user.sb.table("time_entries")
+        .select("project_id,hours")
+        .gte("date", str(week_start))
+        .lte("date", str(week_end))
+        .execute()
+        .data
+    )
+
+    weekly: dict = {}
+    for e in entries:
+        cid = project_to_client.get(e["project_id"])
+        if cid:
+            weekly[cid] = weekly.get(cid, 0.0) + float(e["hours"])
+
+    for c in clients:
+        c["weekly_hours"] = weekly.get(c["id"], 0.0)
+
+    return clients
 
 
 @router.post("", response_model=ClientResponse, status_code=201)

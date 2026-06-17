@@ -1,5 +1,6 @@
 export const translations = {
   es: {
+    // ── login ──────────────────────────────────────────────
     taglineLogin: "Bienvenido de vuelta.",
     taglineRegister: "Crea tu cuenta.",
     name: "Nombre",
@@ -22,8 +23,81 @@ export const translations = {
     errorEmailMismatch: "Los correos electrónicos no coinciden.",
     errorPasswordMismatch: "Las contraseñas no coinciden.",
     errorPasswordShort: "La contraseña debe tener al menos 6 caracteres.",
+    errRateLimit: "Demasiados intentos. Espera unos minutos e inténtalo de nuevo.",
+    errInvalidCredentials: "Correo o contraseña incorrectos.",
+    errAlreadyRegistered: "Ya existe una cuenta con ese correo.",
+    errGeneric: "Ha ocurrido un error. Inténtalo de nuevo.",
+
+    // ── nav ────────────────────────────────────────────────
+    navHome: "Inicio",
+    navClients: "Clientes",
+    navProjects: "Proyectos",
+    navIncome: "Ingresos",
+
+    // ── dashboard ──────────────────────────────────────────
+    welcome: "Bienvenido",
+    comingSoon: "Próximamente.",
+
+    // ── pages ──────────────────────────────────────────────
+    pageClients: "Clientes",
+    pageProjects: "Proyectos",
+    pageIncome: "Ingresos",
+
+    // ── clients ────────────────────────────────────────────
+    clientsSearchPlaceholder: "Buscar por nombre o empresa…",
+    clientsAddButton: "Añadir cliente",
+    clientsEmpty: "No hay clientes todavía.",
+    clientsNoResults: "Sin resultados para esa búsqueda.",
+    clientsModalTitle: "Nuevo cliente",
+    clientsFieldName: "Nombre",
+    clientsFieldNamePlaceholder: "Nombre del cliente",
+    clientsFieldEmail: "Correo electrónico",
+    clientsFieldPhone: "Teléfono",
+    clientsFieldPhonePlaceholder: "600 00 00 00",
+    clientsFieldCompany: "Empresa",
+    clientsFieldCompanyPlaceholder: "Nombre de la empresa",
+    clientsCancel: "Cancelar",
+    clientsSave: "Guardar cliente",
+    clientsSaving: "Guardando…",
+    clientsErrName: "El nombre es obligatorio.",
+    clientsErrEmail: "El correo electrónico es obligatorio.",
+    clientsWeekLabel: "esta sem.",
+    clientsViewProjects: "Ver proyectos",
+    noProjectsMsg: "Este cliente no tiene proyectos creados aún.",
+    noProjectsCreate: "Crear proyecto",
+
+    // ── projects ───────────────────────────────────────────
+    projectsSearchPlaceholder: "Buscar por nombre o cliente…",
+    projectsAddButton: "Añadir proyecto",
+    projectsEmpty: "No hay proyectos todavía.",
+    projectsNoResults: "Sin resultados para esa búsqueda.",
+    projectsModalTitle: "Nuevo proyecto",
+    projectsFieldName: "Nombre del proyecto",
+    projectsFieldNamePlaceholder: "Nombre del proyecto",
+    projectsFieldClient: "Cliente",
+    projectsFieldClientSelect: "Selecciona un cliente",
+    projectsFieldRate: "Tarifa (€/h)",
+    projectsFieldRatePlaceholder: "0.00",
+    projectsFieldStatus: "Estado",
+    projectsFieldDescription: "Descripción",
+    projectsFieldDescriptionPlaceholder: "Descripción opcional…",
+    statusActive: "Activo",
+    statusPaused: "Pausado",
+    statusFinished: "Finalizado",
+    projectsCancel: "Cancelar",
+    projectsSave: "Guardar proyecto",
+    projectsSaving: "Guardando…",
+    projectsErrName: "El nombre es obligatorio.",
+    projectsErrClient: "Selecciona un cliente.",
+    projectsErrRate: "La tarifa es obligatoria.",
+
+    // ── settings ───────────────────────────────────────────
+    settingsTitle: "Ajustes",
+    settingsAccount: "Cuenta",
+    settingsLogout: "Cerrar sesión",
   },
   en: {
+    // ── login ──────────────────────────────────────────────
     taglineLogin: "Welcome back.",
     taglineRegister: "Create your account.",
     name: "Name",
@@ -46,5 +120,85 @@ export const translations = {
     errorEmailMismatch: "Emails don't match.",
     errorPasswordMismatch: "Passwords don't match.",
     errorPasswordShort: "Password must be at least 6 characters.",
+    errRateLimit: "Too many attempts. Please wait a moment and try again.",
+    errInvalidCredentials: "Invalid email or password.",
+    errAlreadyRegistered: "An account with this email already exists.",
+    errGeneric: "Something went wrong. Please try again.",
+
+    // ── nav ────────────────────────────────────────────────
+    navHome: "Home",
+    navClients: "Clients",
+    navProjects: "Projects",
+    navIncome: "Income",
+
+    // ── dashboard ──────────────────────────────────────────
+    welcome: "Welcome",
+    comingSoon: "Coming soon.",
+
+    // ── pages ──────────────────────────────────────────────
+    pageClients: "Clients",
+    pageProjects: "Projects",
+    pageIncome: "Income",
+
+    // ── clients ────────────────────────────────────────────
+    clientsSearchPlaceholder: "Search by name or company…",
+    clientsAddButton: "Add client",
+    clientsEmpty: "No clients yet.",
+    clientsNoResults: "No results for that search.",
+    clientsModalTitle: "New client",
+    clientsFieldName: "Name",
+    clientsFieldNamePlaceholder: "Client name",
+    clientsFieldEmail: "Email",
+    clientsFieldPhone: "Phone",
+    clientsFieldPhonePlaceholder: "600 00 00 00",
+    clientsFieldCompany: "Company",
+    clientsFieldCompanyPlaceholder: "Company name",
+    clientsCancel: "Cancel",
+    clientsSave: "Save client",
+    clientsSaving: "Saving…",
+    clientsErrName: "Name is required.",
+    clientsErrEmail: "Email is required.",
+    clientsWeekLabel: "this week",
+    clientsViewProjects: "View projects",
+    noProjectsMsg: "This client has no projects yet.",
+    noProjectsCreate: "Create project",
+
+    // ── projects ───────────────────────────────────────────
+    projectsSearchPlaceholder: "Search by name or client…",
+    projectsAddButton: "Add project",
+    projectsEmpty: "No projects yet.",
+    projectsNoResults: "No results for that search.",
+    projectsModalTitle: "New project",
+    projectsFieldName: "Project name",
+    projectsFieldNamePlaceholder: "Project name",
+    projectsFieldClient: "Client",
+    projectsFieldClientSelect: "Select a client",
+    projectsFieldRate: "Rate (€/h)",
+    projectsFieldRatePlaceholder: "0.00",
+    projectsFieldStatus: "Status",
+    projectsFieldDescription: "Description",
+    projectsFieldDescriptionPlaceholder: "Optional description…",
+    statusActive: "Active",
+    statusPaused: "Paused",
+    statusFinished: "Finished",
+    projectsCancel: "Cancel",
+    projectsSave: "Save project",
+    projectsSaving: "Saving…",
+    projectsErrName: "Name is required.",
+    projectsErrClient: "Select a client.",
+    projectsErrRate: "Rate is required.",
+
+    // ── settings ───────────────────────────────────────────
+    settingsTitle: "Settings",
+    settingsAccount: "Account",
+    settingsLogout: "Log out",
   },
 };
+
+export function translateServerError(message, t) {
+  const m = message.toLowerCase();
+  if (m.includes("rate limit")) return t.errRateLimit;
+  if (m.includes("invalid credentials") || m.includes("invalid login")) return t.errInvalidCredentials;
+  if (m.includes("already registered") || m.includes("user already")) return t.errAlreadyRegistered;
+  return t.errGeneric;
+}

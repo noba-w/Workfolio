@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from supabase import create_client
 from config import SUPABASE_URL, SUPABASE_ANON_KEY
-from schemas import RegisterRequest, LoginRequest, AuthResponse, UserResponse
+from schemas import RegisterRequest, LoginRequest, RefreshRequest, AuthResponse, UserResponse
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
@@ -21,6 +21,7 @@ def register(body: RegisterRequest):
         raise HTTPException(status_code=400, detail="Registration failed — confirm your email and try again")
     return AuthResponse(
         access_token=res.session.access_token,
+        refresh_token=res.session.refresh_token,
         user=UserResponse(id=res.user.id, email=res.user.email, name=body.name),
     )
 
@@ -37,5 +38,23 @@ def login(body: LoginRequest):
     name = (res.user.user_metadata or {}).get("name", "")
     return AuthResponse(
         access_token=res.session.access_token,
+        refresh_token=res.session.refresh_token,
+        user=UserResponse(id=res.user.id, email=res.user.email, name=name),
+    )
+
+
+@router.post("/refresh", response_model=AuthResponse)
+def refresh(body: RefreshRequest):
+    sb = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
+    try:
+        res = sb.auth.refresh_session(body.refresh_token)
+    except Exception:
+        raise HTTPException(status_code=401, detail="Invalid or expired refresh token")
+    if res.user is None or res.session is None:
+        raise HTTPException(status_code=401, detail="Invalid or expired refresh token")
+    name = (res.user.user_metadata or {}).get("name", "")
+    return AuthResponse(
+        access_token=res.session.access_token,
+        refresh_token=res.session.refresh_token,
         user=UserResponse(id=res.user.id, email=res.user.email, name=name),
     )

@@ -7,7 +7,7 @@ const LANGS = [
   { code: "en", flag: "🇬🇧", label: "EN" },
 ];
 
-export default function LangSwitcher() {
+export default function LangSwitcher({ inline = false }) {
   const { lang, setLang } = useLang();
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
@@ -23,7 +23,7 @@ export default function LangSwitcher() {
   }, []);
 
   return (
-    <div className={styles.wrapper} ref={ref}>
+    <div className={inline ? styles.wrapperInline : styles.wrapper} ref={ref}>
       <button
         className={styles.trigger}
         onClick={() => setOpen((o) => !o)}

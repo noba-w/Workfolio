@@ -1,5 +1,5 @@
 /* ── palette ─────────────────────────────────────────── */
-/* primary:   #00C8FF  (cyan)                            */
+/* primary:   #0054D9  (blue)                            */
 /* secondary: #ffffff  (white — bg)                      */
 /* tertiary:  #00A651  (money green)                     */
 
@@ -24,7 +24,7 @@
   border-radius: 50%;
   background: radial-gradient(
     ellipse at center,
-    rgba(0, 200, 255, 0.12) 0%,
+    rgba(0, 84, 217, 0.12) 0%,
     transparent 68%
   );
   pointer-events: none;
@@ -44,7 +44,7 @@
   border-radius: 16px;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.06),
-    0 16px 48px rgba(0, 200, 255, 0.08),
+    0 16px 48px rgba(0, 84, 217, 0.08),
     0 32px 64px rgba(0, 0, 0, 0.06);
 }
 
@@ -58,19 +58,10 @@
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #00C8FF 0%, #0099cc 100%);
-  color: #fff;
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
   margin-bottom: 0.25rem;
-  box-shadow: 0 4px 20px rgba(0, 200, 255, 0.35);
 }
 
 .title {
@@ -116,13 +107,13 @@
   border: none;
   cursor: pointer;
   font-size: 0.8125rem;
-  color: #00C8FF;
+  color: #0054D9;
   padding: 0;
   transition: color 0.15s;
 }
 
 .forgotLink:hover {
-  color: #0099cc;
+  color: #003faa;
 }
 
 .input {
@@ -146,8 +137,8 @@
 
 .input:focus {
   background: #ffffff;
-  border-color: #00C8FF;
-  box-shadow: 0 0 0 3px rgba(0, 200, 255, 0.15);
+  border-color: #0054D9;
+  box-shadow: 0 0 0 3px rgba(0, 84, 217, 0.15);
 }
 
 /* ── error message ───────────────────────────────────── */
@@ -164,7 +155,7 @@
 .submitBtn {
   margin-top: 0.5rem;
   padding: 0.75rem;
-  background: linear-gradient(135deg, #00C8FF 0%, #0099cc 100%);
+  background: linear-gradient(135deg, #0054D9 0%, #003faa 100%);
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -176,7 +167,7 @@
     opacity 0.15s,
     transform 0.1s,
     box-shadow 0.15s;
-  box-shadow: 0 4px 16px rgba(0, 200, 255, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 84, 217, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,7 +176,7 @@
 
 .submitBtn:hover:not(:disabled) {
   opacity: 0.92;
-  box-shadow: 0 6px 24px rgba(0, 200, 255, 0.5);
+  box-shadow: 0 6px 24px rgba(0, 84, 217, 0.5);
 }
 
 .submitBtn:active:not(:disabled) {
@@ -233,4 +224,20 @@
 
 .signUpLink:hover {
   color: #007a3d;
+}
+
+/* ── responsive ──────────────────────────────────────── */
+@media (max-width: 480px) {
+  .card {
+    margin: 1rem;
+  }
+
+  .logo {
+    width: 56px;
+    height: 56px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
 }
