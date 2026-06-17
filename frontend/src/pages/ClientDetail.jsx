@@ -9,6 +9,7 @@ import Layout from "../components/Layout";
 import ClientModal from "../components/ClientModal";
 import ProjectModal from "../components/ProjectModal";
 import TimeEntryModal from "../components/TimeEntryModal";
+import AvatarPickerModal from "../components/AvatarPickerModal";
 import styles from "./ClientDetail.module.css";
 
 const STATUS_COLORS = {
@@ -29,6 +30,7 @@ export default function ClientDetail() {
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showProjectModal, setShowProjectModal] = useState(false);
+  const [showAvatarPicker, setShowAvatarPicker] = useState(false);
   const [timeEntryProject, setTimeEntryProject] = useState(null);
 
   const { data: clients = [], isLoading: loadingClients } = useQuery({
@@ -57,6 +59,11 @@ export default function ClientDetail() {
     return Number.isInteger(h) ? String(h) : h.toFixed(1);
   }
 
+  async function savePhoto(photo_url) {
+    await updateClient(id, { photo_url }, session.access_token);
+    await queryClient.invalidateQueries({ queryKey: ["clients"] });
+  }
+
   async function handlePhotoChange(e) {
     const file = e.target.files?.[0];
     e.target.value = "";
@@ -65,8 +72,7 @@ export default function ClientDetail() {
     setUploading(true);
     try {
       const photo_url = await resizeImageToDataUrl(file);
-      await updateClient(id, { photo_url }, session.access_token);
-      await queryClient.invalidateQueries({ queryKey: ["clients"] });
+      await savePhoto(photo_url);
     } finally {
       setUploading(false);
     }
@@ -112,7 +118,7 @@ export default function ClientDetail() {
                   <button
                     type="button"
                     className={styles.avatarButton}
-                    onClick={() => fileInputRef.current?.click()}
+                    onClick={() => setShowAvatarPicker(true)}
                     disabled={uploading}
                     aria-label={t.clientDetailChangePhoto}
                   >
@@ -271,6 +277,20 @@ export default function ClientDetail() {
 
       {timeEntryProject && (
         <TimeEntryModal project={timeEntryProject} onClose={() => setTimeEntryProject(null)} />
+      )}
+
+      {showAvatarPicker && (
+        <AvatarPickerModal
+          onClose={() => setShowAvatarPicker(false)}
+          onChooseFile={() => {
+            setShowAvatarPicker(false);
+            fileInputRef.current?.click();
+          }}
+          onSelectAvatar={async (url) => {
+            await savePhoto(url);
+            setShowAvatarPicker(false);
+          }}
+        />
       )}
 
       {showRemoveConfirm && (

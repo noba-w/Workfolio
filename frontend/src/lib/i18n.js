@@ -79,6 +79,12 @@ export const translations = {
     clientDetailAddHours: "Añadir horas trabajadas",
     clientDetailNoProjects: "Este cliente no tiene proyectos todavía.",
 
+    // ── avatar picker modal ─────────────────────────────────
+    avatarPickerTitle: "Foto de perfil",
+    avatarPickerUpload: "Subir desde mis archivos",
+    avatarPickerOr: "o elige un avatar",
+    avatarPickerRegenerate: "Otras opciones",
+
     // ── time entry modal ────────────────────────────────────
     timeEntryModalTitle: "Añadir horas trabajadas",
     timeEntryFieldDate: "Día de trabajo",
@@ -204,6 +210,12 @@ export const translations = {
     clientDetailProjectDetails: "Details",
     clientDetailAddHours: "Add worked hours",
     clientDetailNoProjects: "This client has no projects yet.",
+
+    // ── avatar picker modal ─────────────────────────────────
+    avatarPickerTitle: "Profile photo",
+    avatarPickerUpload: "Upload from my files",
+    avatarPickerOr: "or pick an avatar",
+    avatarPickerRegenerate: "More options",
 
     // ── time entry modal ────────────────────────────────────
     timeEntryModalTitle: "Add worked hours",
