@@ -9,6 +9,7 @@ import Layout from "../components/Layout";
 import ProjectModal from "../components/ProjectModal";
 import AvatarPickerModal from "../components/AvatarPickerModal";
 import WeekHoursChart from "../components/WeekHoursChart";
+import ProjectCalendar from "../components/ProjectCalendar";
 import styles from "./ProjectDetail.module.css";
 
 const STATUS_COLORS = {
@@ -196,7 +197,13 @@ export default function ProjectDetail() {
               </div>
 
               <div className={styles.chartSection}>
-                <WeekHoursChart projectId={project.id} active={true} />
+                <div className={styles.chartCol}>
+                  <WeekHoursChart projectId={project.id} active={true} />
+                </div>
+                <div className={styles.chartDivider} />
+                <div className={styles.chartCol}>
+                  <ProjectCalendar projectId={project.id} active={true} />
+                </div>
               </div>
             </>
           )}

@@ -317,14 +317,38 @@
   white-space: nowrap;
 }
 
-/* ── weekly chart section ─────────────────────────────── */
+/* ── weekly chart + calendar section ──────────────────── */
 .chartSection {
+  display: flex;
+  align-items: stretch;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 14px;
 }
 
+.chartCol {
+  flex: 1;
+  min-width: 0;
+}
+
+.chartDivider {
+  width: 1px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
 /* ── responsive ───────────────────────────────────────── */
+@media (max-width: 600px) {
+  .chartSection {
+    flex-direction: column;
+  }
+
+  .chartDivider {
+    width: auto;
+    height: 1px;
+  }
+}
+
 @media (max-width: 480px) {
   .page {
     padding: 1.25rem 1rem;

@@ -145,6 +145,14 @@ export const translations = {
     projectDetailRate: "Tarifa",
     projectDetailNoDescription: "Sin descripción.",
 
+    // ── project calendar ─────────────────────────────────────
+    calendarTitle: "Calendario de horas",
+    calendarPrevMonth: "Mes anterior",
+    calendarNextMonth: "Mes siguiente",
+    calendarHoursUnit: "h",
+    calendarNoEntries: "Sin horas registradas.",
+    calendarClose: "Cerrar",
+
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Ajustes",
     settingsAccount: "Cuenta",
@@ -298,6 +306,14 @@ export const translations = {
     projectDetailClient: "Client",
     projectDetailRate: "Rate",
     projectDetailNoDescription: "No description.",
+
+    // ── project calendar ─────────────────────────────────────
+    calendarTitle: "Hours calendar",
+    calendarPrevMonth: "Previous month",
+    calendarNextMonth: "Next month",
+    calendarHoursUnit: "h",
+    calendarNoEntries: "No hours logged.",
+    calendarClose: "Close",
 
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Settings",
