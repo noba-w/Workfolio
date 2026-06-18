@@ -215,7 +215,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #00A651;
+  color: var(--color-money);
   font-size: inherit;
   font-weight: 500;
   padding: 0;
@@ -223,7 +223,7 @@
 }
 
 .signUpLink:hover {
-  color: #007a3d;
+  color: var(--color-money-hover);
 }
 
 /* ── responsive ──────────────────────────────────────── */

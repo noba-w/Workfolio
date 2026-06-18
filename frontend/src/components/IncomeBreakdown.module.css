@@ -68,7 +68,7 @@
 .amount {
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--color-accent);
+  color: var(--color-money);
 }
 
 .barTrack {
@@ -81,7 +81,7 @@
 
 .bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-hover));
+  background: linear-gradient(90deg, var(--color-money), var(--color-money-hover));
   border-radius: 999px;
   transition: width 0.3s ease;
 }

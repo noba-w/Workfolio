@@ -46,7 +46,9 @@ export default function Income() {
                   <span className={styles.summaryLabel}>{t.incomeMonthTotalHours}</span>
                 </div>
                 <div className={styles.summaryCard}>
-                  <span className={styles.summaryValue}>{formatAmount(totalIncome)}</span>
+                  <span className={`${styles.summaryValue} ${styles.summaryValueMoney}`}>
+                    {formatAmount(totalIncome)}
+                  </span>
                   <span className={styles.summaryLabel}>{t.incomeMonthTotalIncome}</span>
                 </div>
               </div>

@@ -30,6 +30,10 @@
   --color-danger-strong: #dc2626;
   --color-danger-soft: #fef2f2;
   --color-danger-border: #fecaca;
+  --color-money: #00A651;
+  --color-money-hover: #007a3d;
+  --color-money-soft: rgba(0, 166, 81, 0.12);
+  --color-money-soft-hover: rgba(0, 166, 81, 0.2);
   --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.07);
   --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.18);
   --overlay: rgba(0, 0, 0, 0.45);
@@ -57,6 +61,10 @@
   --color-danger-strong: #f87171;
   --color-danger-soft: rgba(239, 68, 68, 0.14);
   --color-danger-border: rgba(239, 68, 68, 0.4);
+  --color-money: #34d399;
+  --color-money-hover: #6ee7b7;
+  --color-money-soft: rgba(52, 211, 153, 0.16);
+  --color-money-soft-hover: rgba(52, 211, 153, 0.26);
   --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.4);
   --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.55);
   --overlay: rgba(0, 0, 0, 0.65);
