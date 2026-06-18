@@ -3,13 +3,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLang } from "../context/LangContext";
 import { useAuth } from "../context/AuthContext";
-import { getProjects, getClients, updateProject, deleteProjectPhoto } from "../lib/api";
+import { getProjects, getClients, getTimeEntries, updateProject, deleteProjectPhoto } from "../lib/api";
 import { resizeImageToDataUrl } from "../lib/image";
 import Layout from "../components/Layout";
 import ProjectModal from "../components/ProjectModal";
 import AvatarPickerModal from "../components/AvatarPickerModal";
 import WeekHoursChart from "../components/WeekHoursChart";
 import ProjectCalendar from "../components/ProjectCalendar";
+import ProjectActivityList from "../components/ProjectActivityList";
 import styles from "./ProjectDetail.module.css";
 
 const STATUS_COLORS = {
@@ -43,8 +44,15 @@ export default function ProjectDetail() {
     enabled: !!session?.access_token,
   });
 
+  const { data: timeEntries = [] } = useQuery({
+    queryKey: ["time-entries", id],
+    queryFn: () => getTimeEntries(id, session.access_token),
+    enabled: !!session?.access_token,
+  });
+
   const project = projects.find((p) => p.id === id);
   const client = clients.find((c) => c.id === project?.client_id);
+  const totalHours = timeEntries.reduce((sum, e) => sum + Number(e.hours), 0);
 
   const statusLabels = {
     active:   t.statusActive,
@@ -186,6 +194,9 @@ export default function ProjectDetail() {
                   <p className={styles.projectDescription}>
                     {project.description || t.projectDetailNoDescription}
                   </p>
+                  <span className={styles.projectTotalHours}>
+                    {t.projectDetailTotalHours}: {formatHours(totalHours)}h
+                  </span>
                 </div>
 
                 <div className={styles.projectWeeklyHours}>
@@ -199,6 +210,7 @@ export default function ProjectDetail() {
               <div className={styles.chartSection}>
                 <div className={styles.chartCol}>
                   <WeekHoursChart projectId={project.id} active={true} />
+                  <ProjectActivityList projectId={project.id} active={true} />
                 </div>
                 <div className={styles.chartDivider} />
                 <div className={styles.chartCol}>

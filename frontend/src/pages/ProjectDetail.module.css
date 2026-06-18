@@ -290,6 +290,12 @@
   line-height: 1.5;
 }
 
+.projectTotalHours {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
 .projectWeeklyHours {
   display: flex;
   flex-direction: column;
@@ -321,6 +327,7 @@
 .chartSection {
   display: flex;
   align-items: stretch;
+  gap: 1.25rem;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 14px;
@@ -329,6 +336,8 @@
 .chartCol {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .chartDivider {

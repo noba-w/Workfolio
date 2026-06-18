@@ -14,7 +14,7 @@ function toMinutes(time) {
   return h * 60 + m;
 }
 
-const EMPTY = { date: todayISO(), startTime: "", endTime: "" };
+const EMPTY = { date: todayISO(), startTime: "", endTime: "", description: "" };
 
 export default function TimeEntryModal({ onClose, project }) {
   const { t } = useLang();
@@ -58,11 +58,12 @@ export default function TimeEntryModal({ onClose, project }) {
     setSaving(true);
     try {
       const hours = Math.round(((toMinutes(form.endTime) - toMinutes(form.startTime)) / 60) * 100) / 100;
-      const body = { project_id: project.id, date: form.date, hours };
+      const body = { project_id: project.id, date: form.date, hours, description: form.description.trim() || null };
       await createTimeEntry(body, session?.access_token);
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: ["projects"] }),
         queryClient.invalidateQueries({ queryKey: ["clients"] }),
+        queryClient.invalidateQueries({ queryKey: ["time-entries", project.id] }),
       ]);
       onClose();
     } catch (err) {
@@ -117,6 +118,17 @@ export default function TimeEntryModal({ onClose, project }) {
               onChange={set("endTime")}
             />
             {errors.endTime && <span className={styles.fieldError}>{errors.endTime}</span>}
+          </div>
+
+          <div className={styles.field}>
+            <label className={styles.label}>{t.timeEntryFieldDescription}</label>
+            <textarea
+              className={styles.textarea}
+              value={form.description}
+              onChange={set("description")}
+              placeholder={t.timeEntryFieldDescriptionPlaceholder}
+              rows={3}
+            />
           </div>
 
           {errors.submit && <p className={styles.submitError}>{errors.submit}</p>}

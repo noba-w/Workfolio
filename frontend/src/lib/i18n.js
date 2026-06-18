@@ -98,6 +98,8 @@ export const translations = {
     timeEntryFieldDate: "Día de trabajo",
     timeEntryFieldStart: "Hora de entrada",
     timeEntryFieldEnd: "Hora de salida",
+    timeEntryFieldDescription: "Descripción (opcional)",
+    timeEntryFieldDescriptionPlaceholder: "¿En qué has trabajado?",
     timeEntryCancel: "Cancelar",
     timeEntrySave: "Guardar",
     timeEntrySaving: "Guardando…",
@@ -144,6 +146,7 @@ export const translations = {
     projectDetailClient: "Cliente",
     projectDetailRate: "Tarifa",
     projectDetailNoDescription: "Sin descripción.",
+    projectDetailTotalHours: "Horas totales dedicadas",
 
     // ── project calendar ─────────────────────────────────────
     calendarTitle: "Calendario de horas",
@@ -152,6 +155,11 @@ export const translations = {
     calendarHoursUnit: "h",
     calendarNoEntries: "Sin horas registradas.",
     calendarClose: "Cerrar",
+
+    // ── project activity list ────────────────────────────────
+    activityTitle: "Historial de horas",
+    activityEmpty: "Todavía no se han registrado horas.",
+    activityNoDescription: "Sin descripción",
 
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Ajustes",
@@ -260,6 +268,8 @@ export const translations = {
     timeEntryFieldDate: "Work date",
     timeEntryFieldStart: "Start time",
     timeEntryFieldEnd: "End time",
+    timeEntryFieldDescription: "Description (optional)",
+    timeEntryFieldDescriptionPlaceholder: "What did you work on?",
     timeEntryCancel: "Cancel",
     timeEntrySave: "Save",
     timeEntrySaving: "Saving…",
@@ -306,6 +316,7 @@ export const translations = {
     projectDetailClient: "Client",
     projectDetailRate: "Rate",
     projectDetailNoDescription: "No description.",
+    projectDetailTotalHours: "Total hours dedicated",
 
     // ── project calendar ─────────────────────────────────────
     calendarTitle: "Hours calendar",
@@ -314,6 +325,11 @@ export const translations = {
     calendarHoursUnit: "h",
     calendarNoEntries: "No hours logged.",
     calendarClose: "Close",
+
+    // ── project activity list ────────────────────────────────
+    activityTitle: "Hours history",
+    activityEmpty: "No hours logged yet.",
+    activityNoDescription: "No description",
 
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Settings",
