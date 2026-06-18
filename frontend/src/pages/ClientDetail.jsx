@@ -59,6 +59,10 @@ export default function ClientDetail() {
     return Number.isInteger(h) ? String(h) : h.toFixed(1);
   }
 
+  function formatAmount(v) {
+    return `${Number(v ?? 0).toFixed(2)}€`;
+  }
+
   async function savePhoto(photo_url) {
     await updateClient(id, { photo_url }, session.access_token);
     await queryClient.invalidateQueries({ queryKey: ["clients"] });
@@ -188,11 +192,17 @@ export default function ClientDetail() {
                   )}
                 </div>
 
-                <div className={styles.clientWeeklyHours}>
-                  <span className={styles.clientHoursValue}>
-                    {formatHours(client.weekly_hours ?? 0)}<span className={styles.clientHoursUnit}>h</span>
-                  </span>
-                  <span className={styles.clientHoursLabel}>{t.clientsWeekLabel}</span>
+                <div className={styles.clientStats}>
+                  <div className={styles.clientWeeklyHours}>
+                    <span className={styles.clientHoursValue}>
+                      {formatHours(client.weekly_hours ?? 0)}<span className={styles.clientHoursUnit}>h</span>
+                    </span>
+                    <span className={styles.clientHoursLabel}>{t.clientsWeekLabel}</span>
+                  </div>
+                  <div className={styles.clientMonthlyIncome}>
+                    <span className={styles.clientIncomeValue}>{formatAmount(client.monthly_income)}</span>
+                    <span className={styles.clientHoursLabel}>{t.clientDetailMonthlyIncome}</span>
+                  </div>
                 </div>
               </div>
 

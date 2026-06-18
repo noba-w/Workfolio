@@ -340,6 +340,14 @@
   border-radius: 14px;
 }
 
+.incomeChartBox {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
 /* ── add-hours button, to the right of the "Ingresos" tab ── */
 .fab {
   position: fixed;

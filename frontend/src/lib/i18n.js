@@ -161,6 +161,25 @@ export const translations = {
     activityEmpty: "Todavía no se han registrado horas.",
     activityNoDescription: "Sin descripción",
 
+    // ── project income chart ─────────────────────────────────
+    projectIncomeChartTitle: "Evolución de ingresos este mes",
+    projectIncomeChartAccumulated: "Acumulado del mes",
+    projectIncomeChartEmpty: "Todavía no hay ingresos registrados este mes.",
+
+    // ── income page ───────────────────────────────────────────
+    incomeMonthTotalHours: "Horas trabajadas este mes",
+    incomeMonthTotalIncome: "Ingresos de este mes",
+    incomeBreakdownTitle: "Desglose por proyecto",
+    incomeBreakdownEmpty: "Todavía no hay ingresos registrados este mes.",
+    incomeBreakdownHours: "Horas",
+    incomeBreakdownRate: "Tarifa",
+    incomeBreakdownAmount: "Importe",
+    incomeBreakdownPercentage: "% del total",
+    incomeBreakdownNoClient: "Sin cliente",
+
+    // ── client detail income ────────────────────────────────
+    clientDetailMonthlyIncome: "Ingresos generados este mes",
+
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Ajustes",
     settingsAccount: "Cuenta",
@@ -330,6 +349,25 @@ export const translations = {
     activityTitle: "Hours history",
     activityEmpty: "No hours logged yet.",
     activityNoDescription: "No description",
+
+    // ── project income chart ─────────────────────────────────
+    projectIncomeChartTitle: "Income evolution this month",
+    projectIncomeChartAccumulated: "Accumulated this month",
+    projectIncomeChartEmpty: "No income logged yet this month.",
+
+    // ── income page ───────────────────────────────────────────
+    incomeMonthTotalHours: "Hours worked this month",
+    incomeMonthTotalIncome: "Income this month",
+    incomeBreakdownTitle: "Breakdown by project",
+    incomeBreakdownEmpty: "No income logged yet this month.",
+    incomeBreakdownHours: "Hours",
+    incomeBreakdownRate: "Rate",
+    incomeBreakdownAmount: "Amount",
+    incomeBreakdownPercentage: "% of total",
+    incomeBreakdownNoClient: "No client",
+
+    // ── client detail income ────────────────────────────────
+    clientDetailMonthlyIncome: "Income generated this month",
 
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Settings",

@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr
-from typing import Optional
+from typing import Optional, List
 from datetime import date, datetime
 from enum import Enum
 
@@ -55,6 +55,7 @@ class ClientResponse(BaseModel):
     company: Optional[str] = None
     photo_url: Optional[str] = None
     weekly_hours: float = 0.0
+    monthly_income: float = 0.0
     created_at: datetime
 
 
@@ -112,3 +113,21 @@ class TimeEntryResponse(BaseModel):
     hours: float
     description: Optional[str] = None
     created_at: datetime
+
+
+class IncomeBreakdownItem(BaseModel):
+    project_id: str
+    project_name: str
+    client_id: Optional[str] = None
+    client_name: Optional[str] = None
+    hours: float
+    hourly_rate: float
+    amount: float
+    percentage: float
+
+
+class IncomeMonthlyResponse(BaseModel):
+    month: str
+    total_hours: float
+    total_income: float
+    breakdown: List[IncomeBreakdownItem]

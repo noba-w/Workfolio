@@ -11,6 +11,7 @@ import AvatarPickerModal from "../components/AvatarPickerModal";
 import WeekHoursChart from "../components/WeekHoursChart";
 import ProjectCalendar from "../components/ProjectCalendar";
 import ProjectActivityList from "../components/ProjectActivityList";
+import ProjectIncomeChart from "../components/ProjectIncomeChart";
 import TimeEntryModal from "../components/TimeEntryModal";
 import styles from "./ProjectDetail.module.css";
 
@@ -217,6 +218,10 @@ export default function ProjectDetail() {
                 <div className={styles.chartCol}>
                   <ProjectCalendar projectId={project.id} active={true} />
                 </div>
+              </div>
+
+              <div className={styles.incomeChartBox}>
+                <ProjectIncomeChart entries={timeEntries} hourlyRate={project.hourly_rate} />
               </div>
 
               <button
