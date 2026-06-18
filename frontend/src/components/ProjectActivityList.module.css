@@ -26,6 +26,8 @@
   gap: 0.4rem;
   height: 150px;
   overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.6rem;
   scrollbar-width: thin;
   scrollbar-color: var(--color-border) transparent;
 }
