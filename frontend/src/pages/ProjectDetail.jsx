@@ -11,6 +11,7 @@ import AvatarPickerModal from "../components/AvatarPickerModal";
 import WeekHoursChart from "../components/WeekHoursChart";
 import ProjectCalendar from "../components/ProjectCalendar";
 import ProjectActivityList from "../components/ProjectActivityList";
+import TimeEntryModal from "../components/TimeEntryModal";
 import styles from "./ProjectDetail.module.css";
 
 const STATUS_COLORS = {
@@ -31,6 +32,7 @@ export default function ProjectDetail() {
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
+  const [showTimeEntry, setShowTimeEntry] = useState(false);
 
   const { data: projects = [], isLoading: loadingProjects } = useQuery({
     queryKey: ["projects"],
@@ -212,15 +214,29 @@ export default function ProjectDetail() {
                   <WeekHoursChart projectId={project.id} active={true} />
                   <ProjectActivityList projectId={project.id} active={true} />
                 </div>
-                <div className={styles.chartDivider} />
                 <div className={styles.chartCol}>
                   <ProjectCalendar projectId={project.id} active={true} />
                 </div>
               </div>
+
+              <button
+                type="button"
+                className={styles.fab}
+                onClick={() => setShowTimeEntry(true)}
+                aria-label={t.clientDetailAddHours}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </button>
             </>
           )}
         </div>
       </div>
+
+      {showTimeEntry && (
+        <TimeEntryModal project={project} onClose={() => setShowTimeEntry(false)} />
+      )}
 
       {showEditModal && (
         <ProjectModal project={project} clients={clients} onClose={() => setShowEditModal(false)} />
