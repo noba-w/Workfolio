@@ -340,16 +340,16 @@
   border-radius: 14px;
 }
 
-/* ── add-hours button, next to the bottom tab nav ─────── */
+/* ── add-hours button, to the right of the "Ingresos" tab ── */
 .fab {
   position: fixed;
-  right: 20px;
-  bottom: 92px;
-  width: 32px;
-  height: 32px;
+  right: 14px;
+  bottom: 86px;
+  width: 44px;
+  height: 44px;
   flex-shrink: 0;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -366,9 +366,12 @@
 
 @media (min-width: 640px) {
   .fab {
-    left: calc(50% + 264px);
+    left: calc(50% + 160px);
     right: auto;
-    bottom: 36px;
+    bottom: 28px;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
   }
 }
 
