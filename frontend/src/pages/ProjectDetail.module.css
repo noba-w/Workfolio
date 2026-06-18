@@ -327,7 +327,7 @@
 .chartSection {
   display: flex;
   align-items: stretch;
-  gap: 1.25rem;
+  gap: 0.5rem;
 }
 
 .chartCol {
@@ -340,31 +340,36 @@
   border-radius: 14px;
 }
 
-/* ── floating action button ───────────────────────────── */
+/* ── add-hours button, next to the bottom tab nav ─────── */
 .fab {
   position: fixed;
   right: 20px;
   bottom: 92px;
-  width: 52px;
-  height: 52px;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
   border: none;
-  border-radius: 50%;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-accent);
-  color: #fff;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
   cursor: pointer;
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.18),
-    0 1px 4px rgba(0, 0, 0, 0.08);
   z-index: 150;
-  transition: background 0.15s, transform 0.15s;
+  transition: background 0.15s;
 }
 
 .fab:hover {
-  background: var(--color-accent-hover);
-  transform: scale(1.05);
+  background: var(--color-accent-soft-hover);
+}
+
+@media (min-width: 640px) {
+  .fab {
+    left: calc(50% + 264px);
+    right: auto;
+    bottom: 36px;
+  }
 }
 
 /* ── responsive ───────────────────────────────────────── */
