@@ -29,6 +29,44 @@
   font-weight: 700;
 }
 
+.monthNav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0 0.35rem;
+}
+
+.monthNavButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+}
+
+.monthNavButton:hover:not(:disabled) {
+  background: var(--color-surface-hover, var(--color-border));
+}
+
+.monthNavButton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.monthLabel {
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: capitalize;
+}
+
 .empty {
   text-align: center;
   color: var(--color-text-faint);

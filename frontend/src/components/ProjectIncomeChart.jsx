@@ -9,31 +9,34 @@ function toIso(d) {
 export default function ProjectIncomeChart({ entries = [], hourlyRate }) {
   const { t, lang } = useLang();
   const [hoverIndex, setHoverIndex] = useState(null);
+  const [monthOffset, setMonthOffset] = useState(0);
+
+  const now = new Date();
+  const viewedMonth = new Date(now.getFullYear(), now.getMonth() + monthOffset, 1);
+  const isCurrentMonth = monthOffset === 0;
+  const lastDayOfViewedMonth = new Date(viewedMonth.getFullYear(), viewedMonth.getMonth() + 1, 0).getDate();
+  const lastDayToShow = isCurrentMonth ? now.getDate() : lastDayOfViewedMonth;
 
   const points = useMemo(() => {
-    const now = new Date();
-    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-    const todayDay = now.getDate();
-
     const amountByIso = {};
     for (const e of entries) {
       const d = new Date(`${e.date}T00:00:00`);
-      if (d.getFullYear() !== monthStart.getFullYear() || d.getMonth() !== monthStart.getMonth()) continue;
+      if (d.getFullYear() !== viewedMonth.getFullYear() || d.getMonth() !== viewedMonth.getMonth()) continue;
       const iso = e.date;
       amountByIso[iso] = (amountByIso[iso] || 0) + Number(e.hours) * Number(hourlyRate);
     }
 
     let cumulative = 0;
     const series = [];
-    for (let day = 1; day <= todayDay; day++) {
-      const d = new Date(now.getFullYear(), now.getMonth(), day);
+    for (let day = 1; day <= lastDayToShow; day++) {
+      const d = new Date(viewedMonth.getFullYear(), viewedMonth.getMonth(), day);
       const iso = toIso(d);
       const amount = amountByIso[iso] || 0;
       cumulative += amount;
       series.push({ day, iso, amount, cumulative });
     }
     return series;
-  }, [entries, hourlyRate]);
+  }, [entries, hourlyRate, viewedMonth, lastDayToShow]);
 
   const total = points.length ? points[points.length - 1].cumulative : 0;
   const max = Math.max(1, ...points.map((p) => p.cumulative));
@@ -63,12 +66,37 @@ export default function ProjectIncomeChart({ entries = [], hourlyRate }) {
 
   const hovered = hoverIndex != null ? coords[hoverIndex] : null;
 
+  const monthLabel = viewedMonth
+    .toLocaleDateString(lang === "es" ? "es-ES" : "en-US", { month: "long", year: "numeric" })
+    .replace(/^./, (c) => c.toUpperCase());
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <span className={styles.title}>{t.projectIncomeChartTitle}</span>
         <span className={styles.accumulated}>
-          {t.projectIncomeChartAccumulated}: <strong>{formatAmount(total)}</strong>
+          {t.projectIncomeChartAccumulated}
+          <span className={styles.monthNav}>
+            <button
+              type="button"
+              className={styles.monthNavButton}
+              onClick={() => setMonthOffset((o) => o - 1)}
+              aria-label={t.projectIncomeChartPrevMonth}
+            >
+              ‹
+            </button>
+            <span className={styles.monthLabel}>{monthLabel}</span>
+            <button
+              type="button"
+              className={styles.monthNavButton}
+              onClick={() => setMonthOffset((o) => o + 1)}
+              disabled={isCurrentMonth}
+              aria-label={t.projectIncomeChartNextMonth}
+            >
+              ›
+            </button>
+          </span>
+          : <strong>{formatAmount(total)}</strong>
         </span>
       </div>
 

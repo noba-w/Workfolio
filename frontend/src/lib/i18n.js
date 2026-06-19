@@ -162,9 +162,11 @@ export const translations = {
     activityNoDescription: "Sin descripción",
 
     // ── project income chart ─────────────────────────────────
-    projectIncomeChartTitle: "Evolución de ingresos este mes",
-    projectIncomeChartAccumulated: "Acumulado del mes",
-    projectIncomeChartEmpty: "Todavía no hay ingresos registrados este mes.",
+    projectIncomeChartTitle: "Evolución de ingresos",
+    projectIncomeChartAccumulated: "Acumulado de",
+    projectIncomeChartEmpty: "Todavía no hay ingresos registrados en este mes.",
+    projectIncomeChartPrevMonth: "Mes anterior",
+    projectIncomeChartNextMonth: "Mes siguiente",
 
     // ── income page ───────────────────────────────────────────
     incomeMonthTotalHours: "Horas trabajadas este mes",
@@ -351,9 +353,11 @@ export const translations = {
     activityNoDescription: "No description",
 
     // ── project income chart ─────────────────────────────────
-    projectIncomeChartTitle: "Income evolution this month",
-    projectIncomeChartAccumulated: "Accumulated this month",
+    projectIncomeChartTitle: "Income evolution",
+    projectIncomeChartAccumulated: "Accumulated for",
     projectIncomeChartEmpty: "No income logged yet this month.",
+    projectIncomeChartPrevMonth: "Previous month",
+    projectIncomeChartNextMonth: "Next month",
 
     // ── income page ───────────────────────────────────────────
     incomeMonthTotalHours: "Hours worked this month",
