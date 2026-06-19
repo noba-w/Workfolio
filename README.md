@@ -79,4 +79,4 @@ Algunas ideas para seguir puliendo el proyecto:
 
 ## Licencia
 
-Pendiente de definir — si quieres que cualquiera pueda reutilizar el código libremente, [MIT](https://choosealicense.com/licenses/mit/) es la opción más habitual para proyectos de portfolio.
+Pendiente de definir
