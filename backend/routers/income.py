@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends
 from datetime import date
+from typing import Optional
 from deps import get_current_user, CurrentUser
 from schemas import IncomeMonthlyResponse, IncomeBreakdownItem
 
 router = APIRouter(prefix="/api/income", tags=["income"])
 
 
-def _month_bounds(today: date):
-    month_start = today.replace(day=1)
+def _month_bounds(month_start: date):
     if month_start.month == 12:
         next_month_start = month_start.replace(year=month_start.year + 1, month=1)
     else:
@@ -16,9 +16,14 @@ def _month_bounds(today: date):
 
 
 @router.get("/monthly", response_model=IncomeMonthlyResponse)
-def get_monthly_income(user: CurrentUser = Depends(get_current_user)):
+def get_monthly_income(
+    year: Optional[int] = None,
+    month: Optional[int] = None,
+    user: CurrentUser = Depends(get_current_user),
+):
     today = date.today()
-    month_start, next_month_start = _month_bounds(today)
+    target = date(year or today.year, month or today.month, 1)
+    month_start, next_month_start = _month_bounds(target)
 
     entries = (
         user.sb.table("time_entries")
@@ -68,7 +73,7 @@ def get_monthly_income(user: CurrentUser = Depends(get_current_user)):
     breakdown.sort(key=lambda item: item["amount"], reverse=True)
 
     return {
-        "month": today.strftime("%Y-%m"),
+        "month": target.strftime("%Y-%m"),
         "total_hours": total_hours,
         "total_income": total_income,
         "breakdown": [IncomeBreakdownItem(**item) for item in breakdown],
