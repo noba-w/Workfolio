@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../context/AuthContext";
 import { useLang } from "../context/LangContext";
-import { getClients, getProjects, getMonthlyIncome } from "../lib/api";
+import { getClients, getProjects, getMonthlyIncome, getTimeEntries } from "../lib/api";
 import Layout from "../components/Layout";
+import WeekHoursChart from "../components/WeekHoursChart";
+import TimeEntryModal from "../components/TimeEntryModal";
 import styles from "./Dashboard.module.css";
 
 const MOTIVATIONAL_KEYS = [
@@ -37,11 +39,19 @@ function formatAmount(v) {
   return `${Number(v).toFixed(2)}€`;
 }
 
+function formatActivityDate(iso, lang) {
+  return new Date(iso).toLocaleDateString(lang === "es" ? "es-ES" : "en-US", {
+    day: "numeric",
+    month: "short",
+  });
+}
+
 export default function Dashboard() {
   const { session } = useAuth();
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const navigate = useNavigate();
   const [quoteIndex, setQuoteIndex] = useState(0);
+  const [showTimeEntry, setShowTimeEntry] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -77,8 +87,30 @@ export default function Dashboard() {
     enabled: !!session?.access_token,
   });
 
+  const { data: allEntries = [] } = useQuery({
+    queryKey: ["time-entries", undefined],
+    queryFn: () => getTimeEntries(undefined, session.access_token),
+    enabled: !!session?.access_token,
+  });
+
   const latestClient = useMemo(() => mostRecent(clients), [clients]);
   const latestProject = useMemo(() => mostRecent(projects), [projects]);
+
+  const projectNameById = useMemo(
+    () => Object.fromEntries(projects.map((p) => [p.id, p.name])),
+    [projects]
+  );
+
+  const recentActivity = useMemo(
+    () =>
+      [...allEntries]
+        .sort((a, b) => {
+          if (a.date !== b.date) return a.date < b.date ? 1 : -1;
+          return a.id < b.id ? 1 : -1;
+        })
+        .slice(0, 5),
+    [allEntries]
+  );
 
   const activeProjects = projects.filter((p) => p.status === "active");
   const idleActiveProject = activeProjects.find((p) => (p.weekly_hours ?? 0) <= 0);
@@ -94,9 +126,23 @@ export default function Dashboard() {
     <Layout>
       <div className={styles.page}>
         <div className={styles.inner}>
-          <h1 className={styles.welcome}>
-            {t.welcome}, {session?.user?.name || session?.user?.email}
-          </h1>
+          <div className={styles.headerRow}>
+            <h1 className={styles.welcome}>
+              {t.welcome}, {session?.user?.name || session?.user?.email}
+            </h1>
+            {projects.length > 0 && (
+              <button
+                type="button"
+                className={styles.quickAddBtn}
+                onClick={() => setShowTimeEntry(true)}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+                {t.dashboardQuickAddCta}
+              </button>
+            )}
+          </div>
 
           <div className={styles.quoteBox} key={quoteIndex}>
             <span className={styles.quoteText}>{t[MOTIVATIONAL_KEYS[quoteIndex]]}</span>
@@ -189,8 +235,35 @@ export default function Dashboard() {
               <span className={styles.cardCta}>{t.dashboardIncomeCta} →</span>
             </div>
           </div>
+
+          <div className={styles.bottomGrid}>
+            <div className={styles.panel}>
+              <WeekHoursChart active={true} />
+            </div>
+
+            <div className={styles.panel}>
+              <span className={styles.panelTitle}>{t.dashboardActivityTitle}</span>
+              {recentActivity.length === 0 ? (
+                <p className={styles.panelEmpty}>{t.activityEmpty}</p>
+              ) : (
+                <div className={styles.activityList}>
+                  {recentActivity.map((e) => (
+                    <div key={e.id} className={styles.activityRow}>
+                      <span className={styles.activityDate}>{formatActivityDate(e.date, lang)}</span>
+                      <span className={styles.activityProject}>{projectNameById[e.project_id]}</span>
+                      <span className={styles.activityHours}>{e.hours}{t.calendarHoursUnit}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
+
+      {showTimeEntry && (
+        <TimeEntryModal projects={projects} onClose={() => setShowTimeEntry(false)} />
+      )}
     </Layout>
   );
 }

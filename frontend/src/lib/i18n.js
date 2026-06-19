@@ -42,6 +42,9 @@ export const translations = {
     dashboardYesterday: "ayer",
     dashboardDaysAgo: "hace {n} días",
 
+    dashboardQuickAddCta: "Añadir horas",
+    dashboardActivityTitle: "Actividad reciente",
+
     dashboardClientsTitle: "Clientes",
     dashboardClientsTotal: "Clientes totales",
     dashboardClientsLatest: "Último añadido",
@@ -129,6 +132,8 @@ export const translations = {
 
     // ── time entry modal ────────────────────────────────────
     timeEntryModalTitle: "Añadir horas trabajadas",
+    timeEntryFieldProject: "Proyecto",
+    timeEntryErrProject: "Selecciona un proyecto.",
     timeEntryFieldDate: "Día de trabajo",
     timeEntryFieldStart: "Hora de entrada",
     timeEntryFieldEnd: "Hora de salida",
@@ -271,6 +276,9 @@ export const translations = {
     dashboardYesterday: "yesterday",
     dashboardDaysAgo: "{n} days ago",
 
+    dashboardQuickAddCta: "Add hours",
+    dashboardActivityTitle: "Recent activity",
+
     dashboardClientsTitle: "Clients",
     dashboardClientsTotal: "Total clients",
     dashboardClientsLatest: "Latest added",
@@ -358,6 +366,8 @@ export const translations = {
 
     // ── time entry modal ────────────────────────────────────
     timeEntryModalTitle: "Add worked hours",
+    timeEntryFieldProject: "Project",
+    timeEntryErrProject: "Select a project.",
     timeEntryFieldDate: "Work date",
     timeEntryFieldStart: "Start time",
     timeEntryFieldEnd: "End time",

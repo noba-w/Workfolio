@@ -17,14 +17,16 @@ function toMinutes(time) {
 
 const EMPTY = { date: todayISO(), startTime: "", endTime: "", hours: "", description: "" };
 
-export default function TimeEntryModal({ onClose, project }) {
+export default function TimeEntryModal({ onClose, project, projects }) {
   const { t } = useLang();
   const { session } = useAuth();
   const queryClient = useQueryClient();
   const [mode, setMode] = useState("range");
   const [form, setForm] = useState(EMPTY);
+  const [projectId, setProjectId] = useState(project?.id ?? projects?.[0]?.id ?? "");
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
+  const showProjectSelect = !project && Array.isArray(projects);
 
   useEffect(() => {
     function onKey(e) {
@@ -44,6 +46,7 @@ export default function TimeEntryModal({ onClose, project }) {
   function validate() {
     const errs = {};
     if (!form.date) errs.date = t.timeEntryErrDate;
+    if (showProjectSelect && !projectId) errs.project = t.timeEntryErrProject;
     if (mode === "range") {
       if (!form.startTime) errs.startTime = t.timeEntryErrStart;
       if (!form.endTime) errs.endTime = t.timeEntryErrEnd;
@@ -63,10 +66,11 @@ export default function TimeEntryModal({ onClose, project }) {
 
     setSaving(true);
     try {
+      const targetProjectId = project?.id ?? projectId;
       const body =
         mode === "range"
           ? {
-              project_id: project.id,
+              project_id: targetProjectId,
               date: form.date,
               hours: Math.round(((toMinutes(form.endTime) - toMinutes(form.startTime)) / 60) * 100) / 100,
               start_time: form.startTime,
@@ -74,7 +78,7 @@ export default function TimeEntryModal({ onClose, project }) {
               description: form.description.trim() || null,
             }
           : {
-              project_id: project.id,
+              project_id: targetProjectId,
               date: form.date,
               hours: Number(form.hours),
               description: form.description.trim() || null,
@@ -83,7 +87,9 @@ export default function TimeEntryModal({ onClose, project }) {
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: ["projects"] }),
         queryClient.invalidateQueries({ queryKey: ["clients"] }),
-        queryClient.invalidateQueries({ queryKey: ["time-entries", project.id] }),
+        queryClient.invalidateQueries({ queryKey: ["time-entries", targetProjectId] }),
+        queryClient.invalidateQueries({ queryKey: ["time-entries", undefined] }),
+        queryClient.invalidateQueries({ queryKey: ["income"] }),
       ]);
       onClose();
     } catch (err) {
@@ -106,6 +112,25 @@ export default function TimeEntryModal({ onClose, project }) {
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
+          {showProjectSelect && (
+            <div className={styles.field}>
+              <label className={styles.label}>{t.timeEntryFieldProject} <span className={styles.required}>*</span></label>
+              <select
+                className={`${styles.input} ${errors.project ? styles.inputError : ""}`}
+                value={projectId}
+                onChange={(e) => {
+                  setProjectId(e.target.value);
+                  if (errors.project) setErrors((prev) => ({ ...prev, project: null }));
+                }}
+              >
+                {projects.map((p) => (
+                  <option key={p.id} value={p.id}>{p.name}</option>
+                ))}
+              </select>
+              {errors.project && <span className={styles.fieldError}>{errors.project}</span>}
+            </div>
+          )}
+
           <div className={styles.field}>
             <label className={styles.label}>{t.timeEntryFieldDate} <span className={styles.required}>*</span></label>
             <input
