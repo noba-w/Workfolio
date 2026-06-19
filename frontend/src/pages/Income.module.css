@@ -1,0 +1,157 @@
+.page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+}
+
+.inner {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.monthNav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.monthNavBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-border-light);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.monthNavBtn:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.monthLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-transform: capitalize;
+  min-width: 8rem;
+  text-align: center;
+}
+
+.emptyState {
+  text-align: center;
+  color: var(--color-text-faint);
+  font-size: 0.95rem;
+  padding: 3rem 0;
+}
+
+/* ── summary cards ─────────────────────────────────────── */
+.summary {
+  display: flex;
+  gap: 0.85rem;
+}
+
+.summaryCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.25rem 1.4rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
+.summaryValue {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.summaryValueMoney {
+  color: var(--color-money);
+}
+
+.summaryUnit {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-left: 0.15rem;
+}
+
+.summaryLabel {
+  font-size: 0.85rem;
+  color: var(--color-text-faint);
+}
+
+/* ── breakdown section ─────────────────────────────────── */
+.breakdownSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.25rem 1.4rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+}
+
+.breakdownTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* ── responsive ───────────────────────────────────────── */
+@media (max-width: 480px) {
+  .page {
+    padding: 1.25rem 1rem;
+  }
+
+  .title {
+    font-size: 1.375rem;
+  }
+
+  .monthLabel {
+    min-width: 6.5rem;
+    font-size: 0.82rem;
+  }
+
+  .summary {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .summaryCard {
+    padding: 1rem 1.1rem;
+  }
+
+  .summaryValue {
+    font-size: 1.6rem;
+  }
+}

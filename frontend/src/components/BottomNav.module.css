@@ -7,8 +7,8 @@
   z-index: 100;
   display: flex;
   align-items: stretch;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 20px;
   box-shadow:
     0 4px 24px rgba(0, 0, 0, 0.08),
@@ -24,19 +24,19 @@
   align-items: center;
   justify-content: center;
   gap: 0.2rem;
-  color: #9ca3af;
+  color: var(--color-text-faint);
   text-decoration: none;
   transition: color 0.15s, background 0.15s;
   padding: 0.5rem 1rem;
 }
 
 .item:hover {
-  color: #6b7280;
-  background: #f9fafb;
+  color: var(--color-text-muted);
+  background: var(--color-surface-muted);
 }
 
 .active {
-  color: #0054D9;
+  color: var(--color-accent);
 }
 
 .icon {

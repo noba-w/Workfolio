@@ -38,17 +38,57 @@ export const translations = {
     welcome: "Bienvenido",
     comingSoon: "Próximamente.",
 
+    dashboardToday: "hoy",
+    dashboardYesterday: "ayer",
+    dashboardDaysAgo: "hace {n} días",
+
+    dashboardQuickAddCta: "Añadir horas",
+    dashboardActivityTitle: "Actividad reciente",
+
+    dashboardClientsTitle: "Clientes",
+    dashboardClientsTotal: "Clientes totales",
+    dashboardClientsLatest: "Último añadido",
+    dashboardClientsNone: "Todavía no tienes clientes.",
+    dashboardClientsSuggestion: "Añade tu primer cliente para empezar a organizar tu trabajo.",
+    dashboardClientsCta: "Ver clientes",
+
+    dashboardProjectsTitle: "Proyectos",
+    dashboardProjectsActive: "Proyectos activos",
+    dashboardProjectsLatest: "Último añadido",
+    dashboardProjectsNone: "Todavía no tienes proyectos.",
+    dashboardProjectsSuggestionGeneric: "Crea un proyecto para empezar a registrar horas.",
+    dashboardProjectsSuggestionIdle: "No has registrado horas en \"{name}\" esta semana.",
+    dashboardProjectsCta: "Ver proyectos",
+
+    dashboardIncomeTitle: "Ingresos",
+    dashboardIncomeThisMonth: "Ingresos de este mes",
+    dashboardIncomeVsPrev: "vs. mes anterior",
+    dashboardIncomeNoPrev: "Sin datos del mes anterior todavía.",
+    dashboardIncomeCta: "Ver ingresos",
+
+    dashboardMotivational1: "Cada hora registrada es un paso más hacia tus metas.",
+    dashboardMotivational2: "El trabajo constante construye grandes resultados.",
+    dashboardMotivational3: "Hoy es un buen día para avanzar en tus proyectos.",
+    dashboardMotivational4: "Pequeños progresos diarios se convierten en grandes logros.",
+    dashboardMotivational5: "Organiza hoy, disfruta mañana.",
+    dashboardMotivational6: "Tu esfuerzo de hoy es tu ingreso de mañana.",
+    dashboardMotivational7: "Un freelancer organizado es un freelancer imparable.",
+    dashboardMotivational8: "Registra tus horas, valora tu tiempo.",
+
     // ── pages ──────────────────────────────────────────────
     pageClients: "Clientes",
     pageProjects: "Proyectos",
     pageIncome: "Ingresos",
 
     // ── clients ────────────────────────────────────────────
-    clientsSearchPlaceholder: "Buscar por nombre o empresa…",
+    clientsSearchPlaceholder: "Buscar por nombre, empresa, correo o teléfono…",
     clientsAddButton: "Añadir cliente",
     clientsEmpty: "No hay clientes todavía.",
     clientsNoResults: "Sin resultados para esa búsqueda.",
     clientsModalTitle: "Nuevo cliente",
+    clientsEditModalTitle: "Editar cliente",
+    clientsSaveEdit: "Guardar cambios",
+    clientsSavingEdit: "Guardando…",
     clientsFieldName: "Nombre",
     clientsFieldNamePlaceholder: "Nombre del cliente",
     clientsFieldEmail: "Correo electrónico",
@@ -62,9 +102,54 @@ export const translations = {
     clientsErrName: "El nombre es obligatorio.",
     clientsErrEmail: "El correo electrónico es obligatorio.",
     clientsWeekLabel: "esta sem.",
-    clientsViewProjects: "Ver proyectos",
-    noProjectsMsg: "Este cliente no tiene proyectos creados aún.",
-    noProjectsCreate: "Crear proyecto",
+
+    // ── client detail ──────────────────────────────────────
+    clientDetailBack: "Volver a clientes",
+    clientDetailEdit: "Editar cliente",
+    clientDetailChangePhoto: "Cambiar foto",
+    clientDetailRemovePhoto: "Eliminar foto",
+    clientDetailRemovePhotoConfirm: "¿Seguro que quieres eliminar la foto de este cliente?",
+    clientDetailRemovePhotoConfirmBtn: "Eliminar",
+    clientDetailProjectsTitle: "Proyectos",
+    clientDetailAddProject: "Añadir proyecto",
+    clientDetailProjectDetails: "Detalles",
+    clientDetailAddHours: "Añadir horas trabajadas",
+    clientDetailNoProjects: "Este cliente no tiene proyectos todavía.",
+    weekChartTitle: "Horas trabajadas esta semana",
+    dayMon: "Lun",
+    dayTue: "Mar",
+    dayWed: "Mié",
+    dayThu: "Jue",
+    dayFri: "Vie",
+    daySat: "Sáb",
+    daySun: "Dom",
+
+    // ── avatar picker modal ─────────────────────────────────
+    avatarPickerTitle: "Foto de perfil",
+    avatarPickerUpload: "Subir desde mis archivos",
+    avatarPickerOr: "o elige un avatar",
+    avatarPickerRegenerate: "Otras opciones",
+
+    // ── time entry modal ────────────────────────────────────
+    timeEntryModalTitle: "Añadir horas trabajadas",
+    timeEntryFieldProject: "Proyecto",
+    timeEntryErrProject: "Selecciona un proyecto.",
+    timeEntryFieldDate: "Día de trabajo",
+    timeEntryFieldStart: "Hora de entrada",
+    timeEntryFieldEnd: "Hora de salida",
+    timeEntryFieldHours: "Horas trabajadas",
+    timeEntryModeRange: "Franja horaria",
+    timeEntryModeHours: "Horas totales",
+    timeEntryFieldDescription: "Descripción (opcional)",
+    timeEntryFieldDescriptionPlaceholder: "¿En qué has trabajado?",
+    timeEntryCancel: "Cancelar",
+    timeEntrySave: "Guardar",
+    timeEntrySaving: "Guardando…",
+    timeEntryErrDate: "La fecha es obligatoria.",
+    timeEntryErrStart: "La hora de entrada es obligatoria.",
+    timeEntryErrEnd: "La hora de salida es obligatoria.",
+    timeEntryErrRange: "La hora de salida debe ser posterior a la de entrada.",
+    timeEntryErrHours: "Las horas trabajadas son obligatorias.",
 
     // ── projects ───────────────────────────────────────────
     projectsSearchPlaceholder: "Buscar por nombre o cliente…",
@@ -72,6 +157,9 @@ export const translations = {
     projectsEmpty: "No hay proyectos todavía.",
     projectsNoResults: "Sin resultados para esa búsqueda.",
     projectsModalTitle: "Nuevo proyecto",
+    projectsEditModalTitle: "Editar proyecto",
+    projectsSaveEdit: "Guardar cambios",
+    projectsSavingEdit: "Guardando…",
     projectsFieldName: "Nombre del proyecto",
     projectsFieldNamePlaceholder: "Nombre del proyecto",
     projectsFieldClient: "Cliente",
@@ -91,10 +179,59 @@ export const translations = {
     projectsErrClient: "Selecciona un cliente.",
     projectsErrRate: "La tarifa es obligatoria.",
 
+    // ── project detail ──────────────────────────────────────
+    projectDetailBack: "Volver a proyectos",
+    projectDetailEdit: "Editar proyecto",
+    projectDetailChangePhoto: "Cambiar foto",
+    projectDetailRemovePhoto: "Eliminar foto",
+    projectDetailRemovePhotoConfirm: "¿Seguro que quieres eliminar la foto de este proyecto?",
+    projectDetailRemovePhotoConfirmBtn: "Eliminar",
+    projectDetailClient: "Cliente",
+    projectDetailRate: "Tarifa",
+    projectDetailNoDescription: "Sin descripción.",
+    projectDetailTotalHours: "Horas totales dedicadas",
+
+    // ── project calendar ─────────────────────────────────────
+    calendarTitle: "Calendario de horas",
+    calendarPrevMonth: "Mes anterior",
+    calendarNextMonth: "Mes siguiente",
+    calendarHoursUnit: "h",
+    calendarNoEntries: "Sin horas registradas.",
+    calendarClose: "Cerrar",
+
+    // ── project activity list ────────────────────────────────
+    activityTitle: "Historial de horas",
+    activityEmpty: "Todavía no se han registrado horas.",
+    activityNoDescription: "Sin descripción",
+
+    // ── project income chart ─────────────────────────────────
+    projectIncomeChartTitle: "Evolución de ingresos",
+    projectIncomeChartAccumulated: "Acumulado de",
+    projectIncomeChartEmpty: "Todavía no hay ingresos registrados en este mes.",
+    projectIncomeChartPrevMonth: "Mes anterior",
+    projectIncomeChartNextMonth: "Mes siguiente",
+
+    // ── income page ───────────────────────────────────────────
+    incomeMonthTotalHours: "Horas trabajadas",
+    incomeMonthTotalIncome: "Ingresos",
+    incomeBreakdownTitle: "Desglose por proyecto",
+    incomeBreakdownEmpty: "Todavía no hay ingresos registrados este mes.",
+    incomeBreakdownHours: "Horas",
+    incomeBreakdownRate: "Tarifa",
+    incomeBreakdownAmount: "Importe",
+    incomeBreakdownPercentage: "% del total",
+    incomeBreakdownNoClient: "Sin cliente",
+
+    // ── client detail income ────────────────────────────────
+    clientDetailMonthlyIncome: "Ingresos generados este mes",
+
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Ajustes",
     settingsAccount: "Cuenta",
     settingsLogout: "Cerrar sesión",
+    settingsAppearance: "Apariencia",
+    settingsDarkMode: "Modo oscuro",
+    settingsDarkModeDesc: "Reduce el brillo de la interfaz.",
   },
   en: {
     // ── login ──────────────────────────────────────────────
@@ -135,17 +272,57 @@ export const translations = {
     welcome: "Welcome",
     comingSoon: "Coming soon.",
 
+    dashboardToday: "today",
+    dashboardYesterday: "yesterday",
+    dashboardDaysAgo: "{n} days ago",
+
+    dashboardQuickAddCta: "Add hours",
+    dashboardActivityTitle: "Recent activity",
+
+    dashboardClientsTitle: "Clients",
+    dashboardClientsTotal: "Total clients",
+    dashboardClientsLatest: "Latest added",
+    dashboardClientsNone: "You don't have any clients yet.",
+    dashboardClientsSuggestion: "Add your first client to start organizing your work.",
+    dashboardClientsCta: "View clients",
+
+    dashboardProjectsTitle: "Projects",
+    dashboardProjectsActive: "Active projects",
+    dashboardProjectsLatest: "Latest added",
+    dashboardProjectsNone: "You don't have any projects yet.",
+    dashboardProjectsSuggestionGeneric: "Create a project to start logging hours.",
+    dashboardProjectsSuggestionIdle: "No hours logged for \"{name}\" this week.",
+    dashboardProjectsCta: "View projects",
+
+    dashboardIncomeTitle: "Income",
+    dashboardIncomeThisMonth: "Income this month",
+    dashboardIncomeVsPrev: "vs. last month",
+    dashboardIncomeNoPrev: "No data for last month yet.",
+    dashboardIncomeCta: "View income",
+
+    dashboardMotivational1: "Every logged hour is a step closer to your goals.",
+    dashboardMotivational2: "Consistent work builds great results.",
+    dashboardMotivational3: "Today is a great day to move your projects forward.",
+    dashboardMotivational4: "Small daily progress becomes big achievements.",
+    dashboardMotivational5: "Organize today, enjoy tomorrow.",
+    dashboardMotivational6: "Today's effort is tomorrow's income.",
+    dashboardMotivational7: "An organized freelancer is an unstoppable freelancer.",
+    dashboardMotivational8: "Log your hours, value your time.",
+
     // ── pages ──────────────────────────────────────────────
     pageClients: "Clients",
     pageProjects: "Projects",
     pageIncome: "Income",
 
     // ── clients ────────────────────────────────────────────
-    clientsSearchPlaceholder: "Search by name or company…",
+    clientsSearchPlaceholder: "Search by name, company, email or phone…",
     clientsAddButton: "Add client",
     clientsEmpty: "No clients yet.",
     clientsNoResults: "No results for that search.",
     clientsModalTitle: "New client",
+    clientsEditModalTitle: "Edit client",
+    clientsSaveEdit: "Save changes",
+    clientsSavingEdit: "Saving…",
     clientsFieldName: "Name",
     clientsFieldNamePlaceholder: "Client name",
     clientsFieldEmail: "Email",
@@ -159,9 +336,54 @@ export const translations = {
     clientsErrName: "Name is required.",
     clientsErrEmail: "Email is required.",
     clientsWeekLabel: "this week",
-    clientsViewProjects: "View projects",
-    noProjectsMsg: "This client has no projects yet.",
-    noProjectsCreate: "Create project",
+
+    // ── client detail ──────────────────────────────────────
+    clientDetailBack: "Back to clients",
+    clientDetailEdit: "Edit client",
+    clientDetailChangePhoto: "Change photo",
+    clientDetailRemovePhoto: "Remove photo",
+    clientDetailRemovePhotoConfirm: "Are you sure you want to remove this client's photo?",
+    clientDetailRemovePhotoConfirmBtn: "Remove",
+    clientDetailProjectsTitle: "Projects",
+    clientDetailAddProject: "Add project",
+    clientDetailProjectDetails: "Details",
+    clientDetailAddHours: "Add worked hours",
+    clientDetailNoProjects: "This client has no projects yet.",
+    weekChartTitle: "Hours worked this week",
+    dayMon: "Mon",
+    dayTue: "Tue",
+    dayWed: "Wed",
+    dayThu: "Thu",
+    dayFri: "Fri",
+    daySat: "Sat",
+    daySun: "Sun",
+
+    // ── avatar picker modal ─────────────────────────────────
+    avatarPickerTitle: "Profile photo",
+    avatarPickerUpload: "Upload from my files",
+    avatarPickerOr: "or pick an avatar",
+    avatarPickerRegenerate: "More options",
+
+    // ── time entry modal ────────────────────────────────────
+    timeEntryModalTitle: "Add worked hours",
+    timeEntryFieldProject: "Project",
+    timeEntryErrProject: "Select a project.",
+    timeEntryFieldDate: "Work date",
+    timeEntryFieldStart: "Start time",
+    timeEntryFieldEnd: "End time",
+    timeEntryFieldHours: "Hours worked",
+    timeEntryModeRange: "Time range",
+    timeEntryModeHours: "Total hours",
+    timeEntryFieldDescription: "Description (optional)",
+    timeEntryFieldDescriptionPlaceholder: "What did you work on?",
+    timeEntryCancel: "Cancel",
+    timeEntrySave: "Save",
+    timeEntrySaving: "Saving…",
+    timeEntryErrDate: "Date is required.",
+    timeEntryErrStart: "Start time is required.",
+    timeEntryErrEnd: "End time is required.",
+    timeEntryErrRange: "End time must be after the start time.",
+    timeEntryErrHours: "Hours worked is required.",
 
     // ── projects ───────────────────────────────────────────
     projectsSearchPlaceholder: "Search by name or client…",
@@ -169,6 +391,9 @@ export const translations = {
     projectsEmpty: "No projects yet.",
     projectsNoResults: "No results for that search.",
     projectsModalTitle: "New project",
+    projectsEditModalTitle: "Edit project",
+    projectsSaveEdit: "Save changes",
+    projectsSavingEdit: "Saving…",
     projectsFieldName: "Project name",
     projectsFieldNamePlaceholder: "Project name",
     projectsFieldClient: "Client",
@@ -188,10 +413,59 @@ export const translations = {
     projectsErrClient: "Select a client.",
     projectsErrRate: "Rate is required.",
 
+    // ── project detail ──────────────────────────────────────
+    projectDetailBack: "Back to projects",
+    projectDetailEdit: "Edit project",
+    projectDetailChangePhoto: "Change photo",
+    projectDetailRemovePhoto: "Remove photo",
+    projectDetailRemovePhotoConfirm: "Are you sure you want to remove this project's photo?",
+    projectDetailRemovePhotoConfirmBtn: "Remove",
+    projectDetailClient: "Client",
+    projectDetailRate: "Rate",
+    projectDetailNoDescription: "No description.",
+    projectDetailTotalHours: "Total hours dedicated",
+
+    // ── project calendar ─────────────────────────────────────
+    calendarTitle: "Hours calendar",
+    calendarPrevMonth: "Previous month",
+    calendarNextMonth: "Next month",
+    calendarHoursUnit: "h",
+    calendarNoEntries: "No hours logged.",
+    calendarClose: "Close",
+
+    // ── project activity list ────────────────────────────────
+    activityTitle: "Hours history",
+    activityEmpty: "No hours logged yet.",
+    activityNoDescription: "No description",
+
+    // ── project income chart ─────────────────────────────────
+    projectIncomeChartTitle: "Income evolution",
+    projectIncomeChartAccumulated: "Accumulated for",
+    projectIncomeChartEmpty: "No income logged yet this month.",
+    projectIncomeChartPrevMonth: "Previous month",
+    projectIncomeChartNextMonth: "Next month",
+
+    // ── income page ───────────────────────────────────────────
+    incomeMonthTotalHours: "Hours worked",
+    incomeMonthTotalIncome: "Income",
+    incomeBreakdownTitle: "Breakdown by project",
+    incomeBreakdownEmpty: "No income logged yet this month.",
+    incomeBreakdownHours: "Hours",
+    incomeBreakdownRate: "Rate",
+    incomeBreakdownAmount: "Amount",
+    incomeBreakdownPercentage: "% of total",
+    incomeBreakdownNoClient: "No client",
+
+    // ── client detail income ────────────────────────────────
+    clientDetailMonthlyIncome: "Income generated this month",
+
     // ── settings ───────────────────────────────────────────
     settingsTitle: "Settings",
     settingsAccount: "Account",
     settingsLogout: "Log out",
+    settingsAppearance: "Appearance",
+    settingsDarkMode: "Dark mode",
+    settingsDarkModeDesc: "Reduce the interface's brightness.",
   },
 };
 

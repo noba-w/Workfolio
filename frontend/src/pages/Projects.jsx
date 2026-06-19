@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import { useLang } from "../context/LangContext";
 import { useAuth } from "../context/AuthContext";
 import { getProjects, getClients } from "../lib/api";
@@ -16,6 +17,7 @@ const STATUS_COLORS = {
 export default function Projects() {
   const { t } = useLang();
   const { session } = useAuth();
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
 
@@ -32,6 +34,11 @@ export default function Projects() {
   });
 
   const clientMap = Object.fromEntries(clients.map((c) => [c.id, c.name]));
+
+  function formatHours(h) {
+    if (h === 0) return "0";
+    return Number.isInteger(h) ? String(h) : h.toFixed(1);
+  }
 
   const filtered = projects.filter((p) => {
     const q = query.trim().toLowerCase();
@@ -88,10 +95,21 @@ export default function Projects() {
               filtered.map((p) => {
                 const sc = STATUS_COLORS[p.status] ?? STATUS_COLORS.finished;
                 return (
-                  <div key={p.id} className={styles.projectCard}>
-                    <div className={styles.projectAvatar}>
-                      {p.name.charAt(0).toUpperCase()}
-                    </div>
+                  <div
+                    key={p.id}
+                    className={styles.projectCard}
+                    onClick={() => navigate(`/proyectos/${p.id}`)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === "Enter" && navigate(`/proyectos/${p.id}`)}
+                  >
+                    {p.photo_url ? (
+                      <img src={p.photo_url} alt="" className={styles.projectAvatarImg} />
+                    ) : (
+                      <div className={styles.projectAvatar}>
+                        {p.name.charAt(0).toUpperCase()}
+                      </div>
+                    )}
                     <div className={styles.projectInfo}>
                       <span className={styles.projectName}>{p.name}</span>
                       {clientMap[p.client_id] && (
@@ -106,11 +124,12 @@ export default function Projects() {
                         {statusLabels[p.status]}
                       </span>
                     </div>
-                    <div className={styles.projectRate}>
-                      <span className={styles.projectRateValue}>
-                        {p.hourly_rate}
-                        <span className={styles.projectRateUnit}>€/h</span>
+                    <div className={styles.projectStats}>
+                      <span className={styles.projectHoursValue}>
+                        {formatHours(p.weekly_hours ?? 0)}
+                        <span className={styles.projectHoursUnit}>h</span>
                       </span>
+                      <span className={styles.projectHoursLabel}>{t.clientsWeekLabel}</span>
                     </div>
                   </div>
                 );

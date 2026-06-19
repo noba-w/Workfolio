@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useLang } from "../context/LangContext";
+import { useTheme } from "../context/ThemeContext";
 import Layout from "../components/Layout";
 import styles from "./Settings.module.css";
 
 export default function Settings() {
   const { logout } = useAuth();
   const { t } = useLang();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
   function handleLogout() {
@@ -18,6 +20,25 @@ export default function Settings() {
     <Layout>
       <div className={styles.content}>
         <h1 className={styles.title}>{t.settingsTitle}</h1>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>{t.settingsAppearance}</h2>
+          <div className={styles.row}>
+            <div className={styles.rowText}>
+              <span className={styles.rowLabel}>{t.settingsDarkMode}</span>
+              <span className={styles.rowDesc}>{t.settingsDarkModeDesc}</span>
+            </div>
+            <button
+              className={`${styles.switch} ${theme === "dark" ? styles.switchOn : ""}`}
+              role="switch"
+              aria-checked={theme === "dark"}
+              aria-label={t.settingsDarkMode}
+              onClick={toggleTheme}
+            >
+              <span className={styles.switchThumb} />
+            </button>
+          </div>
+        </section>
 
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>{t.settingsAccount}</h2>

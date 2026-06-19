@@ -1,7 +1,17 @@
 let _onRefresh = null;
+let _refreshPromise = null;
 
 export function setRefreshCallback(fn) {
   _onRefresh = fn;
+}
+
+function refreshOnce() {
+  if (!_refreshPromise) {
+    _refreshPromise = _onRefresh().finally(() => {
+      _refreshPromise = null;
+    });
+  }
+  return _refreshPromise;
 }
 
 function buildOpts(options, token) {
@@ -21,7 +31,7 @@ async function apiFetch(path, options = {}, token) {
   if (res.status === 401 && _onRefresh) {
     let newToken;
     try {
-      newToken = await _onRefresh();
+      newToken = await refreshOnce();
     } catch {
       throw new Error("Session expired. Please log in again.");
     }
@@ -44,8 +54,29 @@ export const getClients = (token) =>
 export const createClient = (body, token) =>
   apiFetch("/api/clients", { method: "POST", body: JSON.stringify(body) }, token);
 
+export const updateClient = (id, body, token) =>
+  apiFetch(`/api/clients/${id}`, { method: "PATCH", body: JSON.stringify(body) }, token);
+
+export const deleteClientPhoto = (id, token) =>
+  apiFetch(`/api/clients/${id}/photo`, { method: "DELETE" }, token);
+
 export const getProjects = (token) =>
   apiFetch("/api/projects", {}, token);
 
 export const createProject = (body, token) =>
   apiFetch("/api/projects", { method: "POST", body: JSON.stringify(body) }, token);
+
+export const updateProject = (id, body, token) =>
+  apiFetch(`/api/projects/${id}`, { method: "PATCH", body: JSON.stringify(body) }, token);
+
+export const deleteProjectPhoto = (id, token) =>
+  apiFetch(`/api/projects/${id}/photo`, { method: "DELETE" }, token);
+
+export const createTimeEntry = (body, token) =>
+  apiFetch("/api/time-entries", { method: "POST", body: JSON.stringify(body) }, token);
+
+export const getTimeEntries = (projectId, token) =>
+  apiFetch(projectId ? `/api/time-entries?project_id=${projectId}` : "/api/time-entries", {}, token);
+
+export const getMonthlyIncome = (token, year, month) =>
+  apiFetch(`/api/income/monthly?year=${year}&month=${month}`, {}, token);

@@ -1,0 +1,261 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1rem 1.1rem 1.25rem;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-border-light);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.navBtn:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.monthLabel {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-transform: capitalize;
+  min-width: 6.5rem;
+  text-align: center;
+}
+
+.loading {
+  text-align: center;
+  color: var(--color-text-faint);
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+}
+
+.weekdays,
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 0.65rem;
+  color: var(--color-text-faint);
+  padding-bottom: 0.1rem;
+}
+
+.cellEmpty {
+  aspect-ratio: 1;
+}
+
+.cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.05rem;
+  border: none;
+  border-radius: 7px;
+  background: var(--color-surface-muted);
+  color: var(--color-text-muted);
+  font-family: inherit;
+  cursor: default;
+  padding: 0;
+  transition: transform 0.1s;
+}
+
+.cell:not(:disabled) {
+  cursor: pointer;
+}
+
+.cell:not(:disabled):hover {
+  transform: scale(1.08);
+}
+
+.cellDay {
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.cellHours {
+  font-size: 0.6rem;
+  font-weight: 600;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.today {
+  box-shadow: inset 0 0 0 1.5px var(--color-accent);
+}
+
+.level0 {
+  background: var(--color-surface-muted);
+  color: var(--color-text-faint);
+}
+
+.level1 {
+  background: color-mix(in srgb, var(--color-accent) 25%, var(--color-surface-muted));
+  color: var(--color-text-secondary);
+}
+
+.level2 {
+  background: color-mix(in srgb, var(--color-accent) 50%, var(--color-surface-muted));
+  color: var(--color-text);
+}
+
+.level3 {
+  background: color-mix(in srgb, var(--color-accent) 75%, var(--color-surface-muted));
+  color: #fff;
+}
+
+.level4 {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ── day detail popover ───────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1rem;
+}
+
+.popover {
+  background: var(--color-surface);
+  border-radius: 14px;
+  padding: 1.25rem;
+  width: min(320px, 90vw);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  box-shadow: var(--shadow-modal);
+}
+
+.popoverHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.popoverDate {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-transform: capitalize;
+}
+
+.popoverClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 7px;
+  background: var(--color-border-light);
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.popoverClose:hover {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.popoverBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.popoverEmpty {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-text-faint);
+}
+
+.entryRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.5rem 0.65rem;
+  background: var(--color-surface-muted);
+  border-radius: 8px;
+}
+
+.entryHeadline {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.entryHours {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.entryRange {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.entryDesc {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 0.85rem 0.9rem 1rem;
+  }
+
+  .cellDay {
+    font-size: 0.62rem;
+  }
+
+  .cellHours {
+    font-size: 0.54rem;
+  }
+}

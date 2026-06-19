@@ -10,10 +10,73 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+
+  --color-bg: #f9fafb;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f9fafb;
+  --color-text: #111827;
+  --color-text-secondary: #374151;
+  --color-text-muted: #6b7280;
+  --color-text-faint: #9ca3af;
+  --color-placeholder: #d1d5db;
+  --color-border: #e5e7eb;
+  --color-border-light: #f3f4f6;
+  --color-accent: #0054D9;
+  --color-accent-hover: #0044b3;
+  --color-accent-active: #003faa;
+  --color-accent-soft: #eef3fd;
+  --color-accent-soft-hover: #dce8fb;
+  --color-fab-bg: #d3e2fb;
+  --color-fab-bg-hover: #bdd3f8;
+  --color-danger: #ef4444;
+  --color-danger-strong: #dc2626;
+  --color-danger-soft: #fef2f2;
+  --color-danger-border: #fecaca;
+  --color-money: #00A651;
+  --color-money-hover: #007a3d;
+  --color-money-soft: rgba(0, 166, 81, 0.12);
+  --color-money-soft-hover: rgba(0, 166, 81, 0.2);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.07);
+  --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.18);
+  --overlay: rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-bg: #0e1116;
+  --color-surface: #161a21;
+  --color-surface-muted: #1b2029;
+  --color-text: #f3f4f6;
+  --color-text-secondary: #d1d5db;
+  --color-text-muted: #9ca3af;
+  --color-text-faint: #6b7280;
+  --color-placeholder: #4b5563;
+  --color-border: #2a313c;
+  --color-border-light: #232a33;
+  --color-accent: #4f8ef7;
+  --color-accent-hover: #6fa3f8;
+  --color-accent-active: #8ab6fa;
+  --color-accent-soft: rgba(79, 142, 247, 0.16);
+  --color-accent-soft-hover: rgba(79, 142, 247, 0.26);
+  --color-fab-bg: var(--color-accent-soft);
+  --color-fab-bg-hover: var(--color-accent-soft-hover);
+  --color-danger: #f87171;
+  --color-danger-strong: #f87171;
+  --color-danger-soft: rgba(239, 68, 68, 0.14);
+  --color-danger-border: rgba(239, 68, 68, 0.4);
+  --color-money: #34d399;
+  --color-money-hover: #6ee7b7;
+  --color-money-soft: rgba(52, 211, 153, 0.16);
+  --color-money-soft-hover: rgba(52, 211, 153, 0.26);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.55);
+  --overlay: rgba(0, 0, 0, 0.65);
 }
 
 body {
-  background: #ffffff;
-  color: #111827;
+  background: var(--color-bg);
+  color: var(--color-text);
   overflow-x: hidden;
+  transition: background 0.15s, color 0.15s;
 }

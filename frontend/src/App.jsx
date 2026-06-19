@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./context/AuthContext";
 import { LangProvider } from "./context/LangContext";
+import { ThemeProvider } from "./context/ThemeContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -15,7 +16,9 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Clients from "./pages/Clients";
+import ClientDetail from "./pages/ClientDetail";
 import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 import Income from "./pages/Income";
 import Settings from "./pages/Settings";
 
@@ -26,6 +29,7 @@ function Protected({ children }) {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
+    <ThemeProvider>
     <LangProvider>
       <AuthProvider>
         <BrowserRouter>
@@ -33,7 +37,9 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Protected><Dashboard /></Protected>} />
             <Route path="/clientes"  element={<Protected><Clients /></Protected>} />
+            <Route path="/clientes/:id" element={<Protected><ClientDetail /></Protected>} />
             <Route path="/proyectos" element={<Protected><Projects /></Protected>} />
+            <Route path="/proyectos/:id" element={<Protected><ProjectDetail /></Protected>} />
             <Route path="/ingresos"  element={<Protected><Income /></Protected>} />
             <Route path="/ajustes"  element={<Protected><Settings /></Protected>} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
@@ -41,6 +47,7 @@ export default function App() {
         </BrowserRouter>
       </AuthProvider>
     </LangProvider>
+    </ThemeProvider>
     </QueryClientProvider>
   );
 }

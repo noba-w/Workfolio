@@ -2,16 +2,29 @@ import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLang } from "../context/LangContext";
 import { useAuth } from "../context/AuthContext";
-import { createProject } from "../lib/api";
+import { createProject, updateProject } from "../lib/api";
 import styles from "./ProjectModal.module.css";
 
 const EMPTY = { name: "", client_id: "", hourly_rate: "", status: "active", description: "" };
 
-export default function ProjectModal({ onClose, clients }) {
+function formFromProject(project) {
+  return {
+    name: project.name ?? "",
+    client_id: project.client_id ?? "",
+    hourly_rate: String(project.hourly_rate ?? ""),
+    status: project.status ?? "active",
+    description: project.description ?? "",
+  };
+}
+
+export default function ProjectModal({ onClose, clients, defaultClientId, project }) {
   const { t } = useLang();
   const { session } = useAuth();
   const queryClient = useQueryClient();
-  const [form, setForm] = useState(EMPTY);
+  const isEdit = !!project;
+  const [form, setForm] = useState(() =>
+    isEdit ? formFromProject(project) : { ...EMPTY, client_id: defaultClientId ?? "" }
+  );
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
 
@@ -52,7 +65,11 @@ export default function ProjectModal({ onClose, clients }) {
         status: form.status,
         ...(form.description.trim() && { description: form.description.trim() }),
       };
-      await createProject(body, session?.access_token);
+      if (isEdit) {
+        await updateProject(project.id, body, session?.access_token);
+      } else {
+        await createProject(body, session?.access_token);
+      }
       await queryClient.invalidateQueries({ queryKey: ["projects"] });
       onClose();
     } catch (err) {
@@ -63,10 +80,10 @@ export default function ProjectModal({ onClose, clients }) {
   }
 
   return (
-    <div className={styles.overlay} onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className={styles.overlay}>
       <div className={styles.card} role="dialog" aria-modal="true">
         <div className={styles.cardHeader}>
-          <h2 className={styles.cardTitle}>{t.projectsModalTitle}</h2>
+          <h2 className={styles.cardTitle}>{isEdit ? t.projectsEditModalTitle : t.projectsModalTitle}</h2>
           <button className={styles.closeBtn} onClick={onClose} aria-label="Cerrar">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
@@ -148,7 +165,9 @@ export default function ProjectModal({ onClose, clients }) {
               {t.projectsCancel}
             </button>
             <button type="submit" className={styles.saveBtn} disabled={saving}>
-              {saving ? t.projectsSaving : t.projectsSave}
+              {isEdit
+                ? (saving ? t.projectsSavingEdit : t.projectsSaveEdit)
+                : (saving ? t.projectsSaving : t.projectsSave)}
             </button>
           </div>
         </form>
