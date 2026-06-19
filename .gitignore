@@ -14,3 +14,4 @@ backend/.venv/
 # Claude Code
 .claude/
 CLAUDE.md
+.mcp.json
