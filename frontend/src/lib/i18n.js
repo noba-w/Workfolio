@@ -38,6 +38,40 @@ export const translations = {
     welcome: "Bienvenido",
     comingSoon: "Próximamente.",
 
+    dashboardToday: "hoy",
+    dashboardYesterday: "ayer",
+    dashboardDaysAgo: "hace {n} días",
+
+    dashboardClientsTitle: "Clientes",
+    dashboardClientsTotal: "Clientes totales",
+    dashboardClientsLatest: "Último añadido",
+    dashboardClientsNone: "Todavía no tienes clientes.",
+    dashboardClientsSuggestion: "Añade tu primer cliente para empezar a organizar tu trabajo.",
+    dashboardClientsCta: "Ver clientes",
+
+    dashboardProjectsTitle: "Proyectos",
+    dashboardProjectsActive: "Proyectos activos",
+    dashboardProjectsLatest: "Último añadido",
+    dashboardProjectsNone: "Todavía no tienes proyectos.",
+    dashboardProjectsSuggestionGeneric: "Crea un proyecto para empezar a registrar horas.",
+    dashboardProjectsSuggestionIdle: "No has registrado horas en \"{name}\" esta semana.",
+    dashboardProjectsCta: "Ver proyectos",
+
+    dashboardIncomeTitle: "Ingresos",
+    dashboardIncomeThisMonth: "Ingresos de este mes",
+    dashboardIncomeVsPrev: "vs. mes anterior",
+    dashboardIncomeNoPrev: "Sin datos del mes anterior todavía.",
+    dashboardIncomeCta: "Ver ingresos",
+
+    dashboardMotivational1: "Cada hora registrada es un paso más hacia tus metas.",
+    dashboardMotivational2: "El trabajo constante construye grandes resultados.",
+    dashboardMotivational3: "Hoy es un buen día para avanzar en tus proyectos.",
+    dashboardMotivational4: "Pequeños progresos diarios se convierten en grandes logros.",
+    dashboardMotivational5: "Organiza hoy, disfruta mañana.",
+    dashboardMotivational6: "Tu esfuerzo de hoy es tu ingreso de mañana.",
+    dashboardMotivational7: "Un freelancer organizado es un freelancer imparable.",
+    dashboardMotivational8: "Registra tus horas, valora tu tiempo.",
+
     // ── pages ──────────────────────────────────────────────
     pageClients: "Clientes",
     pageProjects: "Proyectos",
@@ -232,6 +266,40 @@ export const translations = {
     // ── dashboard ──────────────────────────────────────────
     welcome: "Welcome",
     comingSoon: "Coming soon.",
+
+    dashboardToday: "today",
+    dashboardYesterday: "yesterday",
+    dashboardDaysAgo: "{n} days ago",
+
+    dashboardClientsTitle: "Clients",
+    dashboardClientsTotal: "Total clients",
+    dashboardClientsLatest: "Latest added",
+    dashboardClientsNone: "You don't have any clients yet.",
+    dashboardClientsSuggestion: "Add your first client to start organizing your work.",
+    dashboardClientsCta: "View clients",
+
+    dashboardProjectsTitle: "Projects",
+    dashboardProjectsActive: "Active projects",
+    dashboardProjectsLatest: "Latest added",
+    dashboardProjectsNone: "You don't have any projects yet.",
+    dashboardProjectsSuggestionGeneric: "Create a project to start logging hours.",
+    dashboardProjectsSuggestionIdle: "No hours logged for \"{name}\" this week.",
+    dashboardProjectsCta: "View projects",
+
+    dashboardIncomeTitle: "Income",
+    dashboardIncomeThisMonth: "Income this month",
+    dashboardIncomeVsPrev: "vs. last month",
+    dashboardIncomeNoPrev: "No data for last month yet.",
+    dashboardIncomeCta: "View income",
+
+    dashboardMotivational1: "Every logged hour is a step closer to your goals.",
+    dashboardMotivational2: "Consistent work builds great results.",
+    dashboardMotivational3: "Today is a great day to move your projects forward.",
+    dashboardMotivational4: "Small daily progress becomes big achievements.",
+    dashboardMotivational5: "Organize today, enjoy tomorrow.",
+    dashboardMotivational6: "Today's effort is tomorrow's income.",
+    dashboardMotivational7: "An organized freelancer is an unstoppable freelancer.",
+    dashboardMotivational8: "Log your hours, value your time.",
 
     // ── pages ──────────────────────────────────────────────
     pageClients: "Clients",

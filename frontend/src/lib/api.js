@@ -76,7 +76,7 @@ export const createTimeEntry = (body, token) =>
   apiFetch("/api/time-entries", { method: "POST", body: JSON.stringify(body) }, token);
 
 export const getTimeEntries = (projectId, token) =>
-  apiFetch(`/api/time-entries?project_id=${projectId}`, {}, token);
+  apiFetch(projectId ? `/api/time-entries?project_id=${projectId}` : "/api/time-entries", {}, token);
 
 export const getMonthlyIncome = (token, year, month) =>
   apiFetch(`/api/income/monthly?year=${year}&month=${month}`, {}, token);

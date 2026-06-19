@@ -1,19 +1,195 @@
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../context/AuthContext";
 import { useLang } from "../context/LangContext";
+import { getClients, getProjects, getMonthlyIncome } from "../lib/api";
 import Layout from "../components/Layout";
 import styles from "./Dashboard.module.css";
+
+const MOTIVATIONAL_KEYS = [
+  "dashboardMotivational1",
+  "dashboardMotivational2",
+  "dashboardMotivational3",
+  "dashboardMotivational4",
+  "dashboardMotivational5",
+  "dashboardMotivational6",
+  "dashboardMotivational7",
+  "dashboardMotivational8",
+];
+
+const ROTATE_MS = 6000;
+
+function mostRecent(items) {
+  if (!items.length) return null;
+  return [...items].sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
+}
+
+function formatRelative(isoDate, t) {
+  const d = new Date(isoDate);
+  const days = Math.floor((Date.now() - d.getTime()) / 86400000);
+  if (days <= 0) return t.dashboardToday;
+  if (days === 1) return t.dashboardYesterday;
+  return t.dashboardDaysAgo.replace("{n}", days);
+}
+
+function formatAmount(v) {
+  return `${Number(v).toFixed(2)}€`;
+}
 
 export default function Dashboard() {
   const { session } = useAuth();
   const { t } = useLang();
+  const navigate = useNavigate();
+  const [quoteIndex, setQuoteIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setQuoteIndex((i) => (i + 1) % MOTIVATIONAL_KEYS.length);
+    }, ROTATE_MS);
+    return () => clearInterval(interval);
+  }, []);
+
+  const now = new Date();
+  const prevMonthDate = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+
+  const { data: clients = [], isLoading: loadingClients } = useQuery({
+    queryKey: ["clients"],
+    queryFn: () => getClients(session.access_token),
+    enabled: !!session?.access_token,
+  });
+
+  const { data: projects = [], isLoading: loadingProjects } = useQuery({
+    queryKey: ["projects"],
+    queryFn: () => getProjects(session.access_token),
+    enabled: !!session?.access_token,
+  });
+
+  const { data: income, isLoading: loadingIncome } = useQuery({
+    queryKey: ["income", "monthly", now.getFullYear(), now.getMonth() + 1],
+    queryFn: () => getMonthlyIncome(session.access_token, now.getFullYear(), now.getMonth() + 1),
+    enabled: !!session?.access_token,
+  });
+
+  const { data: prevIncome } = useQuery({
+    queryKey: ["income", "monthly", prevMonthDate.getFullYear(), prevMonthDate.getMonth() + 1],
+    queryFn: () => getMonthlyIncome(session.access_token, prevMonthDate.getFullYear(), prevMonthDate.getMonth() + 1),
+    enabled: !!session?.access_token,
+  });
+
+  const latestClient = useMemo(() => mostRecent(clients), [clients]);
+  const latestProject = useMemo(() => mostRecent(projects), [projects]);
+
+  const activeProjects = projects.filter((p) => p.status === "active");
+  const idleActiveProject = activeProjects.find((p) => (p.weekly_hours ?? 0) <= 0);
+
+  const totalIncome = income?.total_income ?? 0;
+  const prevTotalIncome = prevIncome?.total_income ?? 0;
+  const hasPrevIncome = prevIncome != null && prevTotalIncome > 0;
+  const incomeDiffPct = hasPrevIncome
+    ? Math.round(((totalIncome - prevTotalIncome) / prevTotalIncome) * 100)
+    : null;
 
   return (
     <Layout>
-      <div className={styles.content}>
-        <h1 className={styles.welcome}>
-          {t.welcome}, {session?.user?.name || session?.user?.email}
-        </h1>
-        <p className={styles.sub}>{t.comingSoon}</p>
+      <div className={styles.page}>
+        <div className={styles.inner}>
+          <h1 className={styles.welcome}>
+            {t.welcome}, {session?.user?.name || session?.user?.email}
+          </h1>
+
+          <div className={styles.quoteBox} key={quoteIndex}>
+            <span className={styles.quoteText}>{t[MOTIVATIONAL_KEYS[quoteIndex]]}</span>
+          </div>
+
+          <div className={styles.grid}>
+            <div className={styles.card} onClick={() => navigate("/clientes")} role="button" tabIndex={0}>
+              <span className={styles.cardTitle}>{t.dashboardClientsTitle}</span>
+              {loadingClients ? (
+                <p className={styles.cardLoading}>…</p>
+              ) : clients.length === 0 ? (
+                <p className={styles.cardSuggestion}>{t.dashboardClientsSuggestion}</p>
+              ) : (
+                <>
+                  <div className={styles.cardStat}>
+                    <span className={styles.cardStatValue}>{clients.length}</span>
+                    <span className={styles.cardStatLabel}>{t.dashboardClientsTotal}</span>
+                  </div>
+                  {latestClient && (
+                    <div className={styles.cardRecent}>
+                      <span className={styles.cardRecentLabel}>{t.dashboardClientsLatest}</span>
+                      <span className={styles.cardRecentValue}>
+                        {latestClient.name} · {formatRelative(latestClient.created_at, t)}
+                      </span>
+                    </div>
+                  )}
+                </>
+              )}
+              <span className={styles.cardCta}>{t.dashboardClientsCta} →</span>
+            </div>
+
+            <div className={styles.card} onClick={() => navigate("/proyectos")} role="button" tabIndex={0}>
+              <span className={styles.cardTitle}>{t.dashboardProjectsTitle}</span>
+              {loadingProjects ? (
+                <p className={styles.cardLoading}>…</p>
+              ) : projects.length === 0 ? (
+                <p className={styles.cardSuggestion}>{t.dashboardProjectsSuggestionGeneric}</p>
+              ) : (
+                <>
+                  <div className={styles.cardStat}>
+                    <span className={styles.cardStatValue}>{activeProjects.length}</span>
+                    <span className={styles.cardStatLabel}>{t.dashboardProjectsActive}</span>
+                  </div>
+                  {latestProject && (
+                    <div className={styles.cardRecent}>
+                      <span className={styles.cardRecentLabel}>{t.dashboardProjectsLatest}</span>
+                      <span className={styles.cardRecentValue}>
+                        {latestProject.name} · {formatRelative(latestProject.created_at, t)}
+                      </span>
+                    </div>
+                  )}
+                  {idleActiveProject && (
+                    <p className={styles.cardSuggestion}>
+                      {t.dashboardProjectsSuggestionIdle.replace("{name}", idleActiveProject.name)}
+                    </p>
+                  )}
+                </>
+              )}
+              <span className={styles.cardCta}>{t.dashboardProjectsCta} →</span>
+            </div>
+
+            <div className={styles.card} onClick={() => navigate("/ingresos")} role="button" tabIndex={0}>
+              <span className={styles.cardTitle}>{t.dashboardIncomeTitle}</span>
+              {loadingIncome ? (
+                <p className={styles.cardLoading}>…</p>
+              ) : (
+                <>
+                  <div className={styles.cardStat}>
+                    <span className={`${styles.cardStatValue} ${styles.cardStatMoney}`}>
+                      {formatAmount(totalIncome)}
+                    </span>
+                    <span className={styles.cardStatLabel}>{t.dashboardIncomeThisMonth}</span>
+                  </div>
+                  {hasPrevIncome ? (
+                    <div className={styles.cardRecent}>
+                      <span
+                        className={`${styles.cardCompare} ${
+                          incomeDiffPct >= 0 ? styles.cardCompareUp : styles.cardCompareDown
+                        }`}
+                      >
+                        {incomeDiffPct >= 0 ? "▲" : "▼"} {Math.abs(incomeDiffPct)}%
+                      </span>
+                      <span className={styles.cardRecentLabel}>{t.dashboardIncomeVsPrev}</span>
+                    </div>
+                  ) : (
+                    <p className={styles.cardSuggestion}>{t.dashboardIncomeNoPrev}</p>
+                  )}
+                </>
+              )}
+              <span className={styles.cardCta}>{t.dashboardIncomeCta} →</span>
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   );
