@@ -26,6 +26,8 @@
   --color-accent-active: #003faa;
   --color-accent-soft: #eef3fd;
   --color-accent-soft-hover: #dce8fb;
+  --color-fab-bg: #d3e2fb;
+  --color-fab-bg-hover: #bdd3f8;
   --color-danger: #ef4444;
   --color-danger-strong: #dc2626;
   --color-danger-soft: #fef2f2;
@@ -57,6 +59,8 @@
   --color-accent-active: #8ab6fa;
   --color-accent-soft: rgba(79, 142, 247, 0.16);
   --color-accent-soft-hover: rgba(79, 142, 247, 0.26);
+  --color-fab-bg: var(--color-accent-soft);
+  --color-fab-bg-hover: var(--color-accent-soft-hover);
   --color-danger: #f87171;
   --color-danger-strong: #f87171;
   --color-danger-soft: rgba(239, 68, 68, 0.14);
