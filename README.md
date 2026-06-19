@@ -64,18 +64,28 @@ La app queda disponible en `http://localhost:5173` (el proxy de Vite reenvía `/
 
 ## ¿Hay demo?
 
-Por ahora el proyecto se ejecuta en local siguiendo los pasos anteriores — todavía no tiene un despliegue público. Está en la lista de mejoras (ver más abajo) desplegarlo para tener un enlace de demo navegable sin instalar nada.
+Todavía no — por ahora el proyecto se ejecuta en local siguiendo los pasos anteriores.
+
+**Plan de despliegue (pendiente, próxima sesión):** frontend en **Vercel** y backend en **Render**, manteniendo Supabase como base de datos/auth (ya está en la nube). Pasos a seguir cuando se haga:
+
+1. Backend en Render: nuevo *Web Service* apuntando a `backend/`, build con `pip install -r requirements.txt`, start command `uvicorn main:app --host 0.0.0.0 --port $PORT`, y variables de entorno `SUPABASE_URL` / `SUPABASE_ANON_KEY` configuradas en el panel de Render (no en el repo).
+2. Frontend en Vercel: importar `frontend/` como proyecto Vite, y apuntar las llamadas a `/api` a la URL pública de Render (hoy se resuelven vía el proxy de Vite, que solo existe en local — habrá que sustituirlo por una variable de entorno con la URL del backend, p. ej. `VITE_API_URL`, usada en `frontend/src/lib/api.js`).
+3. Actualizar `CORSMiddleware` en `backend/main.py` (hoy solo permite `http://localhost:5173`) para aceptar el dominio de Vercel.
+4. Enlazar la URL final aquí, en esta sección.
 
 ## Posibles mejoras
 
-Algunas ideas para seguir puliendo el proyecto:
+Algunas ideas para seguir puliendo el proyecto, pensando en que es una pieza de portfolio:
 
-- **Desplegar una demo pública** (frontend en Vercel/Netlify, backend en Railway/Render) con un usuario de prueba, para que se pueda probar sin clonar el repo.
-- **Tests automáticos** (pytest en el backend, Vitest/RTL en el frontend) — todavía no hay ninguno.
-- **Capturas o GIF** del dashboard y del flujo de registrar horas, añadidos a este README.
-- **CI en GitHub Actions** que corra build/lint en cada push, como muestra de buenas prácticas.
+- **Desplegar la demo pública** (ver plan arriba) con un usuario de prueba — es lo que más valor da de cara a un reclutador: poder probarlo sin clonar nada.
+- **Capturas o un GIF corto** del dashboard y del flujo de registrar horas, insertados aquí arriba en el README. Es lo primero que se ve al abrir el repo y vende mucho mejor que el texto.
+- **Tests automáticos** (pytest en el backend, Vitest/React Testing Library en el frontend) — todavía no hay ninguno; aunque sean pocos, demuestran hábitos profesionales.
+- **CI en GitHub Actions** que corra build/lint (y los tests, cuando existan) en cada push — badge verde en el README incluido.
+- **LICENSE real** en el repo (ver sección siguiente) — un repo sin licencia técnicamente no es reutilizable por nadie, y un reclutador que mire el repo lo nota.
+- **Historial de commits cuidado**: ya usas un formato `[keyword] descripción` consistente — mantenlo, queda muy bien en el log de un repo de portfolio.
 - **Exportar informes** (PDF/CSV) de horas e ingresos por cliente o proyecto.
 - **Paginación/filtrado por fechas** en listados largos de horas.
+- Mencionar en el propio README (o en tu perfil de GitHub/LinkedIn) que el proyecto es tu TFG/proyecto final de DAM si aplica — da contexto y muestra progresión.
 
 ## Licencia
 
