@@ -99,8 +99,8 @@ export const translations = {
     timeEntryFieldStart: "Hora de entrada",
     timeEntryFieldEnd: "Hora de salida",
     timeEntryFieldHours: "Horas trabajadas",
-    timeEntryModeRange: "Entre dos horas",
-    timeEntryModeHours: "Solo horas",
+    timeEntryModeRange: "Franja horaria",
+    timeEntryModeHours: "Horas totales",
     timeEntryFieldDescription: "Descripción (opcional)",
     timeEntryFieldDescriptionPlaceholder: "¿En qué has trabajado?",
     timeEntryCancel: "Cancelar",
@@ -173,8 +173,8 @@ export const translations = {
     projectIncomeChartNextMonth: "Mes siguiente",
 
     // ── income page ───────────────────────────────────────────
-    incomeMonthTotalHours: "Horas trabajadas este mes",
-    incomeMonthTotalIncome: "Ingresos de este mes",
+    incomeMonthTotalHours: "Horas trabajadas",
+    incomeMonthTotalIncome: "Ingresos",
     incomeBreakdownTitle: "Desglose por proyecto",
     incomeBreakdownEmpty: "Todavía no hay ingresos registrados este mes.",
     incomeBreakdownHours: "Horas",
@@ -294,8 +294,8 @@ export const translations = {
     timeEntryFieldStart: "Start time",
     timeEntryFieldEnd: "End time",
     timeEntryFieldHours: "Hours worked",
-    timeEntryModeRange: "Between two times",
-    timeEntryModeHours: "Hours only",
+    timeEntryModeRange: "Time range",
+    timeEntryModeHours: "Total hours",
     timeEntryFieldDescription: "Description (optional)",
     timeEntryFieldDescriptionPlaceholder: "What did you work on?",
     timeEntryCancel: "Cancel",
@@ -368,8 +368,8 @@ export const translations = {
     projectIncomeChartNextMonth: "Next month",
 
     // ── income page ───────────────────────────────────────────
-    incomeMonthTotalHours: "Hours worked this month",
-    incomeMonthTotalIncome: "Income this month",
+    incomeMonthTotalHours: "Hours worked",
+    incomeMonthTotalIncome: "Income",
     incomeBreakdownTitle: "Breakdown by project",
     incomeBreakdownEmpty: "No income logged yet this month.",
     incomeBreakdownHours: "Hours",
