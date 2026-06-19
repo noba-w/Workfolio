@@ -215,11 +215,17 @@
 
 .entryRow {
   display: flex;
-  align-items: baseline;
-  gap: 0.6rem;
+  flex-direction: column;
+  gap: 0.3rem;
   padding: 0.5rem 0.65rem;
   background: var(--color-surface-muted);
   border-radius: 8px;
+}
+
+.entryHeadline {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
 }
 
 .entryHours {
@@ -227,6 +233,11 @@
   font-weight: 700;
   color: var(--color-accent);
   flex-shrink: 0;
+}
+
+.entryRange {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
 }
 
 .entryDesc {

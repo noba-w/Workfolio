@@ -98,6 +98,9 @@ export const translations = {
     timeEntryFieldDate: "Día de trabajo",
     timeEntryFieldStart: "Hora de entrada",
     timeEntryFieldEnd: "Hora de salida",
+    timeEntryFieldHours: "Horas trabajadas",
+    timeEntryModeRange: "Entre dos horas",
+    timeEntryModeHours: "Solo horas",
     timeEntryFieldDescription: "Descripción (opcional)",
     timeEntryFieldDescriptionPlaceholder: "¿En qué has trabajado?",
     timeEntryCancel: "Cancelar",
@@ -107,6 +110,7 @@ export const translations = {
     timeEntryErrStart: "La hora de entrada es obligatoria.",
     timeEntryErrEnd: "La hora de salida es obligatoria.",
     timeEntryErrRange: "La hora de salida debe ser posterior a la de entrada.",
+    timeEntryErrHours: "Las horas trabajadas son obligatorias.",
 
     // ── projects ───────────────────────────────────────────
     projectsSearchPlaceholder: "Buscar por nombre o cliente…",
@@ -289,6 +293,9 @@ export const translations = {
     timeEntryFieldDate: "Work date",
     timeEntryFieldStart: "Start time",
     timeEntryFieldEnd: "End time",
+    timeEntryFieldHours: "Hours worked",
+    timeEntryModeRange: "Between two times",
+    timeEntryModeHours: "Hours only",
     timeEntryFieldDescription: "Description (optional)",
     timeEntryFieldDescriptionPlaceholder: "What did you work on?",
     timeEntryCancel: "Cancel",
@@ -298,6 +305,7 @@ export const translations = {
     timeEntryErrStart: "Start time is required.",
     timeEntryErrEnd: "End time is required.",
     timeEntryErrRange: "End time must be after the start time.",
+    timeEntryErrHours: "Hours worked is required.",
 
     // ── projects ───────────────────────────────────────────
     projectsSearchPlaceholder: "Search by name or client…",

@@ -18,6 +18,10 @@ def list_time_entries(project_id: Optional[str] = None, user: CurrentUser = Depe
 def create_time_entry(body: TimeEntryCreate, user: CurrentUser = Depends(get_current_user)):
     data = body.model_dump()
     data["date"] = str(data["date"])
+    if data["start_time"] is not None:
+        data["start_time"] = str(data["start_time"])
+    if data["end_time"] is not None:
+        data["end_time"] = str(data["end_time"])
     res = user.sb.table("time_entries").insert({**data, "user_id": user.id}).execute()
     if not res.data:
         raise HTTPException(status_code=400, detail="Could not create time entry")

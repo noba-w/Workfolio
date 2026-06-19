@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional, List
-from datetime import date, datetime
+from datetime import date, datetime, time
 from enum import Enum
 
 
@@ -103,6 +103,8 @@ class TimeEntryCreate(BaseModel):
     project_id: str
     date: date
     hours: float
+    start_time: Optional[time] = None
+    end_time: Optional[time] = None
     description: Optional[str] = None
 
 
@@ -111,6 +113,8 @@ class TimeEntryResponse(BaseModel):
     project_id: str
     date: date
     hours: float
+    start_time: Optional[time] = None
+    end_time: Optional[time] = None
     description: Optional[str] = None
     created_at: datetime
 

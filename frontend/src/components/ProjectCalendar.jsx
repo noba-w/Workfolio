@@ -179,7 +179,14 @@ export default function ProjectCalendar({ projectId, active }) {
               ) : (
                 selectedEntries.map((e) => (
                   <div key={e.id} className={styles.entryRow}>
-                    <span className={styles.entryHours}>{e.hours}{t.calendarHoursUnit}</span>
+                    <div className={styles.entryHeadline}>
+                      <span className={styles.entryHours}>{e.hours}{t.calendarHoursUnit}</span>
+                      {e.start_time && e.end_time && (
+                        <span className={styles.entryRange}>
+                          {e.start_time.slice(0, 5)} – {e.end_time.slice(0, 5)}
+                        </span>
+                      )}
+                    </div>
                     {e.description && <span className={styles.entryDesc}>{e.description}</span>}
                   </div>
                 ))
