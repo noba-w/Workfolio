@@ -15,12 +15,13 @@ function toMinutes(time) {
   return h * 60 + m;
 }
 
-const EMPTY = { date: todayISO(), startTime: "", endTime: "", description: "" };
+const EMPTY = { date: todayISO(), startTime: "", endTime: "", hours: "", description: "" };
 
 export default function TimeEntryModal({ onClose, project }) {
   const { t } = useLang();
   const { session } = useAuth();
   const queryClient = useQueryClient();
+  const [mode, setMode] = useState("range");
   const [form, setForm] = useState(EMPTY);
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
@@ -43,10 +44,14 @@ export default function TimeEntryModal({ onClose, project }) {
   function validate() {
     const errs = {};
     if (!form.date) errs.date = t.timeEntryErrDate;
-    if (!form.startTime) errs.startTime = t.timeEntryErrStart;
-    if (!form.endTime) errs.endTime = t.timeEntryErrEnd;
-    if (form.startTime && form.endTime && toMinutes(form.endTime) <= toMinutes(form.startTime)) {
-      errs.endTime = t.timeEntryErrRange;
+    if (mode === "range") {
+      if (!form.startTime) errs.startTime = t.timeEntryErrStart;
+      if (!form.endTime) errs.endTime = t.timeEntryErrEnd;
+      if (form.startTime && form.endTime && toMinutes(form.endTime) <= toMinutes(form.startTime)) {
+        errs.endTime = t.timeEntryErrRange;
+      }
+    } else if (!form.hours) {
+      errs.hours = t.timeEntryErrHours;
     }
     return errs;
   }
@@ -58,8 +63,22 @@ export default function TimeEntryModal({ onClose, project }) {
 
     setSaving(true);
     try {
-      const hours = Math.round(((toMinutes(form.endTime) - toMinutes(form.startTime)) / 60) * 100) / 100;
-      const body = { project_id: project.id, date: form.date, hours, description: form.description.trim() || null };
+      const body =
+        mode === "range"
+          ? {
+              project_id: project.id,
+              date: form.date,
+              hours: Math.round(((toMinutes(form.endTime) - toMinutes(form.startTime)) / 60) * 100) / 100,
+              start_time: form.startTime,
+              end_time: form.endTime,
+              description: form.description.trim() || null,
+            }
+          : {
+              project_id: project.id,
+              date: form.date,
+              hours: Number(form.hours),
+              description: form.description.trim() || null,
+            };
       await createTimeEntry(body, session?.access_token);
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: ["projects"] }),
@@ -100,26 +119,62 @@ export default function TimeEntryModal({ onClose, project }) {
           </div>
 
           <div className={styles.field}>
-            <label className={styles.label}>{t.timeEntryFieldStart} <span className={styles.required}>*</span></label>
-            <input
-              className={`${styles.input} ${errors.startTime ? styles.inputError : ""}`}
-              type="time"
-              value={form.startTime}
-              onChange={set("startTime")}
-            />
-            {errors.startTime && <span className={styles.fieldError}>{errors.startTime}</span>}
+            <div className={styles.modeToggle} role="group">
+              <button
+                type="button"
+                className={`${styles.modeBtn} ${mode === "range" ? styles.modeBtnActive : ""}`}
+                onClick={() => setMode("range")}
+              >
+                {t.timeEntryModeRange}
+              </button>
+              <button
+                type="button"
+                className={`${styles.modeBtn} ${mode === "hours" ? styles.modeBtnActive : ""}`}
+                onClick={() => setMode("hours")}
+              >
+                {t.timeEntryModeHours}
+              </button>
+            </div>
           </div>
 
-          <div className={styles.field}>
-            <label className={styles.label}>{t.timeEntryFieldEnd} <span className={styles.required}>*</span></label>
-            <input
-              className={`${styles.input} ${errors.endTime ? styles.inputError : ""}`}
-              type="time"
-              value={form.endTime}
-              onChange={set("endTime")}
-            />
-            {errors.endTime && <span className={styles.fieldError}>{errors.endTime}</span>}
-          </div>
+          {mode === "range" ? (
+            <>
+              <div className={styles.field}>
+                <label className={styles.label}>{t.timeEntryFieldStart} <span className={styles.required}>*</span></label>
+                <input
+                  className={`${styles.input} ${errors.startTime ? styles.inputError : ""}`}
+                  type="time"
+                  value={form.startTime}
+                  onChange={set("startTime")}
+                />
+                {errors.startTime && <span className={styles.fieldError}>{errors.startTime}</span>}
+              </div>
+
+              <div className={styles.field}>
+                <label className={styles.label}>{t.timeEntryFieldEnd} <span className={styles.required}>*</span></label>
+                <input
+                  className={`${styles.input} ${errors.endTime ? styles.inputError : ""}`}
+                  type="time"
+                  value={form.endTime}
+                  onChange={set("endTime")}
+                />
+                {errors.endTime && <span className={styles.fieldError}>{errors.endTime}</span>}
+              </div>
+            </>
+          ) : (
+            <div className={styles.field}>
+              <label className={styles.label}>{t.timeEntryFieldHours} <span className={styles.required}>*</span></label>
+              <input
+                className={`${styles.input} ${errors.hours ? styles.inputError : ""}`}
+                type="number"
+                min="0"
+                step="0.25"
+                value={form.hours}
+                onChange={set("hours")}
+              />
+              {errors.hours && <span className={styles.fieldError}>{errors.hours}</span>}
+            </div>
+          )}
 
           <div className={styles.field}>
             <label className={styles.label}>{t.timeEntryFieldDescription}</label>
