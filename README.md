@@ -83,10 +83,8 @@ Algunas ideas para seguir puliendo el proyecto, pensando en que es una pieza de 
 - **Tests automáticos** (pytest en el backend, Vitest/React Testing Library en el frontend) — todavía no hay ninguno; aunque sean pocos, demuestran hábitos profesionales.
 - **CI en GitHub Actions** que corra build/lint (y los tests, cuando existan) en cada push — badge verde en el README incluido.
 - **LICENSE real** en el repo (ver sección siguiente) — un repo sin licencia técnicamente no es reutilizable por nadie, y un reclutador que mire el repo lo nota.
-- **Historial de commits cuidado**: ya usas un formato `[keyword] descripción` consistente — mantenlo, queda muy bien en el log de un repo de portfolio.
 - **Exportar informes** (PDF/CSV) de horas e ingresos por cliente o proyecto.
 - **Paginación/filtrado por fechas** en listados largos de horas.
-- Mencionar en el propio README (o en tu perfil de GitHub/LinkedIn) que el proyecto es tu TFG/proyecto final de DAM si aplica — da contexto y muestra progresión.
 
 ## Licencia
 
