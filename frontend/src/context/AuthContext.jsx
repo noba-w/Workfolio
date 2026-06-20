@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { loginUser, registerUser } from "../lib/auth";
-import { setRefreshCallback } from "../lib/api";
+import { setRefreshCallback, API_BASE_URL } from "../lib/api";
 
 const AuthContext = createContext(null);
 
@@ -34,7 +34,7 @@ export function AuthProvider({ children }) {
     }
     const refreshToken = session.refresh_token;
     setRefreshCallback(async () => {
-      const res = await fetch("/api/auth/refresh", {
+      const res = await fetch(`${API_BASE_URL}/api/auth/refresh`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ refresh_token: refreshToken }),
