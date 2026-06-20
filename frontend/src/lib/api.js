@@ -1,3 +1,5 @@
+const API_BASE_URL = import.meta.env.VITE_API_URL ?? "";
+
 let _onRefresh = null;
 let _refreshPromise = null;
 
@@ -26,7 +28,8 @@ function buildOpts(options, token) {
 }
 
 async function apiFetch(path, options = {}, token) {
-  const res = await fetch(path, buildOpts(options, token));
+  const url = `${API_BASE_URL}${path}`;
+  const res = await fetch(url, buildOpts(options, token));
 
   if (res.status === 401 && _onRefresh) {
     let newToken;
@@ -35,7 +38,7 @@ async function apiFetch(path, options = {}, token) {
     } catch {
       throw new Error("Session expired. Please log in again.");
     }
-    const retry = await fetch(path, buildOpts(options, newToken));
+    const retry = await fetch(url, buildOpts(options, newToken));
     if (retry.status === 204) return null;
     const retryData = await retry.json();
     if (!retry.ok) throw new Error(retryData.detail ?? "Something went wrong");
