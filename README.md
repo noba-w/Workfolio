@@ -64,20 +64,21 @@ La app queda disponible en `http://localhost:5173` (el proxy de Vite reenvía `/
 
 ## ¿Hay demo?
 
-Todavía no — por ahora el proyecto se ejecuta en local siguiendo los pasos anteriores.
+Sí — desplegado con backend en **Render** y frontend en **Vercel**, manteniendo Supabase como base de datos/auth:
 
-**Plan de despliegue (pendiente, próxima sesión):** frontend en **Vercel** y backend en **Render**, manteniendo Supabase como base de datos/auth (ya está en la nube). Pasos a seguir cuando se haga:
+- Frontend: https://workfolio-taupe.vercel.app
+- Backend: https://workfolio-2tx7.onrender.com
 
-1. Backend en Render: nuevo *Web Service* apuntando a `backend/`, build con `pip install -r requirements.txt`, start command `uvicorn main:app --host 0.0.0.0 --port $PORT`, y variables de entorno `SUPABASE_URL` / `SUPABASE_ANON_KEY` configuradas en el panel de Render (no en el repo).
-2. Frontend en Vercel: importar `frontend/` como proyecto Vite, y apuntar las llamadas a `/api` a la URL pública de Render (hoy se resuelven vía el proxy de Vite, que solo existe en local — habrá que sustituirlo por una variable de entorno con la URL del backend, p. ej. `VITE_API_URL`, usada en `frontend/src/lib/api.js`).
-3. Actualizar `CORSMiddleware` en `backend/main.py` (hoy solo permite `http://localhost:5173`) para aceptar el dominio de Vercel.
-4. Enlazar la URL final aquí, en esta sección.
+> Nota: el backend está en el plan gratuito de Render, así que tras un rato de inactividad se "duerme" y la primera petición tras eso puede tardar unos segundos en responder.
+
+> Nota: el enlace "¿Olvidaste tu contraseña?" de la pantalla de login todavía no está implementado (no dispara ninguna acción) — pendiente de añadir el flujo de recuperación de contraseña vía Supabase Auth.
 
 ## Posibles mejoras
 
 Algunas ideas para seguir puliendo el proyecto, pensando en que es una pieza de portfolio:
 
-- **Desplegar la demo pública** (ver plan arriba) con un usuario de prueba — es lo que más valor da de cara a un reclutador: poder probarlo sin clonar nada.
+- **Usuario de prueba en la demo pública** — para que un reclutador pueda probarla sin tener que registrarse.
+- **Implementar "¿Olvidaste tu contraseña?"** — el enlace existe en el login pero todavía no dispara el flujo de recuperación de Supabase Auth.
 - **Capturas o un GIF corto** del dashboard y del flujo de registrar horas, insertados aquí arriba en el README. Es lo primero que se ve al abrir el repo y vende mucho mejor que el texto.
 - **Tests automáticos** (pytest en el backend, Vitest/React Testing Library en el frontend) — todavía no hay ninguno; aunque sean pocos, demuestran hábitos profesionales.
 - **CI en GitHub Actions** que corra build/lint (y los tests, cuando existan) en cada push — badge verde en el README incluido.
